@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- OVERTIME MEAL -->
+	<bean id="adminOvertimeMealController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/overtimemeal/overtimemeal_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealSearchProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="detail">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealDetailProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="admin/overtimemeal/overtimemeal_detail" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/overtimemeal/overtimemeal_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealCreateProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealUpdatePreProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="admin/overtimemeal/overtimemeal_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealUpdateProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealDeleteProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="dispose">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealDisposeProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="replypre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealReplyPreProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="admin/overtimemeal/overtimemeal_reply" />
+					</bean>
+				</entry>
+				<entry key="reply">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.overtimemeal.OvertimeMealReplyProcess">
+						<property name="overtimeMealService" ref="overtimeMealService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

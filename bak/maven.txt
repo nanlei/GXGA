@@ -1,0 +1,7 @@
+mvn install:install-file -DgroupId=com.ckfinder -DartifactId=CKFinder -Dversion=2.4.3 -Dpackaging=jar -Dfile=CKFinder-2.4.3.jar
+
+mvn install:install-file -DgroupId=com.ckfinder -DartifactId=CKFinderPlugin-FileEditor -Dversion=2.4.3 -Dpackaging=jar -Dfile=CKFinderPlugin-FileEditor-2.4.3.jar
+
+mvn install:install-file -DgroupId=com.ckfinder -DartifactId=CKFinderPlugin-ImageResize -Dversion=2.4.3 -Dpackaging=jar -Dfile=CKFinderPlugin-ImageResize-2.4.3.jar
+
+mvn install:install-file -DgroupId=com.ckfinder -DartifactId=CKFinderPlugin-Watermark -Dversion=2.4.3 -Dpackaging=jar -Dfile=CKFinderPlugin-Watermark-2.4.3.jar

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 文件上传映射 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1000000000" /><!-- 1G -->
+		<property name="maxInMemorySize" value="10240" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="uploadTempDir" value="file/tmp" />
+	</bean>
+
+	<!-- 控制器映射 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="ipInterceptor" />
+				<ref bean="loginInterceptor" />
+				<ref bean="permissionInterceptor" />
+			</list>
+		</property>
+		<property name="mappings">
+			<props>
+				<prop key="/index.do">indexController</prop>
+				<prop key="/front/latest.do">latestController</prop>
+				<prop key="/front/attachment.do">attachmentController</prop>
+				<prop key="/front/branchoverview.do">branchOverviewController</prop>
+				<prop key="/front/article.do">articleController</prop>
+				<prop key="/front/articleList.do">articleListController</prop>
+				<prop key="/front/law.do">lawController</prop>
+				<prop key="/front/informationsecurity.do">informationSecurityController</prop>
+				<prop key="/front/download.do">downloadController</prop>
+				<prop key="/front/talent.do">talentController</prop>
+				<prop key="/front/department.do">departmentController</prop>
+				<prop key="/front/contact.do">contactController</prop>
+				<prop key="/front/duty.do">dutyController</prop>
+				<prop key="/front/mailbox.do">mailboxController</prop>
+				<prop key="/front/oa.do">oaController</prop>
+				<prop key="/front/job.do">jobController</prop>
+				<prop key="/front/search.do">searchController</prop>
+				<!-- ADMIN -->
+				<prop key="/admin/login.do">adminLoginController</prop>
+				<prop key="/admin/logon.do">adminLogonController</prop>
+				<prop key="/admin/logout.do">adminLogoutController</prop>
+				<prop key="/admin/home.do">adminHomeController</prop>
+				<prop key="/admin/main.do">adminMainController</prop>
+				<prop key="/admin/menu.do">adminMenuController</prop>
+				<prop key="/admin/const.do">adminConstController</prop>
+				<prop key="/admin/common.do">adminCommonController</prop>
+				<!-- ADMIN FUNCTION -->
+				<prop key="/admin/branchoverview.do">adminBranchOverviewController</prop>
+				<prop key="/admin/memorabiliaindex.do">adminMemorabiliaIndexController</prop>
+				<prop key="/admin/law.do">adminLawController</prop>
+				<prop key="/admin/informationsecurity.do">adminInformationSecurityController</prop>
+				<prop key="/admin/imagenews.do">adminImageNewsController</prop>
+				<prop key="/admin/link.do">adminLinkController</prop>
+				<prop key="/admin/emergencynotice.do">adminEmergencyNoticeController</prop>
+				<!-- ARTICLE -->
+				<prop key="/admin/superiorfile.do">adminSuperiorFileController</prop>
+				<prop key="/admin/notice.do">adminNoticeController</prop>
+				<prop key="/admin/branchfile.do">adminBranchFileController</prop>
+				<prop key="/admin/issue.do">adminIssueController</prop>
+				<prop key="/admin/issueword.do">adminIssueWordController</prop>
+				<prop key="/admin/policecase.do">adminPoliceCaseController</prop>
+				<prop key="/admin/workreport.do">adminWorkReportController</prop>
+				<prop key="/admin/politicalreport.do">adminPoliticalReportController</prop>
+				<prop key="/admin/legal.do">adminLegalController</prop>
+				<prop key="/admin/discipline.do">adminDisciplineController</prop>
+				<prop key="/admin/experience.do">adminExperienceController</prop>
+				<prop key="/admin/policeculture.do">adminPoliceCultureController</prop>
+				<prop key="/admin/evaluation.do">adminEvaluationController</prop>
+				<!-- DEPT -->
+				<prop key="/admin/branchdepartment.do">adminBranchDepartmentController</prop>
+				<prop key="/admin/departmentcategory.do">adminDepartmentCategoryController</prop>
+				<!-- JOB -->
+				<prop key="/admin/jobheader.do">adminJobHeaderController</prop>
+				<prop key="/admin/jobline.do">adminJobLineController</prop>
+				<prop key="/admin/jobcategory.do">adminJobCategoryController</prop>
+				<!-- OA -->
+				<prop key="/admin/rank.do">adminRankController</prop>
+				<prop key="/admin/duty.do">adminDutyController</prop>
+				<prop key="/admin/dutyplan.do">adminDutyPlanController</prop>
+				<prop key="/admin/mailbox.do">adminMailboxController</prop>
+				<prop key="/admin/meeting.do">adminMeetingController</prop>
+				<prop key="/admin/assetrepair.do">adminAssetRepairController</prop>
+				<prop key="/admin/overtimemeal.do">adminOvertimeMealController</prop>
+				<!-- HR -->
+				<prop key="/admin/position.do">adminPositionController</prop>
+				<prop key="/admin/department.do">adminDepartmentController</prop>
+				<prop key="/admin/employee.do">adminEmployeeController</prop>
+				<prop key="/admin/talent.do">adminTalentController</prop>
+				<prop key="/admin/contact.do">adminContactController</prop>
+				<!-- SYS -->
+				<prop key="/admin/category.do">adminCategoryController</prop>
+				<prop key="/admin/permission.do">adminPermissionController</prop>
+				<prop key="/admin/permissiongroup.do">adminPermissionGroupController</prop>
+				<prop key="/admin/role.do">adminRoleController</prop>
+				<prop key="/admin/user.do">adminUserController</prop>
+				<prop key="/admin/externalip.do">adminExternalIPController</prop>
+				<prop key="/admin/constant.do">adminConstantController</prop>
+				<prop key="/admin/download.do">adminDownloadController</prop>
+				<prop key="/admin/selfservice.do">adminSelfServiceController</prop>
+				<!-- DOC -->
+				<prop key="/admin/image.do">adminImageController</prop>
+				<prop key="/admin/attachment.do">adminAttachmentController</prop>
+				<prop key="/admin/article.do">adminArticleController</prop>
+				<prop key="/admin/video.do">adminVideoController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- IP 拦截器 -->
+	<bean id="ipInterceptor" class="cn.gov.dl.ga.gxga.core.interceptor.IPInterceptor">
+		<property name="indexURL">
+			<value>/index.do</value>
+		</property>
+		<property name="exactMatch">
+			<value>false</value>
+		</property>
+		<property name="ignoreURLs"><!-- 不拦截的地址 -->
+			<list>
+				<value>/index.do</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 后台登录拦截器 -->
+	<bean id="loginInterceptor" class="cn.gov.dl.ga.gxga.core.interceptor.LoginInterceptor">
+		<property name="loginURL">
+			<value>/admin/login.do</value>
+		</property>
+		<property name="exactMatch">
+			<value>false</value>
+		</property>
+		<property name="ignoreURLs"><!-- 不拦截的地址 -->
+			<list>
+				<value>/index.do</value>
+				<value>/front/*</value>
+				<value>/admin/login.do</value>
+				<value>/admin/logon.do</value>
+				<value>/admin/logout.do</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 后台管理权限拦截器 -->
+	<bean id="permissionInterceptor"
+		class="cn.gov.dl.ga.gxga.core.interceptor.PermissionInterceptor">
+		<property name="indexURL">
+			<value>/admin/login.do</value>
+		</property>
+		<property name="exactMatch">
+			<value>false</value>
+		</property>
+		<property name="ignoreURLs"><!-- 不拦截的地址 -->
+			<list>
+				<value>/index.do</value>
+				<value>/front/*</value>
+				<value>/admin/login.do</value>
+				<value>/admin/logon.do</value>
+				<value>/admin/logout.do</value>
+				<value>/admin/home.do</value>
+				<value>/admin/menu.do</value>
+				<value>/admin/main.do</value>
+				<value>/admin/const.do</value>
+				<value>/admin/common.do</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="filenameController"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="order" value="1" />
+		<property name="location" value="/WEB-INF/views.xml" />
+	</bean>
+
+	<!-- freemarker config -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPaths">
+			<list>
+				<value>/Freemarker/</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">5</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="number_format">0.#</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="whitespace_stripping">true</prop>
+				<prop key="tag_syntax">auto_detect</prop>
+				<prop key="auto_import">/common/admin/page_macro.ftl as
+					admin,/common/admin/app_macro.ftl as
+					adminApp,/common/front/page_macro.ftl as p
+				</prop>
+				<prop key="auto_include">/common/admin/common_function.ftl</prop>
+			</props>
+		</property>
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="ftlUtil" value-ref="ftlUtil" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="freeMarkerViewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="suffix" value=".ftl"></property>
+		<property name="contentType" value="text/html;charset=utf-8"></property>
+		<property name="exposeSpringMacroHelpers" value="true"></property>
+		<property name="exposeRequestAttributes" value="true"></property>
+		<property name="exposeSessionAttributes" value="true"></property>
+		<property name="order" value="2"></property>
+	</bean>
+
+	<!-- 异常解析 -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.RuntimeException">exception</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 工具类 -->
+	<bean id="ftlUtil" class="cn.gov.dl.ga.gxga.util.FtlUtil">
+		<property name="indexService" ref="indexService" />
+		<property name="constantService" ref="constantService" />
+	</bean>
+</beans>

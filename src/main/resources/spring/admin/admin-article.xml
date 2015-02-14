@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- ARTICLE -->
+	<bean id="adminArticleController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/article/article_list" />
+					</bean>
+				</entry>
+				<entry key="addimage">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.article.ArticleAddImageProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="deleteimage">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.article.ArticleDeleteImageProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="addattachment">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.article.ArticleAddAttachmentProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="deleteattachment">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.article.ArticleDeleteAttachmentProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

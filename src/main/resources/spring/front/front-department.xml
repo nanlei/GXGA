@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<!-- DEPARTMENT -->
+	<bean id="departmentController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.department.DepartmentProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/department/department" />
+					</bean>
+				</entry>
+				<entry key="sublist">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.department.DepartmentSubListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/department/department_sublist" />
+					</bean>
+				</entry>
+				<entry key="article">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.department.DepartmentArticleProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/department/department_article" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

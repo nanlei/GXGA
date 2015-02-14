@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+	default-autowire="byName" default-merge="true">
+	<!-- Base Service -->
+	<bean id="baseService" class="cn.gov.dl.ga.gxga.service.BaseService">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- ADMIN -->
+	<!-- MenuService -->
+	<bean id="menuService" class="cn.gov.dl.ga.gxga.service.admin.MenuService"
+		parent="baseService" />
+
+	<!-- UserService -->
+	<bean id="userService" class="cn.gov.dl.ga.gxga.service.admin.UserService"
+		parent="baseService" />
+
+	<!-- CategoryService -->
+	<bean id="categoryService" class="cn.gov.dl.ga.gxga.service.admin.CategoryService"
+		parent="baseService" />
+
+	<!-- PermissionService -->
+	<bean id="permissionService" class="cn.gov.dl.ga.gxga.service.admin.PermissionService"
+		parent="baseService" />
+
+	<!-- PermissionGroupService -->
+	<bean id="permissionGroupService" class="cn.gov.dl.ga.gxga.service.admin.PermissionGroupService"
+		parent="baseService" />
+
+	<!-- RoleService -->
+	<bean id="roleService" class="cn.gov.dl.ga.gxga.service.admin.RoleService"
+		parent="baseService" />
+
+	<!-- ExternalIPService -->
+	<bean id="externalIPService" class="cn.gov.dl.ga.gxga.service.admin.ExternalIPService"
+		parent="baseService" />
+
+	<!-- ConstantService -->
+	<bean id="constantService" class="cn.gov.dl.ga.gxga.service.admin.ConstantService"
+		parent="baseService" />
+
+	<!-- PositionService -->
+	<bean id="positionService" class="cn.gov.dl.ga.gxga.service.admin.PositionService"
+		parent="baseService" />
+
+	<!-- DepartmentService -->
+	<bean id="departmentService" class="cn.gov.dl.ga.gxga.service.admin.DepartmentService"
+		parent="baseService" />
+
+	<!-- EmployeeService -->
+	<bean id="employeeService" class="cn.gov.dl.ga.gxga.service.admin.EmployeeService"
+		parent="baseService" />
+
+	<!-- ImageService -->
+	<bean id="imageService" class="cn.gov.dl.ga.gxga.service.admin.ImageService"
+		parent="baseService" />
+
+	<!-- AttachmentService -->
+	<bean id="attachmentService" class="cn.gov.dl.ga.gxga.service.admin.AttachmentService"
+		parent="baseService" />
+
+	<!-- ArticleService -->
+	<bean id="articleService" class="cn.gov.dl.ga.gxga.service.admin.ArticleService"
+		parent="baseService" />
+
+	<!-- IssueService -->
+	<bean id="issueService" class="cn.gov.dl.ga.gxga.service.admin.IssueService"
+		parent="baseService" />
+
+	<!-- IssueWordService -->
+	<bean id="issueWordService" class="cn.gov.dl.ga.gxga.service.admin.IssueWordService"
+		parent="baseService" />
+
+	<!-- RankService -->
+	<bean id="rankService" class="cn.gov.dl.ga.gxga.service.admin.RankService"
+		parent="baseService" />
+
+	<!-- LinkService -->
+	<bean id="linkService" class="cn.gov.dl.ga.gxga.service.admin.LinkService"
+		parent="baseService" />
+
+	<!-- DownloadService -->
+	<bean id="downloadService" class="cn.gov.dl.ga.gxga.service.admin.DownloadService"
+		parent="baseService" />
+
+	<!-- ContactService -->
+	<bean id="contactService" class="cn.gov.dl.ga.gxga.service.admin.ContactService"
+		parent="baseService" />
+
+	<!-- DutyService -->
+	<bean id="dutyService" class="cn.gov.dl.ga.gxga.service.admin.DutyService"
+		parent="baseService" />
+
+	<!-- DepartmentCategoryService -->
+	<bean id="departmentCategoryService"
+		class="cn.gov.dl.ga.gxga.service.admin.DepartmentCategoryService"
+		parent="baseService" />
+
+	<!-- MemorabiliaIndexService -->
+	<bean id="memorabiliaIndexService" class="cn.gov.dl.ga.gxga.service.admin.MemorabiliaIndexService"
+		parent="baseService" />
+
+	<!-- MailboxService -->
+	<bean id="mailboxService" class="cn.gov.dl.ga.gxga.service.admin.MailboxService"
+		parent="baseService" />
+
+	<!-- EmergencyNoticeService -->
+	<bean id="emergencyNoticeService" class="cn.gov.dl.ga.gxga.service.admin.EmergencyNoticeService"
+		parent="baseService" />
+
+	<!-- MeetingService -->
+	<bean id="meetingService" class="cn.gov.dl.ga.gxga.service.admin.MeetingService"
+		parent="baseService" />
+
+	<!-- JobHeaderService -->
+	<bean id="jobHeaderService" class="cn.gov.dl.ga.gxga.service.admin.JobHeaderService"
+		parent="baseService" />
+
+	<!-- JobLineService -->
+	<bean id="jobLineService" class="cn.gov.dl.ga.gxga.service.admin.JobLineService"
+		parent="baseService" />
+
+	<!-- JobCategoryService -->
+	<bean id="jobCategoryService" class="cn.gov.dl.ga.gxga.service.admin.JobCategoryService"
+		parent="baseService" />
+
+	<!-- SelfService -->
+	<bean id="selfService" class="cn.gov.dl.ga.gxga.service.admin.SelfService"
+		parent="baseService" />
+
+	<!-- VideoService -->
+	<bean id="videoService" class="cn.gov.dl.ga.gxga.service.admin.VideoService"
+		parent="baseService" />
+
+	<!-- AssetRepairService -->
+	<bean id="assetRepairService" class="cn.gov.dl.ga.gxga.service.admin.AssetRepairService"
+		parent="baseService" />
+
+	<!-- OvertimeMealService -->
+	<bean id="overtimeMealService" class="cn.gov.dl.ga.gxga.service.admin.OvertimeMealService"
+		parent="baseService" />
+
+	<!-- DutyPlanService -->
+	<bean id="dutyPlanService" class="cn.gov.dl.ga.gxga.service.admin.DutyPlanService"
+		parent="baseService" />
+
+	<!-- FRONT -->
+	<!-- IndexService -->
+	<bean id="indexService" class="cn.gov.dl.ga.gxga.service.front.IndexService"
+		parent="baseService" />
+</beans>

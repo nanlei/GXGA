@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- JOB LINE -->
+	<bean id="adminJobLineController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/jobline/jobline_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineSearchProcess">
+						<property name="jobLineService" ref="jobLineService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/jobline/jobline_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineCreateProcess">
+						<property name="jobLineService" ref="jobLineService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatedispatcher">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/jobline/jobline_updatedispatcher" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineUpdatePreProcess">
+						<property name="jobLineService" ref="jobLineService" />
+						<property name="successView" value="admin/jobline/jobline_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineUpdateProcess">
+						<property name="jobLineService" ref="jobLineService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatedetailsearch">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/jobline/jobline_updatedetailsearch" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineDeleteProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="getjobheader">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineGetJobHeaderProcess">
+						<property name="jobLineService" ref="jobLineService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="ajax">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineAjaxProcess">
+						<property name="jobLineService" ref="jobLineService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

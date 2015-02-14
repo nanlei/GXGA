@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- LOGIN -->
+	<bean id="adminLoginController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/login" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- LOGON -->
+	<bean id="adminLogonController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.AdminLogonProcess">
+						<property name="userService" ref="userService" />
+						<property name="employeeService" ref="employeeService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- LOGOUT -->
+	<bean id="adminLogoutController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.AdminLogoutProcess">
+						<property name="successView" value="admin/login" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- HOME -->
+	<bean id="adminHomeController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/home" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Main -->
+	<bean id="adminMainController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/main" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- MENU -->
+	<bean id="adminMenuController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.AdminMenuProcess">
+						<property name="menuService" ref="menuService" />
+						<property name="successView" value="admin/menu" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- CONST -->
+	<bean id="adminConstController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.AdminConstProcess">
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- COMMON -->
+	<bean id="adminCommonController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="getEmployeesByDepartmentId">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.employee.GetEmployeesByDepartmentIdProcess">
+						<property name="employeeService" ref="employeeService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

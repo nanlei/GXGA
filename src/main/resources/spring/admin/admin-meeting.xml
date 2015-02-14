@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- MAILBOX -->
+	<bean id="adminMeetingController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/meeting/meeting_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.meeting.MeetingSearchProcess">
+						<property name="meetingService" ref="meetingService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/meeting/meeting_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.meeting.MeetingCreateProcess">
+						<property name="meetingService" ref="meetingService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.meeting.MeetingUpdatePreProcess">
+						<property name="meetingService" ref="meetingService" />
+						<property name="successView" value="admin/meeting/meeting_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.meeting.MeetingUpdateProcess">
+						<property name="meetingService" ref="meetingService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.meeting.MeetingDeleteProcess">
+						<property name="meetingService" ref="meetingService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

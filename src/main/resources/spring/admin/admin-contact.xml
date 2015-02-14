@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- CONTACT -->
+	<bean id="adminContactController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/contact/contact_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.contact.ContactSearchProcess">
+						<property name="contactService" ref="contactService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/contact/contact_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.contact.ContactCreateProcess">
+						<property name="contactService" ref="contactService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.contact.ContactUpdatePreProcess">
+						<property name="contactService" ref="contactService" />
+						<property name="successView" value="admin/contact/contact_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.contact.ContactUpdateProcess">
+						<property name="contactService" ref="contactService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.contact.ContactDeleteProcess">
+						<property name="contactService" ref="contactService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

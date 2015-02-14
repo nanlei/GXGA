@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- ISSUEWORD -->
+	<bean id="adminIssueWordController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/issueword/issueword_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.issueword.IssueWordSearchProcess">
+						<property name="issueWordService" ref="issueWordService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="generate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.issueword.IssueWordGenerateProcess">
+						<property name="issueService" ref="issueService" />
+						<property name="issueWordService" ref="issueWordService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.issueword.IssueWordDeleteProcess">
+						<property name="issueWordService" ref="issueWordService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="uploadpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/issueword/issueword_upload" />
+					</bean>
+				</entry>
+				<entry key="upload">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.issueword.IssueWordUploadProcess">
+						<property name="issueWordService" ref="issueWordService" />
+						<property name="successView" value="admin/default" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

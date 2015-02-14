@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- DEPARTMENT -->
+	<bean id="adminDepartmentController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/department/department_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.department.DepartmentSearchProcess">
+						<property name="departmentService" ref="departmentService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="getupperdepartment">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.department.DepartmentUpperProcess">
+						<property name="departmentService" ref="departmentService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/department/department_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.department.DepartmentCreateProcess">
+						<property name="departmentService" ref="departmentService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.department.DepartmentUpdatePreProcess">
+						<property name="departmentService" ref="departmentService" />
+						<property name="successView" value="admin/department/department_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.department.DepartmentUpdateProcess">
+						<property name="departmentService" ref="departmentService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.department.DepartmentDeleteProcess">
+						<property name="departmentService" ref="departmentService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

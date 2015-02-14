@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- SELF SERVICE -->
+	<bean id="adminSelfServiceController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="passwordupdatepre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/selfservice/selfservice_password" />
+					</bean>
+				</entry>
+				<entry key="passwordupdate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.PasswordUpdateProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="employeeupdatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.EmployeeUpdatePreProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="admin/selfservice/selfservice_employee" />
+					</bean>
+				</entry>
+				<entry key="employeeupdate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.EmployeeUpdateProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="useractionpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/selfservice/selfservice_useraction" />
+					</bean>
+				</entry>
+				<entry key="useractionsearch">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.UserActionSearchProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="useractiondisposepre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/selfservice/selfservice_useraction_dispose" />
+					</bean>
+				</entry>
+				<entry key="useractiondispose">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.UserActionDisposeProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="mailbox">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/selfservice/mailbox/selfservice_mailbox_list" />
+					</bean>
+				</entry>
+				<entry key="mailboxsearch">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxSearchProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="mailboxcreatepre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/selfservice/mailbox/selfservice_mailbox_create" />
+					</bean>
+				</entry>
+				<entry key="mailboxcreate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxCreateProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="mailboxupdatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxUpdatePreProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView"
+							value="admin/selfservice/mailbox/selfservice_mailbox_update" />
+					</bean>
+				</entry>
+				<entry key="mailboxupdate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxUpdateProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="mailboxdelete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxDeleteProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

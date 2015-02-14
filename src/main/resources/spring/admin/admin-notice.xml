@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- NOTICE -->
+	<bean id="adminNoticeController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeSearchProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeCreateProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatedispatcher">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_updatedispatcher" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeUpdatePreProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="admin/notice/notice_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeUpdateProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="updatedetailsearch">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_updatedetailsearch" />
+					</bean>
+				</entry>
+				<entry key="signsearchpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_signsearch" />
+					</bean>
+				</entry>
+				<entry key="signsearch">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeSignSearchProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="signadddepartmentpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_signadddepartment" />
+					</bean>
+				</entry>
+				<entry key="signadddepartment">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeSignAddDepartmentProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="signdeletedepartment">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeSignDeleteDepartmentProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeDeleteProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
