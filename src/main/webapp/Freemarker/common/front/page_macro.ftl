@@ -646,7 +646,6 @@ jQuery(".slideGroup .slideBox").slide({
 			<span>当前显示 1-${rowCount} 条 / 共 ${rowCount} 条</span>
 		</#if>
 	</#if>
-	<ol class="pagerpro">
 	<#if (pageCount <= 5)>
 		<#local startPage = 1>
 		<#local endPage = pageCount>
@@ -677,8 +676,8 @@ jQuery(".slideGroup .slideBox").slide({
 	     <a href="${getPageUrl(pageCount + 1,pageSize)}" title="最后一页">尾页</a>
 	   </#if> 
 	</#if>
-	</#if>
-</div>
+	</div>
+</#if>
 </#macro>
 
 <#macro birthday birthdayList>
@@ -759,6 +758,7 @@ jQuery(".slideGroup .slideBox").slide({
                             </li>
                         </#list>
                         </ul>
+                        <ul id="marquee2_2"></ul>
                     </div>
                     <#if (birthdayList?size>3)>
                     <script type="text/javascript">marqueeStart(2, "up");</script>
