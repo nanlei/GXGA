@@ -21,6 +21,7 @@ public class DownloadListProcess extends Process {
 	public Result process(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
+		request.setAttribute("paging", "front");
 
 		PagingList downloadList = indexService.getDownlodList(request);
 
