@@ -42,9 +42,7 @@
         </div>
         <!--left end-->
         <div class="s_right">
-            <h2>
-                <img src="${base}/images/srnavt.jpg" />
-            </h2>
+            <h2><img src="${base}/images/srnavt.jpg" /></h2>
             <div class="rnav">
                 <h2 class="srnt">站点导航</h2>
                 <ul>
@@ -63,9 +61,7 @@
                     <li <#if departmentCode=='LSTJD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=LSTJD">蓝鲨突击队</a></li>
                 </ul>
             </div>
-            <h2 class="mb_20">
-                <img src="${base}/images/srnavb.jpg" />
-            </h2>
+            <h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
            	<@p.duty/>
 			<@p.rank/>
             <@p.imageLink/>

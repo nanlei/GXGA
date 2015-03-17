@@ -43,9 +43,7 @@
     	</div>
     	<!--left end-->
         <div class="s_right">
-            <h2>
-                <img src="${base}/images/srnavt.jpg" />
-            </h2>
+            <h2><img src="${base}/images/srnavt.jpg" /></h2>
 			<div class="rnav">
 				<h2 class="srnt">网上办公</h2>
 				<ul>
@@ -54,9 +52,7 @@
 					<li><a href="${base}/front/oa.do?command=overtimemeal">加班用餐</a></li>
 				</ul>
 			</div>
-            <h2 class="mb_20">
-                <img src="${base}/images/srnavb.jpg" />
-            </h2>
+            <h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
             <@p.duty/>
 			<@p.rank/>
             <@p.imageLink/>

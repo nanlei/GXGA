@@ -35,9 +35,7 @@
 		</div>
         <!--left end-->
         <div class="s_right">
-            <h2>
-                <img src="${base}/images/srnavt.jpg" />
-            </h2>
+            <h2><img src="${base}/images/srnavt.jpg" /></h2>
             <div class="rnav">
                 <h2 class="srnt">专项工作</h2>
                 <ul>
@@ -46,9 +44,7 @@
                 	</#list>
                 </ul>
             </div>
-            <h2 class="mb_20">
-                <img src="${base}/images/srnavb.jpg" />
-            </h2>
+            <h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
            	<@p.duty/>
 			<@p.rank/>
             <@p.imageLink/> 

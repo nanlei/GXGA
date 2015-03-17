@@ -78,6 +78,7 @@ h2{font-size:12px;font-weight:normal;}
 .min_right h2{line-height:30px;height:30px;overflow:hidden;}
 .min_right h2 a{color:#B10000;}
 .min_right ul li a{color:#333;line-height:28px;}
+.m_duty{height:385px;}
 .m_contribute{width:201px;height:235px;float:left;overflow:hidden;}
 .mt3{background:#E9F4E1;border-bottom:2px solid #219BB8;height:33px;line-height:33px; text-align:center;color:#333;font-size:14px;font-weight:bold;}
 .m_contribute ul{border-top:1px solid #fff;}
@@ -273,7 +274,7 @@ ul.lnews li{height:41px;line-height:41px;background:url(../images/bg11.gif) no-r
 ul.lnews li a{color:#333;font-size:14px;padding-top:0;height:41px;line-height:41px;font-weight:normal;}
 ul.lnews li a:hover{color:#000;}
 
-.s_right{float:right;width:243px;min-height:699px;height:auto !important;height:699px;overflow:hidden;color:#333;}
+.s_right{float:right;width:243px;min-height:1194px;height:auto !important;height:1194px;color:#333;}
 .srt{background:url(../images/bg10.gif) no-repeat;height:41px;line-height:41px;padding-left:36px;padding-right:14px;font-family:\5FAE\8F6F\96C5\9ED1; font-size:16px;font-weight:bold;color:#790115;}
 .srt span{font-size:14px;font-family: Arial;color:#B51B05;font-weight:normal;}
 .s_right h2{line-height:0;}
@@ -373,7 +374,7 @@ float:left;
 .page a{color:#333;}
 .sconc{color:#1E1D1D;line-height:267%;font-size:15px;padding-left:34px;width:631px;padding-top:25px;min-height:596px;height:auto !important;height:596px;background:url(../images/bg1.jpg) no-repeat right bottom;}
 /* bottom ------------------------------*/
-.b_box{width:100%;background:#242424;padding-top:45px;padding-bottom:25px;height:auto;overflow:auto;min-width:1296px;width:auto !important;width:1296px;clear:both;}
+.b_box{width:100%;background:#242424;padding-top:45px;padding-bottom:25px;height:auto;overflow:auto;min-width:1296px;width:auto !important;width:1296px;clear:both;margin:0 auto;}
 .bottom{width:1000px;height:auto;margin:0 auto;color:#33B3D7;font-family:\5FAE\8F6F\96C5\9ED1;font-weight:normal;font-size:18px;}
 .f_nav{color:#33B3D7; text-align:center;font-weight:normal;font-size:18px;padding-bottom:50px;}
 .f_nav a{padding:0 8px;}

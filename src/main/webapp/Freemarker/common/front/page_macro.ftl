@@ -382,7 +382,7 @@
 </#macro>
 
 <#macro duty>
-<div class="s_od mb_20">
+<div class="m_duty s_od mb_20">
 	<h2 class="mt1"><span class="f_r">详情</span>值班安排</h2>
 	<h2 class="m_txt1"><span class="f_r"><a href="${base}/front/duty.do">查看详情</a></span>${ftlUtil.getToday()}</h2>
 	<div class="mod_c">
@@ -756,7 +756,7 @@ jQuery(".slideGroup .slideBox").slide({
                             <li>
                             	<h2><span>${birthday.employeeName}</span>${birthday.departmentName}</h2>
                             </li>
-                        </#list>
+                        	</#list>
                         </ul>
                         <ul id="marquee2_2"></ul>
                     </div>
