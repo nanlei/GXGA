@@ -30,6 +30,7 @@ public class MailboxService extends BaseService {
 		return getPagingList(helper.getQuerySql(), request, helper.getParams());
 	}
 
+	@SuppressWarnings("unchecked")
 	private QueryHelper buildQueryCondition(HttpServletRequest request)
 			throws Exception {
 		String condition = (String) request.getAttribute("condition");
@@ -44,9 +45,18 @@ public class MailboxService extends BaseService {
 		sortField = StringUtils.isEmpty(sortField) ? "mailId" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
+		Map<String, Object> loginUser = (Map<String, Object>) request
+				.getSession().getAttribute(Constant.LOGIN_USER);
+
+		int roleId = (Integer) loginUser.get("roleId");
+		int departmentId = (Integer) loginUser.get("departmentId");
+
 		QueryHelper helper = new QueryHelper(SQL_SEARCH_MAIL_PREFIX,
 				SQL_SEARCH_MAIL_SUFFIX + sortField + " " + sortOrder);
 
+		if (roleId != 1) {// Not Super Admin
+			helper.setParam(true, "m.departmentId=?", departmentId);
+		}
 		helper.setParam(true,
 				"m.sts=c.constantValue and c.constantType='MAILSTATUS'");
 		helper.setParam(StringUtils.isNotEmpty(createByName),
@@ -90,6 +100,7 @@ public class MailboxService extends BaseService {
 		parameters.put("mailSubject", mailSubject);
 		parameters.put("mailContent", mailContent);
 		parameters.put("sts", Constant.STS_NEW);
+		parameters.put("departmentId", (Integer) loginUser.get("departmentId"));
 		parameters.put("createBy", (Integer) loginUser.get("userId"));
 		parameters.put("createByName", loginUser.get("realName"));
 		parameters.put("createByTime", new Timestamp(new Date().getTime()));

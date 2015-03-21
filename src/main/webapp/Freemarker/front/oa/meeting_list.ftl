@@ -7,7 +7,6 @@
 		<@p.banner/>
 		<!--banner end-->
 		<@p.nav on="oa"/>
-    </div>
     <!--topbg end-->
     <div class="mc">
     	<div class="location">
@@ -18,6 +17,7 @@
     			<span>会议列表</span>
     		</h2>
     		<h2 class="sal_t">会议列表</h2>
+    		<#if (meetingList.list?size>0)>
     		<table  border="0" cellspacing="0" cellpadding="0" class="sal_table">
     			<tr>
     				<th scope="col" class="ta_fr">会议主题</th>
@@ -26,7 +26,6 @@
     				<th scope="col">开始时间</th>
     				<th scope="col">结束时间</th>
     			</tr>
-    			<#if meetingList??>
     			<#list meetingList.list as meeting>
     			<tr>
     				<td width="430" class="ta_fr">${meeting.meetingSubject}</td>
@@ -36,15 +35,15 @@
     				<td width="150" bgcolor="#FBFBFB">${meeting.meetingEndTime}</td>
     			</tr>
     			</#list>
-    			</#if>
     		</table>
+    		<#else>
+    		<center>暂无数据</center>
+    		</#if>
     		<@p.paging meetingList />
     	</div>
     	<!--left end-->
         <div class="s_right">
-            <h2>
-                <img src="${base}/images/srnavt.jpg" />
-            </h2>
+            <h2><img src="${base}/images/srnavt.jpg" /></h2>
 			<div class="rnav">
 				<h2 class="srnt">网上办公</h2>
 				<ul>
@@ -53,9 +52,7 @@
 					<li><a href="${base}/front/oa.do?command=overtimemeal">加班用餐</a></li>
 				</ul>
 			</div>
-            <h2 class="mb_20">
-                <img src="${base}/images/srnavb.jpg" />
-            </h2>
+            <h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
             <@p.duty/>
 			<@p.rank/>
             <@p.imageLink/>

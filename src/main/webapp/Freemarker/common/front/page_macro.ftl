@@ -382,7 +382,7 @@
 </#macro>
 
 <#macro duty>
-<div class="s_od mb_20">
+<div class="m_duty s_od mb_20">
 	<h2 class="mt1"><span class="f_r">详情</span>值班安排</h2>
 	<h2 class="m_txt1"><span class="f_r"><a href="${base}/front/duty.do">查看详情</a></span>${ftlUtil.getToday()}</h2>
 	<div class="mod_c">
@@ -646,7 +646,6 @@ jQuery(".slideGroup .slideBox").slide({
 			<span>当前显示 1-${rowCount} 条 / 共 ${rowCount} 条</span>
 		</#if>
 	</#if>
-	<ol class="pagerpro">
 	<#if (pageCount <= 5)>
 		<#local startPage = 1>
 		<#local endPage = pageCount>
@@ -677,8 +676,8 @@ jQuery(".slideGroup .slideBox").slide({
 	     <a href="${getPageUrl(pageCount + 1,pageSize)}" title="最后一页">尾页</a>
 	   </#if> 
 	</#if>
-	</#if>
-</div>
+	</div>
+</#if>
 </#macro>
 
 <#macro birthday birthdayList>
@@ -757,8 +756,9 @@ jQuery(".slideGroup .slideBox").slide({
                             <li>
                             	<h2><span>${birthday.employeeName}</span>${birthday.departmentName}</h2>
                             </li>
-                        </#list>
+                        	</#list>
                         </ul>
+                        <ul id="marquee2_2"></ul>
                     </div>
                     <#if (birthdayList?size>3)>
                     <script type="text/javascript">marqueeStart(2, "up");</script>

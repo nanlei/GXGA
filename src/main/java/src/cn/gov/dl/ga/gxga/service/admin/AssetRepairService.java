@@ -32,6 +32,7 @@ public class AssetRepairService extends BaseService {
 		return getPagingList(helper.getQuerySql(), request, helper.getParams());
 	}
 
+	@SuppressWarnings("unchecked")
 	private QueryHelper buildQueryCondition(HttpServletRequest request)
 			throws Exception {
 		String condition = (String) request.getAttribute("condition");
@@ -47,10 +48,19 @@ public class AssetRepairService extends BaseService {
 
 		sortField = StringUtils.isEmpty(sortField) ? "arId" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
+		
+		Map<String, Object> loginUser = (Map<String, Object>) request
+				.getSession().getAttribute(Constant.LOGIN_USER);
+
+		int roleId = (Integer) loginUser.get("roleId");
+		int user_departmentId = (Integer) loginUser.get("departmentId");
 
 		QueryHelper helper = new QueryHelper(SQL_SEARCH_ASSETREPAIR_PREFIX,
 				SQL_SEARCH_ASSETREPAIR_SUFFIX + sortField + " " + sortOrder);
 
+		if (roleId != 1) {// Not Super Admin
+			helper.setParam(true, "ar.departmentId=?", user_departmentId);
+		}
 		helper.setParam(true, "ar.departmentId=d.departmentId");
 		helper.setParam(true,
 				"ar.sts=c.constantValue and c.constantType='ASSETREPAIRSTATUS'");

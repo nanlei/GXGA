@@ -56,7 +56,7 @@ public class IndexService extends BaseService {
 				request, 30, new Object[] { articleType, articleCode });
 	}
 
-	private static final String SQL_GET_ARTICLE_BY_DCID_FOR_LIST = "select articleId, articleTitle, articleType, articleCode,date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId=? order by articleOrder asc limit 0,8";
+	private static final String SQL_GET_ARTICLE_BY_DCID_FOR_LIST = "select articleId, articleTitle, articleType, articleCode,date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId=? order by createByTime desc limit 0,8";
 
 	public List<Map<String, Object>> getArticleListByDcId(String dcId) {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_DCID_FOR_LIST, dcId);

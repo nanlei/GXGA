@@ -14,13 +14,9 @@
 		<@p.articleListPanel articleType=articleType articleList=informationSecurityList/>
         <!--left end-->
         <div class="s_right">
-            <h2>
-                <img src="${base}/images/srnavt.jpg" />
-            </h2>
+            <h2><img src="${base}/images/srnavt.jpg" /></h2>
             <@p.articleListTypeNav articleType=articleType/>
-            <h2 class="mb_20">
-                <img src="${base}/images/srnavb.jpg" />
-            </h2>
+            <h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
             <@p.duty/>
 			<@p.rank/>
             <@p.imageLink/>
