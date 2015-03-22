@@ -52,6 +52,10 @@
 	mini.parse();
 	
 	var form = new mini.Form("form1");
+	
+	if(mini.get("videoId").getValue()==0){
+		mini.get("videoId").setValue('');
+	}
 
 	<#if loginUser.departmentId==0>
 	function onDepartmentChanged(){
@@ -117,6 +121,6 @@
     			mini.alert(jqXHR.responseText);
     		}
     	});
-    } 
+    }
 </@admin.script>
 </@admin.page>
