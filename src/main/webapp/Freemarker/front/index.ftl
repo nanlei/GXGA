@@ -302,7 +302,7 @@ function setTab(name,cursel,n){
                             <div id="con_two_2" style="display:none">
                                 <ul class="mnlist">
                                 	<#list issueWordList as issueWord>
-                                    <li><a href="${base}${issueWord.filePath}">${issueWord.issueDate}</a></li>
+                                    <li><a href="${base}${issueWord.filePath}">昨日要情${issueWord.issueDate}</a></li>
                                     </#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=ISSUEWORD">更多>></a></h2>
