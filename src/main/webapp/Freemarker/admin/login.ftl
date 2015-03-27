@@ -5,7 +5,7 @@
 	<title>大连市公安局高新园区分局</title>
 	<link href="${base}/js/miniui/themes/default/miniui.css" rel="stylesheet" type="text/css">
 	<link href="${base}/js/miniui/themes/icons.css" rel="stylesheet" type="text/css">
-	<script language="javascript" src="${base}/js/jquery-1.11.1.min.js"></script>
+	<script language="javascript" src="${base}/js/jquery-1.11.2.min.js"></script>
 	<script language="javascript" src="${base}/js/miniui/miniui.js"></script>
 	<script language="javascript">
 	<!-- 

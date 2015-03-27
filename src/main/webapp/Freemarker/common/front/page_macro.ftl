@@ -23,7 +23,7 @@
 	</script>
 	<link href="${base}/css/style.css" rel="stylesheet" type="text/css" />
 	<!--banner-->
-	<script src="${base}/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+	<script src="${base}/js/jquery-1.11.2.min.js" type="text/javascript"></script>
 	<script src="${base}/js/pic_circle.js" type="text/javascript"></script>
 	<!--[if IE 6]>
 	<script src="${base}/js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
@@ -904,6 +904,6 @@ jQuery(".slideGroup .slideBox").slide({
             $("#left_scroll").hide().find(".left_scroll_bg").text("1");
         });
     </script>
-    <script src="${base}/js/jquery-1.11.1.min.js"></script>
+    <script src="${base}/js/jquery-1.11.2.min.js"></script>
 </#if>
 </#macro>
