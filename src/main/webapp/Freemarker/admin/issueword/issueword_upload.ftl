@@ -2,6 +2,10 @@
 <@admin.conArea title="前台综合>>昨日要情>>WORD>>上传" id="form1" fileUpload="true" action="/admin/issueword.do?command=upload">
 <@admin.con id="datacon1">
 	<tr>
+		<td><label>日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="issueDate" style="width:150px;" format="yyyy-MM-dd" showTime="true" /></td>
+	</tr>
+	<tr>
 		<td><label>文件选择:</label></td>
 		<td><input id="fileupload1" class="mini-htmlfile" name="Fdata" style="width:150px;" required="true"/></td>
 	</tr>
