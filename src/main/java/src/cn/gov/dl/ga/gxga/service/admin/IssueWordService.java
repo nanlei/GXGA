@@ -74,8 +74,11 @@ public class IssueWordService extends BaseService {
 		int createBy = (Integer) loginUser.get("userId");
 		String createByName = (String) loginUser.get("realName");
 
+		String issueDate = (String) request.getAttribute("issueDate");
+		Date d_issueDate = new SimpleDateFormat("yyyy-MM-dd").parse(issueDate);
+
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("issueDate", new Timestamp(new Date().getTime()));
+		parameters.put("issueDate", new Timestamp(d_issueDate.getTime()));
 		parameters.put("createBy", createBy);
 		parameters.put("createByName", createByName);
 		parameters.put("createByTime", new Timestamp(new Date().getTime()));
