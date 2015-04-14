@@ -252,7 +252,7 @@ public class IndexService extends BaseService {
 				new Object[] { dcId }, String.class);
 	}
 
-	private static final String SQL_GET_ARTICLE_LIST_BY_DCID = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId>0 and dcId=?";
+	private static final String SQL_GET_ARTICLE_LIST_BY_DCID = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId>0 and dcId=? order by createByTime desc";
 
 	public PagingList getArticleListByDcId(HttpServletRequest request,
 			String dcId) {
@@ -294,7 +294,7 @@ public class IndexService extends BaseService {
 	}
 
 	// Emergency Notice
-	private static final String SQL_GET_EMERGENCY_NOTICE_LIST = "select noticeTitle, noticeImageUrl, noticeAttachmentUrl from fun_emergency_notice order by noticeOrder asc";
+	private static final String SQL_GET_EMERGENCY_NOTICE_LIST = "select noticeTitle, noticeImageUrl, noticeAttachmentUrl from fun_emergency_notice where noticeStatus='RUN' order by noticeOrder asc";
 
 	public List<Map<String, Object>> getEmergencyNoticeList() {
 		return jt.queryForList(SQL_GET_EMERGENCY_NOTICE_LIST);
@@ -342,7 +342,7 @@ public class IndexService extends BaseService {
 				jobCategoryId);
 	}
 
-	private static final String SQL_GET_JOB_ARTICLES = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where jobCategoryId>0 and jobCategoryId=?";
+	private static final String SQL_GET_JOB_ARTICLES = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where jobCategoryId>0 and jobCategoryId=? order by createByTime desc";
 
 	public PagingList getJobArticles(HttpServletRequest request,
 			String jobCategoryId) {

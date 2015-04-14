@@ -161,7 +161,7 @@
 		<#elseif article.articleType='INFORMATIONSECURITY'>
 		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
 		<#elseif article.articleType='ISSUEWORD'>
-		<li><span class="date2"></span><a href="${base}${article.filePath}">${article.issueDate}</a></li>
+		<li><span class="date2"></span><a href="${base}${article.filePath}">昨日要情${article.issueDate}</a></li>
 		<#else>
 		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
 		</#if>
@@ -663,6 +663,11 @@ jQuery(".slideGroup .slideBox").slide({
 	  <#if (pageNum != 1)>
 	     <a href="${getPageUrl(1,pageSize)}" title="第一页">首页</a>
 	     <a href="${getPageUrl(pageNum-1,pageSize)}" title="上页">上一页</a>
+	  </#if>
+	  <#if (startPage<0)>
+	  	<#local startPage = 1>
+	  <#elseif ((endPage-startPage)>=10)>
+	  	<#local startPage = startPage+3>
 	  </#if>
 	  <#list startPage..endPage as x>
 	     <#if x=pageNum>

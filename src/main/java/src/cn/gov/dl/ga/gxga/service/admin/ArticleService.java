@@ -564,8 +564,7 @@ public class ArticleService extends BaseService {
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
 
-		sortField = StringUtils.isEmpty(sortField) ? "constantOrder"
-				: sortField;
+		sortField = StringUtils.isEmpty(sortField) ? "articleOrder" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
 		QueryHelper helper = new QueryHelper(
