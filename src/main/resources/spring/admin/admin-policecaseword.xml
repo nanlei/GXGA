@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- POLICECASEWORD -->
+	<bean id="adminPoliceCaseWordController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/policecaseword/policecaseword_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.policecaseword.PoliceCaseWordSearchProcess">
+						<property name="docWordService" ref="docWordService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="uploadpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/policecaseword/policecaseword_upload" />
+					</bean>
+				</entry>
+				<entry key="upload">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.policecaseword.PoliceCaseWordUploadProcess">
+						<property name="docWordService" ref="docWordService" />
+						<property name="successView" value="admin/default" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.policecaseword.PoliceCaseWordDeleteProcess">
+						<property name="docWordService" ref="docWordService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

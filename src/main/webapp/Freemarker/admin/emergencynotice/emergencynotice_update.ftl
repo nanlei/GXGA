@@ -11,6 +11,10 @@
 		<td><input class="mini-textbox" required="true" name="noticeOrder" style="width:180px;" value="${(notice.noticeOrder)?default('')}"/></td>
 	</tr>
 	<tr>
+		<td><label>状态:</label></td>
+		<td><input class="mini-radiobuttonlist" required="true" name="noticeStatus" style="width:180px;" value="${(notice.noticeStatus)?default('')}" repeatItems="1" repeatLayout="table" repeatDirection="vertical" textField="text" valueField="id" url="${base}/data/emergencynotice_sts.txt"/></td>
+	</tr>	
+	<tr>
 		<td><label>图片:</label></td>
 		<td><input id="fileupload1" class="mini-htmlfile" name="FdataImage" style="width:180px;" required="false"/></td>
 	</tr>

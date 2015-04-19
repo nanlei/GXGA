@@ -38,7 +38,7 @@
         <div field="articleOrder" width="60" headerAlign="center" align="center" allowSort="true">排序</div>
         <div field="articleStatus" width="60" headerAlign="center" align="center" allowSort="false">状态</div>
         <div field="createByName" width="70" headerAlign="center" align="center" allowSort="false">更新人</div>
-        <div field="createByTime" width="100" headerAlign="center" align="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">更新时间</div>
+        <div field="createByTime" width="100" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">更新时间</div>
         <div field="createByIP" width="70" headerAlign="center" align="center" allowSort="false">IP</div>
         <div field="pageView" width="60" headerAlign="center" align="center" allowSort="false">浏览次数</div>
     </div>
@@ -50,7 +50,7 @@
 
     var grid = mini.get("datagrid1");
     Search();
-	grid.sortBy("articleOrder", "asc");
+	grid.sortBy("createByTime", "desc");
 	
 	<#if loginUser.departmentId==0>
 	function onDepartmentChanged(){

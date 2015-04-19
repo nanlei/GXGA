@@ -31,6 +31,8 @@ public class ArticleListProcess extends Process {
 
 		if ("ISSUEWORD".equals(articleType)) {
 			articleList = indexService.getIssueWordList(request);
+		} else if ("POLICECASE".equals(articleType)) {
+			articleList = indexService.getPoliceCaseList(request);
 		} else {
 			articleList = indexService.getArticleListByType(request,
 					articleType);

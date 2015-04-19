@@ -20,6 +20,7 @@
 <@admin.searchArea colspan="8">
 <@admin.searchLeftArea>	
 	<@admin.actBtn name="查询" actionName="/admin/policecase.do?command=search" event="Search" icon="icon-search"/>
+	<@admin.actBtn name="查看Word" actionName="/admin/policecaseword.do?command=search" event="Word" icon="icon-node"/>
 </@admin.searchLeftArea>  
 <@admin.searchRightArea>	
 	<@admin.actBtn name="新建" actionName="/admin/policecase.do?command=createpre" event="Add" icon="icon-add"/>
@@ -67,7 +68,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/policecase.do?command=createpre",
+			url: "${base}/admin/policecase.do?command=createpre",
 			title: "新建警情研判", width: 900, height: 580,
 			ondestroy: function (action) {
 				Search();
@@ -80,7 +81,7 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/policecase.do?command=updatedispatcher&articleId="+rows[0].articleId,
+				url: "${base}/admin/policecase.do?command=updatedispatcher&articleId="+rows[0].articleId,
 				title: "修改警情研判："+rows[0].articleTitle, width: 900, height: 610,
 				ondestroy: function (action) {
 					Search();
@@ -135,7 +136,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/policecase.do?command=delete",
+    		url: "${base}/admin/policecase.do?command=delete",
     		data: { articleIds: ids },
     		success: function (data) {
     			try{
@@ -155,5 +156,15 @@
     		}
     	});          
     }
+
+	function Word(){
+		mini.open({
+			url: "${base}/admin/policecaseword.do",
+			title: "警情研判Word", width: 900, height: 500,
+			ondestroy: function (action) {
+				Search();
+			}
+		});
+	}
 </@admin.script>
 </@admin.page>

@@ -148,6 +148,10 @@
 	<bean id="dutyPlanService" class="cn.gov.dl.ga.gxga.service.admin.DutyPlanService"
 		parent="baseService" />
 
+	<!-- DocWordService -->
+	<bean id="docWordService" class="cn.gov.dl.ga.gxga.service.admin.DocWordService"
+		parent="baseService" />
+
 	<!-- FRONT -->
 	<!-- IndexService -->
 	<bean id="indexService" class="cn.gov.dl.ga.gxga.service.front.IndexService"

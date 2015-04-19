@@ -23,7 +23,7 @@ import cn.gov.dl.ga.gxga.util.QueryHelper;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class EmergencyNoticeService extends BaseService {
-	private static final String SQL_SEARCH_EMERGENCY_NOTICE_PREFIX = "select n.noticeId, n.noticeTitle, n.noticeOrder, n.createBy, n.createByName, date_format(n.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, n.createByIP from fun_emergency_notice n ";
+	private static final String SQL_SEARCH_EMERGENCY_NOTICE_PREFIX = "select n.noticeId, n.noticeTitle, n.noticeOrder, case when n.noticeStatus='NEW' then '不显示' else '正常' end noticeStatus, n.createBy, n.createByName, date_format(n.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, n.createByIP from fun_emergency_notice n ";
 	private static final String SQL_SEARCH_EMERGENCY_NOTICE_SUFFIX = "order by ";
 
 	public PagingList searchEmergencyNotice(HttpServletRequest request)
@@ -80,11 +80,13 @@ public class EmergencyNoticeService extends BaseService {
 
 		String noticeTitle = (String) request.getAttribute("noticeTitle");
 		String noticeOrder = (String) request.getAttribute("noticeOrder");
+		String noticeStatus = (String) request.getAttribute("noticeStatus");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("noticeTitle", noticeTitle);
 		parameters.put("noticeOrder", Integer.parseInt(noticeOrder));
+		parameters.put("noticeStatus", noticeStatus);
 		parameters.put("createBy", (Integer) loginUser.get("userId"));
 		parameters.put("createByName", loginUser.get("realName"));
 		parameters.put("createByTime", new Timestamp(new Date().getTime()));
@@ -100,7 +102,7 @@ public class EmergencyNoticeService extends BaseService {
 				SQL_GET_EMERGENCY_NOTICE_BY_ID, noticeId);
 	}
 
-	private static final String SQL_UPDATE_NOTICE_BY_ID = "update fun_emergency_notice set noticeTitle=?, noticeOrder=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where noticeId=?";
+	private static final String SQL_UPDATE_NOTICE_BY_ID = "update fun_emergency_notice set noticeTitle=?, noticeOrder=?, noticeStatus=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where noticeId=?";
 	private static final String SQL_UPDATE_NOTICE_IMAGE_BY_ID = "update fun_emergency_notice set noticeImageUrl=? where noticeId=?";
 	private static final String SQL_UPDATE_NOTICE_ATTACHMENT_BY_ID = "update fun_emergency_notice set noticeAttachmentUrl=? where noticeId=?";
 
@@ -110,13 +112,15 @@ public class EmergencyNoticeService extends BaseService {
 		String noticeId = (String) request.getAttribute("noticeId");
 		String noticeTitle = (String) request.getAttribute("noticeTitle");
 		String noticeOrder = (String) request.getAttribute("noticeOrder");
+		String noticeStatus = (String) request.getAttribute("noticeStatus");
 
 		Map<String, Object> loginUser = (Map<String, Object>) request
 				.getSession().getAttribute(Constant.LOGIN_USER);
 
 		Object[] parameters = new Object[] { noticeTitle, noticeOrder,
-				(Integer) loginUser.get("userId"), loginUser.get("realName"),
-				CoreUtil.getIPAddr(request), noticeId };
+				noticeStatus, (Integer) loginUser.get("userId"),
+				loginUser.get("realName"), CoreUtil.getIPAddr(request),
+				noticeId };
 
 		jt.update(SQL_UPDATE_NOTICE_BY_ID, parameters);
 

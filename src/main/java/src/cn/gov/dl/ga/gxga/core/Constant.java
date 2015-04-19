@@ -97,6 +97,9 @@ public interface Constant {
 	public static final String ARTICLETYPE_POLICECULTURE = "POLICECULTURE";// 警营文化
 	public static final String ARTICLETYPE_EVALUATION = "EVALUATION";// 综合考评
 	public static final String ARTICLETYPE_TALENT = "TALENT";// 人才市场
+	
+	/* WORD类型常量集 */
+	public static final String DOCWORD_POLICECASE="POLICECASE";
 
 	/* 首页链接常量集 */
 	public static final String LINKTYPE_QGK = "QGK";// 全国库
