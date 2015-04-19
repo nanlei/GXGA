@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import cn.gov.dl.ga.gxga.common.PagingList;
+import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.service.BaseService;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
@@ -365,4 +366,22 @@ public class IndexService extends BaseService {
 		return getPagingList(SQL_SEARCH_FOR_INDEX, request, 30,
 				new Object[] { articleTitle });
 	}
+
+	// PoliceCase
+	private static final String SQL_GET_POLICE_CASE = "select * from ("
+			+ "select articleId as articleId, articleTitle as articleTitle, '' as filePath, 'POLICECASE' as articleType, 'ARTICLE' as type, createByTime from doc_article where articleType=?"
+			+ " union "
+			+ "select wordId as articleId, wordTitle as articleTitle, filePath, 'POLICECASE' as articleType, 'WORD' as type, wordDate as createByTime from doc_word where wordType=?) result "
+			+ "order by createByTime desc";
+
+	public List<Map<String, Object>> getPoliceCase() {
+		return jt.queryForList(SQL_GET_POLICE_CASE + INDEX_LIST_LIMT,
+				Constant.ARTICLETYPE_POLICECASE, Constant.DOCWORD_POLICECASE);
+	}
+
+	public PagingList getPoliceCaseList(HttpServletRequest request) {
+		return getPagingList(SQL_GET_POLICE_CASE, request, 30, new Object[] {
+				Constant.ARTICLETYPE_POLICECASE, Constant.DOCWORD_POLICECASE });
+	}
+
 }

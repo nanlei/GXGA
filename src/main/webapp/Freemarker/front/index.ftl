@@ -381,7 +381,11 @@ function setTab(name,cursel,n){
                             <div id="con_five_1">
                                 <ul class="mnlist">
                                 	<#list policeCaseList as policeCase>
+                                	<#if policeCase.type=='ARTICLE'>
                                 	<li title="${policeCase.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCase.articleId}">${policeCase.articleTitle}</a></li>
+                                	<#elseif policeCase.type='WORD'>
+                                	<li title="${policeCase.articleTitle}"><a href="${base}${policeCase.filePath}">${policeCase.articleTitle}</a></li>
+                                	</#if>
                                 	</#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=POLICECASE">更多>></a></h2>

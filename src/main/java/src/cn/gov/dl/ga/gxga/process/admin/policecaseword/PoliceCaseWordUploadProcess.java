@@ -1,4 +1,4 @@
-package cn.gov.dl.ga.gxga.process.admin.issueword;
+package cn.gov.dl.ga.gxga.process.admin.policecaseword;
 
 import java.io.File;
 import java.util.Date;
@@ -13,17 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
-import cn.gov.dl.ga.gxga.service.admin.IssueWordService;
+import cn.gov.dl.ga.gxga.service.admin.DocWordService;
 import cn.gov.dl.ga.gxga.util.CoreUtil;
 
-public class IssueWordUploadProcess extends Process {
+public class PoliceCaseWordUploadProcess extends Process {
+	private DocWordService docWordService;
 
-	private IssueWordService issueWordService;
-
-	public void setIssueWordService(IssueWordService issueWordService) {
-		this.issueWordService = issueWordService;
+	public void setDocWordService(DocWordService docWordService) {
+		this.docWordService = docWordService;
 	}
 
 	@Override
@@ -50,14 +50,15 @@ public class IssueWordUploadProcess extends Process {
 						.toString());
 				if (file != null && file.getSize() > 0) {
 					String path = servletContext.getContextPath()
-							+ "/file/word/issue/"
+							+ "/file/word/policecase/"
 							+ new Date().getTime()
 							+ "."
 							+ CoreUtil.getFileExtensionName(file
 									.getOriginalFilename());
 
 					// DB
-					issueWordService.createIssueWord(request, path);
+					docWordService.createDocWord(request, path,
+							Constant.DOCWORD_POLICECASE);
 					
 					// 上传
 					String realPath = servletContext.getRealPath(path);
