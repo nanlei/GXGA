@@ -10,6 +10,10 @@
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" /></td>
 	</tr>
 	<tr>
+		<td><label>文章日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" format="yyyy-MM-dd" showTime="true" /></td>
+	</tr>
+	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="请输入内容（经验交流）" /></td>
 	</tr>
 <@admin.searchArea colspan="2">
@@ -42,7 +46,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/experience.do?command=create",
+    		url: "${base}/admin/experience.do?command=create",
     		data: { object: json, articleContent : editor.getData()},
     		type: "POST",
     		cache: false,

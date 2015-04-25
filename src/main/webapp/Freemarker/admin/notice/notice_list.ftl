@@ -37,6 +37,7 @@
         <div field="articleTitle" width="200" headerAlign="center" allowSort="true">标题</div>
         <div field="articleOrder" width="60" headerAlign="center" align="center" allowSort="true">排序</div>
         <div field="articleStatus" width="60" headerAlign="center" align="center" allowSort="false">状态</div>
+        <div field="articleDate" width="70" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd">文章日期</div>
         <div field="createByName" width="70" headerAlign="center" align="center" allowSort="false">更新人</div>
         <div field="createByTime" width="100" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">更新时间</div>
         <div field="createByIP" width="70" headerAlign="center" align="center" allowSort="false">IP</div>
@@ -65,8 +66,8 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/notice.do?command=createpre",
-			title: "新建通知通报", width: 900, height: 580,
+			url: "${base}/admin/notice.do?command=createpre",
+			title: "新建通知通报", width: 900, height: 600,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -78,8 +79,8 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/notice.do?command=updatedispatcher&articleId="+rows[0].articleId,
-				title: "修改法律："+rows[0].articleTitle, width: 900, height: 610,
+				url: "${base}/admin/notice.do?command=updatedispatcher&articleId="+rows[0].articleId,
+				title: "修改通知通报："+rows[0].articleTitle, width: 900, height: 610,
 				ondestroy: function (action) {
 					Search();
                 }
@@ -133,7 +134,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/notice.do?command=delete",
+    		url: "${base}/admin/notice.do?command=delete",
     		data: { articleIds: ids },
     		success: function (data) {
     			try{

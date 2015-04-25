@@ -157,9 +157,9 @@
 	<ul class="newslist">
 		<#list articleList.list as article>
 		<#if article.articleType='LAW'>
-		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/law.do?command=info&lawId=${article.articleId}">${article.articleTitle}</a></li>
+		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/law.do?command=info&lawId=${article.articleId}">${article.articleTitle}</a></li>
 		<#elseif article.articleType='INFORMATIONSECURITY'>
-		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
+		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
 		<#elseif article.articleType='ISSUEWORD'>
 		<li><span class="date2"></span><a href="${base}${article.filePath}">昨日要情${article.issueDate}</a></li>
 		<#elseif article.articleType='POLICECASE'>
@@ -169,7 +169,7 @@
             <li><span class="date2">【${article.createByTime}】</span><a href="${base}${article.filePath}">${article.articleTitle}</a></li>
             </#if>
 		<#else>
-		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
 		</#if>
 		</#list>
 	</ul>
@@ -290,7 +290,7 @@
 		<#assign imageList=ftlUtil.getImageByArticleId('${article.articleId}')/>
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：${article.createByTime}</h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
 		<#if imageList?size!=0>
 		<div class="sac">
 			<#list imageList as image>
@@ -304,7 +304,7 @@
 	<#else><#-- ATTACHMENT -->
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：${article.createByTime}</h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
 		<div style="font-family:仿宋">${article.articleContent}</div>
 	</div>
 	<div class="page">

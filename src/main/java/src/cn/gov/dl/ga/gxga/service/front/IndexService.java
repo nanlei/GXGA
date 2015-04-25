@@ -19,7 +19,7 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_TYPE, articleType);
 	}
 
-	private static final String SQL_GET_ARTICLE_LIST_BY_TYPE = "select articleId, articleType, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=? order by createByTime desc";
+	private static final String SQL_GET_ARTICLE_LIST_BY_TYPE = "select articleId, articleType, articleTitle, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=? order by articleDate desc, createByTime desc";
 
 	public PagingList getArticleListByType(HttpServletRequest request,
 			String articleType) {
@@ -63,7 +63,7 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_DCID_FOR_LIST, dcId);
 	}
 
-	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, videoId, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
+	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, videoId, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
 
 	public Map<String, Object> getArticleById(String articleId) {
 		return jt
@@ -82,8 +82,8 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_LINK_BY_TYPE, linkType);
 	}
 
-	private static final String SQL_GET_LATEST_ARTICLES = "select articleId, articleTitle, articleType, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by createByTime desc limit 0,20";
-	private static final String SQL_GET_LATEST = "select articleId, articleTitle, articleType, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by createByTime desc";
+	private static final String SQL_GET_LATEST_ARTICLES = "select articleId, articleTitle, articleType, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by articleDate desc, createByTime desc limit 0,20";
+	private static final String SQL_GET_LATEST = "select articleId, articleTitle, articleType, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by articleDate desc, createByTime desc";
 
 	public List<Map<String, Object>> getLatestArticles() {
 		return jt.queryForList(SQL_GET_LATEST_ARTICLES);
