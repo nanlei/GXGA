@@ -101,7 +101,7 @@
 			serachGrid.loading("操作中，请稍后......");
 
 			$.ajax({
-				url: "/admin/article.do?command=addimage",
+				url: "${base}/admin/article.do?command=addimage",
 				data: {imageIds: ids, articleId: articleId.getValue()},
 				cache:false,
 				success: function (data) {
@@ -144,7 +144,7 @@
 			selectedList.loading("操作中，请稍后......");
 			
 			$.ajax({
-				url: "/admin/article.do?command=deleteimage",
+				url: "${base}/admin/article.do?command=deleteimage",
 				data: { imageIds: ids, articleId: articleId.getValue() },
 				success: function (data) {
 					try{

@@ -46,7 +46,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/evaluation.do?command=create",
+    		url: "${base}/admin/evaluation.do?command=create",
     		data: { object: json, articleContent : editor.getData()},
     		type: "POST",
     		cache: false,

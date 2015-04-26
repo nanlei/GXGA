@@ -24,7 +24,7 @@ import cn.gov.dl.ga.gxga.util.QueryHelper;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class DocWordService extends BaseService {
-	private static final String SQL_SEARCH_DOC_WORD_BY_TYPE_PREFIX = "select w.wordId, w.wordTitle, w.wordDate, w.filePath, w.wordOrder, w.createByName, w.createByTime, w.createByIP from doc_word w ";
+	private static final String SQL_SEARCH_DOC_WORD_BY_TYPE_PREFIX = "select w.wordId, w.wordTitle, w.wordDate, w.filePath, w.wordOrder, w.createByName, date_format(w.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, w.createByIP from doc_word w ";
 	private static final String SQL_SEARCH_DOC_WORD_BY_TYPE_SUFFIX = "order by ";
 
 	// Search by type

@@ -66,7 +66,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/department.do?command=createpre",
+			url: "${base}/admin/department.do?command=createpre",
 			title: "部门新建", width: 430, height: 400,
 			ondestroy: function (action) {
 				Search();
@@ -79,7 +79,7 @@
         
         if (rows.length==1) {
         	mini.open({
-        		url: "/admin/department.do?command=updatepre&departmentId="+rows[0].departmentId,
+        		url: "${base}/admin/department.do?command=updatepre&departmentId="+rows[0].departmentId,
         		title: "部门修改", width: 430, height: 400,
         		ondestroy: function (action) {
         			Search();
@@ -141,7 +141,7 @@
 		grid.loading("操作中，请稍后......");
 		
 		$.ajax({
-			url: "/admin/department.do?command=delete",
+			url: "${base}/admin/department.do?command=delete",
 			data: { departmentIds: ids },
 			success: function (data) {
 				try{

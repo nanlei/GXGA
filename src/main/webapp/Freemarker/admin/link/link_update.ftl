@@ -46,7 +46,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/link.do?command=update",
+    		url: "${base}/admin/link.do?command=update",
     		data: { object: json },
     		cache: false,
     		success: function (data) {

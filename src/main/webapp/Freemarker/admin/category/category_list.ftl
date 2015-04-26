@@ -50,7 +50,7 @@
     
     function Add() {
         mini.open({
-            url: "/admin/category.do?command=createpre",
+            url: "${base}/admin/category.do?command=createpre",
             title: "目录新建", width: 400, height: 260,
             ondestroy: function (action) {
                 Search();
@@ -63,7 +63,7 @@
         
        if (rows.length==1) {
             mini.open({
-                url: "/admin/category.do?command=updatepre&categoryId="+rows[0].categoryId,
+                url: "${base}/admin/category.do?command=updatepre&categoryId="+rows[0].categoryId,
                 title: "编辑目录", width: 400, height: 260,
                 ondestroy: function (action) {                    
                     Search();
@@ -119,7 +119,7 @@
     	grid.loading("操作中，请稍后......");;
     	
     	$.ajax({
-    		url: "/admin/category.do?command=delete",
+    		url: "${base}/admin/category.do?command=delete",
     		data: { categoryIds: ids },
     		success: function (data) {
     			try{

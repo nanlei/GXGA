@@ -369,10 +369,10 @@ public class IndexService extends BaseService {
 
 	// PoliceCase
 	private static final String SQL_GET_POLICE_CASE = "select * from ("
-			+ "select articleId as articleId, articleTitle as articleTitle, '' as filePath, 'POLICECASE' as articleType, 'ARTICLE' as type, createByTime from doc_article where articleType=?"
+			+ "select articleId as articleId, articleTitle as articleTitle, '' as filePath, 'POLICECASE' as articleType, 'ARTICLE' as type, articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=?"
 			+ " union "
-			+ "select wordId as articleId, wordTitle as articleTitle, filePath, 'POLICECASE' as articleType, 'WORD' as type, wordDate as createByTime from doc_word where wordType=?) result "
-			+ "order by createByTime desc";
+			+ "select wordId as articleId, wordTitle as articleTitle, filePath, 'POLICECASE' as articleType, 'WORD' as type, wordDate as articleDate, wordDate as createByTime from doc_word where wordType=?) result "
+			+ "order by articleDate desc, createByTime desc";
 
 	public List<Map<String, Object>> getPoliceCase() {
 		return jt.queryForList(SQL_GET_POLICE_CASE + INDEX_LIST_LIMT,

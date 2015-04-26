@@ -59,7 +59,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/constant.do?command=createpre",
+			url: "${base}/admin/constant.do?command=createpre",
 			title: "新建常量", width: 420, height: 400,
 			ondestroy: function (action) {
 				Search();
@@ -72,7 +72,7 @@
         
         if (rows.length==1) {
         	mini.open({
-        		url: "/admin/constant.do?command=updatepre&constantId="+rows[0].constantId,
+        		url: "${base}/admin/constant.do?command=updatepre&constantId="+rows[0].constantId,
         		title: "修改常量", width: 420, height: 400,
         		ondestroy: function (action) {
         			Search();
@@ -126,7 +126,7 @@
 		grid.loading("操作中，请稍后......");
 		
 		$.ajax({
-			url: "/admin/constant.do?command=delete",
+			url: "${base}/admin/constant.do?command=delete",
 			data: { constantIds: ids },
 			success: function (data) {
 				try{

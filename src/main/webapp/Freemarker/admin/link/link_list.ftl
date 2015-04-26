@@ -58,7 +58,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/link.do?command=createpre",
+			url: "${base}/admin/link.do?command=createpre",
 			title: "新建链接", width: 400, height: 300,
 			ondestroy: function (action) {
 				Search();
@@ -71,7 +71,7 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/link.do?command=updatepre&linkId="+rows[0].linkId,
+				url: "${base}/admin/link.do?command=updatepre&linkId="+rows[0].linkId,
 				title: "修改链接", width: 400, height: 300,
 				ondestroy: function (action) {
 					Search();
@@ -126,7 +126,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/link.do?command=delete",
+    		url: "${base}/admin/link.do?command=delete",
     		data: { linkIds: ids },
     		success: function (data) {
     			try{

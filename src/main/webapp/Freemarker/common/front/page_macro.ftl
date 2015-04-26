@@ -164,9 +164,9 @@
 		<li><span class="date2"></span><a href="${base}${article.filePath}">昨日要情${article.issueDate}</a></li>
 		<#elseif article.articleType='POLICECASE'>
 			<#if article.type=='ARTICLE'>
-            <li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
             <#elseif article.type='WORD'>
-            <li><span class="date2">【${article.createByTime}】</span><a href="${base}${article.filePath}">${article.articleTitle}</a></li>
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}${article.filePath}">${article.articleTitle}</a></li>
             </#if>
 		<#else>
 		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
