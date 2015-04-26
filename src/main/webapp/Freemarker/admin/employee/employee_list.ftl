@@ -61,7 +61,7 @@
         
         if (rows.length==1) {
         	mini.open({
-        		url: "/admin/employee.do?command=updatepre&employeeId="+rows[0].employeeId,
+        		url: "${base}/admin/employee.do?command=updatepre&employeeId="+rows[0].employeeId,
         		title: "人员修改", width: 940, height: 500,
         		ondestroy: function (action) {
         			Search();
@@ -115,7 +115,7 @@
 		grid.loading("操作中，请稍后......");
 		
 		$.ajax({
-			url: "/admin/employee.do?command=delete",
+			url: "${base}/admin/employee.do?command=delete",
 			data: { employeeIds: ids },
 			success: function (data) {
 				try{

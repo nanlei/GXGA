@@ -204,7 +204,7 @@
 			serachGrid.loading("操作中，请稍后......");
 			
 			$.ajax({
-				url: "/admin/article.do?command=addimage",
+				url: "${base}/admin/article.do?command=addimage",
 				data: { imageIds: ids , articleType: articleType.getValue(), articleCode: articleCode.getValue()},
 				cache:false,
 				success: function (data) {
@@ -250,7 +250,7 @@
 			serachGrid.loading("操作中，请稍后......");
 			
 			$.ajax({
-				url: "/admin/article.do?command=deleteimage",
+				url: "${base}/admin/article.do?command=deleteimage",
 				data: { imageIds: ids , articleType: articleType.getValue(), articleCode: articleCode.getValue()},
 				cache:false,
 				success: function (data) {
@@ -315,7 +315,7 @@
 			serachGrid.loading("操作中，请稍后......");
 			
 			$.ajax({
-				url: "/admin/article.do?command=addattachment",
+				url: "${base}/admin/article.do?command=addattachment",
 				data: { attachmentIds: ids , articleType: articleType.getValue(), articleCode: articleCode.getValue()},
 				cache:false,
 				success: function (data) {
@@ -361,7 +361,7 @@
 			serachGrid.loading("操作中，请稍后......");
 			
 			$.ajax({
-				url: "/admin/article.do?command=deleteattachment",
+				url: "${base}/admin/article.do?command=deleteattachment",
 				data: { attachmentIds: ids , articleType: articleType.getValue(), articleCode: articleCode.getValue()},
 				cache:false,
 				success: function (data) {
@@ -390,7 +390,7 @@
 	
 	function Save(){
     	$.ajax({
-    		url: "/admin/branchoverview.do?command=updateagency",
+    		url: "${base}/admin/branchoverview.do?command=updateagency",
     		data: { articleContent : editor.getData() },
     		type: "POST",
     		cache: false,

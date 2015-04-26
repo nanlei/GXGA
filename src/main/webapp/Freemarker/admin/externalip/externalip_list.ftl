@@ -61,7 +61,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/externalip.do?command=createpre",
+			url: "${base}/admin/externalip.do?command=createpre",
 			title: "新建外部IP", width: 420, height: 400,
 			ondestroy: function (action) {
 				Search();
@@ -74,7 +74,7 @@
         
         if (rows.length==1) {
         	mini.open({
-        		url: "/admin/externalip.do?command=updatepre&externalIPId="+rows[0].externalIPId,
+        		url: "${base}/admin/externalip.do?command=updatepre&externalIPId="+rows[0].externalIPId,
         		title: "修改外部IP", width: 420, height: 400,
         		ondestroy: function (action) {
         			Search();
@@ -128,7 +128,7 @@
 		grid.loading("操作中，请稍后......");
 		
 		$.ajax({
-			url: "/admin/externalip.do?command=delete",
+			url: "${base}/admin/externalip.do?command=delete",
 			data: { externalIPIds: ids },
 			success: function (data) {
 				try{

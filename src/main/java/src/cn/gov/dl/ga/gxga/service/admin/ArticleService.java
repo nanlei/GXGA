@@ -3,6 +3,7 @@ package cn.gov.dl.ga.gxga.service.admin;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -32,7 +33,7 @@ public class ArticleService extends BaseService {
 				SQL_GET_ARTICLE_BY_TYPE_AND_CODE, articleType, articleCode);
 	}
 
-	private static final String SQL_SEARCH_ARTICLES_BY_TYPE_PREFIX = "select a.articleId, a.articleType, a.articleTitle, a.articleOrder, c.constantName as articleStatus, a.createBy, a.createByName, date_format(a.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, a.createByIP, a.pageView, d.departmentName from doc_article a, hr_department d, sys_constant c ";
+	private static final String SQL_SEARCH_ARTICLES_BY_TYPE_PREFIX = "select a.articleId, a.articleType, a.articleTitle, a.articleOrder, c.constantName as articleStatus, a.articleDate, a.createBy, a.createByName, date_format(a.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, a.createByIP, a.pageView, d.departmentName from doc_article a, hr_department d, sys_constant c ";
 	private static final String SQL_SEARCH_ARTICLES_BY_TYPE_SUFFIX = "order by ";
 
 	// Search by type
@@ -120,7 +121,8 @@ public class ArticleService extends BaseService {
 		return helper;
 	}
 
-	public int createArticle(HttpServletRequest request, String articleType) {
+	public int createArticle(HttpServletRequest request, String articleType)
+			throws Exception {
 		HashMap<String, Object> parameters = buildInsertCondition(request,
 				articleType, null, null, null);
 
@@ -135,7 +137,7 @@ public class ArticleService extends BaseService {
 	}
 
 	public int createArticle(HttpServletRequest request, String articleType,
-			String articleCode) {
+			String articleCode) throws Exception {
 		HashMap<String, Object> parameters = buildInsertCondition(request,
 				articleType, articleCode, null, null);
 
@@ -152,7 +154,7 @@ public class ArticleService extends BaseService {
 	@SuppressWarnings("unchecked")
 	private HashMap<String, Object> buildInsertCondition(
 			HttpServletRequest request, String articleType, String articleCode,
-			String dcId, String videoId) {
+			String dcId, String videoId) throws Exception {
 		Map<String, Object> loginUser = (Map<String, Object>) request
 				.getSession().getAttribute(Constant.LOGIN_USER);
 		int createBy = (Integer) loginUser.get("userId");
@@ -170,6 +172,8 @@ public class ArticleService extends BaseService {
 
 		String articleTitle = params.get("articleTitle");
 		String articleOrder = params.get("articleOrder");
+
+		String articleDate = params.get("articleDate");
 
 		String articleContent = (String) request.getAttribute("articleContent");
 
@@ -195,6 +199,11 @@ public class ArticleService extends BaseService {
 		} else {
 			parameters.put("videoId", "0");
 		}
+		if (StringUtils.isNotEmpty(articleDate)) {
+			parameters.put("articleDate", new SimpleDateFormat("yyyy-MM-dd")
+					.format(new SimpleDateFormat("yyyy-MM-dd")
+							.parse(articleDate)));
+		}
 
 		parameters.put("articleTitle", articleTitle);
 		parameters.put("articleOrder", articleOrder);
@@ -216,7 +225,7 @@ public class ArticleService extends BaseService {
 				articleId);
 	}
 
-	private static final String SQL_UPDATE_ARTICLE_BY_ID = "update doc_article set articleTitle=?, articleContent=?, articleOrder=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where articleId=?";
+	private static final String SQL_UPDATE_ARTICLE_BY_ID = "update doc_article set articleTitle=?, articleContent=?, articleOrder=?, articleDate=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where articleId=?";
 
 	public int updateArtileById(Object[] parameters) {
 		return jt.update(SQL_UPDATE_ARTICLE_BY_ID, parameters);
@@ -583,7 +592,7 @@ public class ArticleService extends BaseService {
 	}
 
 	public int createArticleForDepartment(HttpServletRequest request,
-			String dcId, String videoId) {
+			String dcId, String videoId) throws Exception {
 		HashMap<String, Object> parameters = buildInsertCondition(request,
 				null, null, dcId, videoId);
 

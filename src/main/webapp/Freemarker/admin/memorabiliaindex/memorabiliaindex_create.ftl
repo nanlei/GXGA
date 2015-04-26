@@ -37,7 +37,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/memorabiliaindex.do?command=create",
+    		url: "${base}/admin/memorabiliaindex.do?command=create",
     		data: { object: json },
     		cache: false,
     		success: function (data) {

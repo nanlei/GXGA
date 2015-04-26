@@ -11,6 +11,10 @@
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" value="${article.articleOrder?default('')}"/></td>
 	</tr>
 	<tr>
+		<td><label>文章日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" value="${article.articleDate?default('')}" format="yyyy-MM-dd" showTime="true" /></td>
+	</tr>
+	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="${article.articleContent?default('请输入内容（工作简报）')}" /></td>
 	</tr>
 <@admin.searchArea colspan="2">

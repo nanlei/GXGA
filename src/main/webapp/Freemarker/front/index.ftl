@@ -222,7 +222,7 @@
                 <marquee id="b" onmouseover="this.stop()" style=" width: 251px; height: 533px; " onmouseout="this.start()" scrollamount="2" direction="up">
                     <ul class="news">
                     	<#list latestArticleList as latestArticle>
-                        <li title="${latestArticle.articleTitle}"><span class="date">${latestArticle.createByTime}</span><a href="${base}/front/article.do?articleId=${latestArticle.articleId}">${latestArticle.articleTitle}</a></li>
+                        <li title="${latestArticle.articleTitle}"><span class="date"><#if latestArticle.articleDate??>${latestArticle.articleDate}<#else>${latestArticle.createByTime}</#if></span><a href="${base}/front/article.do?articleId=${latestArticle.articleId}">${latestArticle.articleTitle}</a></li>
                         </#list>
                     </ul>
                 </marquee>

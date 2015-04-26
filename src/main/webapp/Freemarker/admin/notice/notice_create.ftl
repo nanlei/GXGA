@@ -10,6 +10,10 @@
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" /></td>
 	</tr>
 	<tr>
+		<td><label>文章日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" format="yyyy-MM-dd" showTime="true" /></td>
+	</tr>
+	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="请输入内容（通知通报）" /></td>
 	</tr>
 <@admin.searchArea colspan="2">

@@ -42,7 +42,7 @@
 
 	function Add() {
 		mini.open({
-			url: "/admin/issueword.do?command=uploadpre",
+			url: "${base}/admin/issueword.do?command=uploadpre",
 			title: "上传昨日要情Word", width: 400, height: 350,
 			ondestroy: function (action) {
 				Search();
@@ -100,7 +100,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/issueword.do?command=delete",
+    		url: "${base}/admin/issueword.do?command=delete",
     		data: { iwIds: ids },
     		success: function (data) {
     			try{

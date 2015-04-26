@@ -57,7 +57,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/issue.do?command=createpre",
+			url: "${base}/admin/issue.do?command=createpre",
 			title: "新建昨日要情", width: 400, height: 300,
 			ondestroy: function (action) {
 				Search();
@@ -70,7 +70,7 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/issue.do?command=updatepre&issueId="+rows[0].issueId,
+				url: "${base}/admin/issue.do?command=updatepre&issueId="+rows[0].issueId,
 				title: "修改昨日要情", width: 400, height: 300,
 				ondestroy: function (action) {
 					Search();
@@ -125,7 +125,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/issue.do?command=delete",
+    		url: "${base}/admin/issue.do?command=delete",
     		data: { issueIds: ids },
     		success: function (data) {
     			try{
@@ -148,7 +148,7 @@
 
 	function Word(){
 		mini.open({
-			url: "/admin/issueword.do",
+			url: "${base}/admin/issueword.do",
 			title: "昨日要情Word", width: 800, height: 600,
 			ondestroy: function (action) {
 				Search();
@@ -195,7 +195,7 @@
     	grid.loading("生成中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/issueword.do?command=generate",
+    		url: "${base}/admin/issueword.do?command=generate",
     		data: { issueIds: ids },
     		success: function (data) {
     			try{

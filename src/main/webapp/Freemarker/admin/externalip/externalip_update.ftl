@@ -56,7 +56,7 @@
 		form.loading("操作中，请稍后......");
 		
 		$.ajax({
-			url: "/admin/externalip.do?command=update",
+			url: "${base}/admin/externalip.do?command=update",
 			data: { object: json },
 			cache: false,
 			success: function (data) {

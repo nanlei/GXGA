@@ -71,7 +71,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/image.do?command=uploadpre",
+			url: "${base}/admin/image.do?command=uploadpre",
 			title: "新建图片", width: 400, height: 350,
 			ondestroy: function (action) {
 				Search();
@@ -84,7 +84,7 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/image.do?command=updatepre&imageId="+rows[0].imageId,
+				url: "${base}/admin/image.do?command=updatepre&imageId="+rows[0].imageId,
 				title: "修改图片", width: 400, height: 520,
 				ondestroy: function (action) {
 					Search();
@@ -139,7 +139,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/image.do?command=delete",
+    		url: "${base}/admin/image.do?command=delete",
     		data: { imageIds: ids },
     		success: function (data) {
     			try{
