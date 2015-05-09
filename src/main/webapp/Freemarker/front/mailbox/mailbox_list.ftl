@@ -57,6 +57,7 @@
     <!--beginning of bottom -->
     <@p.bottom/>
     <!--end of bottom -->
+    <script src="${base}/js/scrolltopcontrol.js"></script>
 </body>
 </html>
 </@p.page>

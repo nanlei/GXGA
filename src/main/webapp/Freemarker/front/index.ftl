@@ -477,6 +477,7 @@ function setTab(name,cursel,n){
     <@p.bottom/>
     <!--end of bottom -->
 	<script src="${base}/js/scroll.js"></script>
+	<script src="${base}/js/scrolltopcontrol.js"></script>
 </body>
 <@p.frontJS />
 </@p.page>

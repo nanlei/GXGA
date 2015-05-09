@@ -521,3 +521,5 @@ hr{border:5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10p
 .slider dd a{ display:block;padding:0 10px; overflow:hidden;border-bottom:1px solid #e2e2e2; height:26px;line-height:26px;color:#565656} 
 .slider dd a:hover{background:#efefef;color:#333;}
 .slider dd a.on{background:#efefef;color:#333;}
+
+#topcontrol{z-index:1000;}

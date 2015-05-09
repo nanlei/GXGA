@@ -166,6 +166,7 @@ $(function () {
 	$dd.eq(0).show();
 	 $dt.eq(0).css('cursor', 'default');
  });
-</script> 
+</script>
+<script src="${base}/js/scrolltopcontrol.js"></script>
 </body>
 </@p.page>

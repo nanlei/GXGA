@@ -402,7 +402,7 @@ body .mini-labelfield
 }
 body .mini-labelfield-checkboxlist
 {
-    width:auto;
+    width:auto;*zoom:1;
 }
 .mini-button
 {
@@ -3679,7 +3679,7 @@ body .mini-tree-loading .mini-treegrid-ec-icon
 .mini-tree-treeLine .mini-tree-node-ecicon-firstAndlast
 {
     background-position:50% 50%;
-    background-image:url(images/tree/lastLine.gif);
+    background-image:url(images/tree/lastline.gif);
 }
 
 
