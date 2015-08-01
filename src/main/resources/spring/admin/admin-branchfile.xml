@@ -21,9 +21,21 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="createdispatcher">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/branchfile/branchfile_createdispatcher" />
+					</bean>
+				</entry>
 				<entry key="createpre">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
 						<property name="successView" value="admin/branchfile/branchfile_create" />
+					</bean>
+				</entry>
+				<entry key="redheadcreatepre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/branchfile/branchfile_createredhead" />
 					</bean>
 				</entry>
 				<entry key="create">
@@ -33,8 +45,17 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="redheadcreate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.branchfile.BranchFileRedHeadCreateProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
 				<entry key="updatedispatcher">
-					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.branchfile.BranchFileUpdateDispatcherProcess">
+						<property name="articleService" ref="articleService" />
 						<property name="successView"
 							value="admin/branchfile/branchfile_updatedispatcher" />
 					</bean>
@@ -46,9 +67,24 @@
 						<property name="successView" value="admin/branchfile/branchfile_update" />
 					</bean>
 				</entry>
+				<entry key="redheadupdatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.branchfile.BranchFileRedHeadUpdatePreProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView"
+							value="admin/branchfile/branchfile_updateredhead" />
+					</bean>
+				</entry>
 				<entry key="update">
 					<bean
 						class="cn.gov.dl.ga.gxga.process.admin.branchfile.BranchFileUpdateProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="redheadupdate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.branchfile.BranchFileRedHeadUpdateProcess">
 						<property name="articleService" ref="articleService" />
 						<property name="successView" value="jsonView" />
 					</bean>

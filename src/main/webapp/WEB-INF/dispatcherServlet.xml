@@ -28,6 +28,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/front/attachment.do">attachmentController</prop>
 				<prop key="/front/branchoverview.do">branchOverviewController</prop>
 				<prop key="/front/article.do">articleController</prop>
+				<prop key="/front/articleRedHead.do">articleRedHeadController</prop>
 				<prop key="/front/articleList.do">articleListController</prop>
 				<prop key="/front/law.do">lawController</prop>
 				<prop key="/front/informationsecurity.do">informationSecurityController</prop>

@@ -269,7 +269,11 @@ function setTab(name,cursel,n){
                             <div id="con_one_2" style="display:none">
                                 <ul class="mnlist">
                                 	<#list branchFileList as branchFile>
+                                	<#if branchFile.articleBizType="NOR">
                                 	<li title="${branchFile.articleTitle}"><a href="${base}/front/article.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a></li>
+                                	<#elseif branchFile.articleBizType="RED">
+                                	<li title="${branchFile.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a></li>
+                                	</#if>
                                 	</#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=BRANCHFILE">更多>></a></h2>

@@ -33,7 +33,7 @@ public class ArticleService extends BaseService {
 				SQL_GET_ARTICLE_BY_TYPE_AND_CODE, articleType, articleCode);
 	}
 
-	private static final String SQL_SEARCH_ARTICLES_BY_TYPE_PREFIX = "select a.articleId, a.articleType, a.articleTitle, a.articleOrder, c.constantName as articleStatus, a.articleDate, a.createBy, a.createByName, date_format(a.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, a.createByIP, a.pageView, d.departmentName from doc_article a, hr_department d, sys_constant c ";
+	private static final String SQL_SEARCH_ARTICLES_BY_TYPE_PREFIX = "select a.articleId, a.articleType, a.articleTitle, a.articleOrder, c.constantName as articleStatus, a.articleDate, a.articleBizType, a.createBy, a.createByName, date_format(a.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, a.createByIP, a.pageView, d.departmentName from doc_article a, hr_department d, sys_constant c ";
 	private static final String SQL_SEARCH_ARTICLES_BY_TYPE_SUFFIX = "order by ";
 
 	// Search by type
@@ -126,6 +126,8 @@ public class ArticleService extends BaseService {
 		HashMap<String, Object> parameters = buildInsertCondition(request,
 				articleType, null, null, null);
 
+		parameters.put("articleBizType", Constant.ARTICLEBIZTYPE_NOR);
+
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
 				"doc_article").usingGeneratedKeyColumns("articleId");
 
@@ -140,6 +142,26 @@ public class ArticleService extends BaseService {
 			String articleCode) throws Exception {
 		HashMap<String, Object> parameters = buildInsertCondition(request,
 				articleType, articleCode, null, null);
+
+		parameters.put("articleBizType", Constant.ARTICLEBIZTYPE_NOR);
+
+		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
+				"doc_article").usingGeneratedKeyColumns("articleId");
+
+		Number id = insert.executeAndReturnKey(parameters);
+
+		int pk = id.intValue();
+
+		return pk;
+	}
+
+	public int createRedHeadArticle(HttpServletRequest request,
+			String articleType, String redHeadConfig) throws Exception {
+		HashMap<String, Object> parameters = buildInsertCondition(request,
+				articleType, null, null, null);
+
+		parameters.put("articleBizType", Constant.ARTICLEBIZTYPE_RED);
+		parameters.put("redHeadConfig", redHeadConfig);
 
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
 				"doc_article").usingGeneratedKeyColumns("articleId");
@@ -229,6 +251,12 @@ public class ArticleService extends BaseService {
 
 	public int updateArtileById(Object[] parameters) {
 		return jt.update(SQL_UPDATE_ARTICLE_BY_ID, parameters);
+	}
+
+	private static final String SQL_UPDATE_RED_HEAD_BY_ID = "update doc_article set articleTitle=?, articleContent=?, articleOrder=?, articleDate=?, redHeadConfig=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where articleId=?";
+
+	public int updateRedHeadById(Object[] parameters) {
+		return jt.update(SQL_UPDATE_RED_HEAD_BY_ID, parameters);
 	}
 
 	private static final String SQL_UPDATE_ARTICLE_BY_TYPE_AND_CODE = "update doc_article set articleContent=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where articleType=? and articleCode=?";

@@ -13,13 +13,13 @@ import cn.gov.dl.ga.gxga.service.BaseService;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class IndexService extends BaseService {
-	private static final String SQL_GET_ARTICLE_BY_TYPE = "select articleId, articleTitle from doc_article where articleType=? order by createByTime desc limit 0,5";
+	private static final String SQL_GET_ARTICLE_BY_TYPE = "select articleId, articleTitle, articleBizType from doc_article where articleType=? order by createByTime desc limit 0,5";
 
 	public List<Map<String, Object>> getArticleByType(String articleType) {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_TYPE, articleType);
 	}
 
-	private static final String SQL_GET_ARTICLE_LIST_BY_TYPE = "select articleId, articleType, articleTitle, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=? order by articleDate desc, createByTime desc";
+	private static final String SQL_GET_ARTICLE_LIST_BY_TYPE = "select articleId, articleType, articleTitle, articleBizType, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=? order by articleDate desc, createByTime desc";
 
 	public PagingList getArticleListByType(HttpServletRequest request,
 			String articleType) {
@@ -63,7 +63,7 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_DCID_FOR_LIST, dcId);
 	}
 
-	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, videoId, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
+	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, articleBizType, redHeadConfig, videoId, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
 
 	public Map<String, Object> getArticleById(String articleId) {
 		return jt

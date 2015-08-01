@@ -523,3 +523,21 @@ hr{border:5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10p
 .slider dd a.on{background:#efefef;color:#333;}
 
 #topcontrol{z-index:1000;}
+
+.sno_t{padding:40px 0; text-align:center;}
+.sno_table1{width:800px;margin:0 auto;border-bottom:2px solid #000;font-size:20px;font-family:\5FAE\8F6F\96C5\9ED1;font-weight:bold;padding-top:20px;}
+.sno_txtbox{padding-top:50px;width:800px;margin:0 auto;}
+.sno_txtbox_t{font-size:30px; text-align:center;padding-bottom:50px;}
+.sno_txt{line-height:1.5;font-size:16px;min-height:400px;height:auto !important;height:400px;}
+.sno_txtbottom{ width:200px;margin-left:600px; text-align:center;font-size:16px}
+.sno_bottom{width:800px;margin:0 auto;padding-top:50px;}
+.sno_bottom div{float:left;width:49.8%;padding:10px 0;}
+.sno_bottom div b{color:#fe0d0d;font-size:28px; text-align:right;display:block;float:left;width:50%}
+.sno_bottom div span{float:left; text-align:center;display:block;width:50%;font-size:18px}
+.sno_bor_bo{border-bottom:1px solid #000;}
+.sno_bor_r{border-right:1px solid #000;}
+.sno_no{width:836px; text-align:center;border-bottom:2px solid #fe3c3c;margin:0 auto;font-size:16px;padding:20px 0;}
+.sno_txtbox2{padding-top:50px;width:836px;margin:0 auto;}
+.sno_bottom2{width:816px;margin:0 auto;padding:20px 10px;border:2px solid #000;border-left:0;border-right:0;font-size:14px;height:auto;overflow:hidden;}
+.sno_bottom2 span{display:block;float:left;width:200px;line-height:1.5;}
+.sno_bottom2 span:first-child{width:600px;}
