@@ -1,25 +1,40 @@
 <@admin.page title="分局文件修改" js=["/components/ckfinder/ckfinder.js"]>
-<@admin.conArea title="前台综合>>分局文件>>普通文件>>修改" id="form1">
+<@admin.conArea title="前台综合>>分局文件>>红头文件>>修改" id="form1">
 <input class="mini-hidden" name="articleId" value="${(article.articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
+		<td colspan="2"><img src="${base}/images/redhead_branchfile.png"></td>
+	</tr>
+	<tr>
+		<td><label>文件号:</label></td>
+		<td><input class="mini-textbox" required="true" name="branchFileNo" style="width:300px;" value="${branchFileNo}"/>&nbsp;&nbsp;(例：大公高发〔XXXX〕XX号)</td>
+	</tr>
+	<tr>
 		<td><label>文章标题:</label></td>
-		<td><input class="mini-textbox" required="true" name="articleTitle" style="width:300px;" value="${article.articleTitle?default('')}"/></td>
+		<td><input class="mini-textbox" required="true" name="articleTitle" style="width:300px;" value="${article.articleTitle?default('')}"/>&nbsp;&nbsp;(例：关于XX的通知)</td>
+	</tr>
+	<tr>
+		<td><label>页脚落款:</label></td>
+		<td><input class="mini-textbox" required="true" name="bottomEnding" style="width:300px;" value="${bottomEnding}"/>&nbsp;&nbsp;(例：大连市公安局高新园区分局办公室 )</td>
+	</tr>
+	<tr>
+		<td><label>页脚日期:</label></td>
+		<td><input class="mini-textbox" required="true" name="bottomDate" style="width:300px;" value="${bottomDate}"/>&nbsp;&nbsp;(例：XXXX年X月X日印发)</td>
+	</tr>
+	<tr>
+		<td><label>文章日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" value="${article.articleDate?default('')}" format="yyyy-MM-dd" showTime="true" />&nbsp;&nbsp;(请和上面日期保持一致)</td>
 	</tr>
 	<tr>
 		<td><label>文章排序:</label></td>
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" value="${article.articleOrder?default('')}"/></td>
 	</tr>
 	<tr>
-		<td><label>文章日期:</label></td>
-		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" value="${article.articleDate?default('')}" format="yyyy-MM-dd" showTime="true" /></td>
-	</tr>
-	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="${article.articleContent?default('请输入内容（分局文件）')}" /></td>
 	</tr>
 <@admin.searchArea colspan="2">
 <@admin.searchRightArea>
-	<@admin.actBtn name="保存" actionName="/admin/branchfile.do?command=update" event="Save"/>
+	<@admin.actBtn name="保存" actionName="/admin/branchfile.do?command=redheadupdate" event="Save"/>
 </@admin.searchRightArea>
 </@admin.searchArea>
 </@admin.con>
@@ -47,7 +62,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "${base}/admin/branchfile.do?command=update",
+    		url: "${base}/admin/branchfile.do?command=redheadupdate",
     		data: { object : json, articleContent : editor.getData() },
     		type: "POST",
     		cache: false,
@@ -55,7 +70,7 @@
     			try{
     				if(data.status=="true"){
     					form.unmask();
-    					mini.alert("分局文件文本修改成功");
+    					mini.alert("分局文件红头文件修改成功");
     				}
     			}catch(e){
     				form.unmask();

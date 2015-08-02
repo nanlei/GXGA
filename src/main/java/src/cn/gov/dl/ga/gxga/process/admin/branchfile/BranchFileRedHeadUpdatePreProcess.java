@@ -5,14 +5,12 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.gov.dl.ga.gxga.common.PagingList;
-import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
-import cn.gov.dl.ga.gxga.process.admin.branchfile.data.BranchFileDecorator;
 import cn.gov.dl.ga.gxga.service.admin.ArticleService;
+import cn.gov.dl.ga.gxga.util.JSONParser;
 
-public class BranchFileSearchProcess extends Process {
+public class BranchFileRedHeadUpdatePreProcess extends Process {
 	private ArticleService articleService;
 
 	public void setArticleService(ArticleService articleService) {
@@ -24,14 +22,23 @@ public class BranchFileSearchProcess extends Process {
 			HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
-		PagingList articles = articleService.searchArticlesByType(request,
-				Constant.ARTICLETYPE_BRANCHFILE);
+		String articleId = (String) request.getAttribute("articleId");
 
-		new BranchFileDecorator(articles.getList()).decorate();
+		HashMap<String, Object> article = articleService
+				.getArticleById(articleId);
 
-		model.put("total", articles.getRowCount());
-		model.put("data", articles.getList());
+		String redHeadConfig = (String) article.get("redHeadConfig");
+
+		HashMap<String, String> config = JSONParser.parseJSON(redHeadConfig);
+
+		model.put("branchFileNo", config.get("branchFileNo"));
+		model.put("articleTitle", config.get("articleTitle"));
+		model.put("bottomEnding", config.get("bottomEnding"));
+		model.put("bottomDate", config.get("bottomDate"));
+
+		model.put("article", article);
 
 		return new Result(this.getSuccessView(), model);
 	}
+
 }

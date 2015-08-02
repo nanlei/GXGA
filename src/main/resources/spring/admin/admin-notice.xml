@@ -20,9 +20,19 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="createdispatcher">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_createdispatcher" />
+					</bean>
+				</entry>
 				<entry key="createpre">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
 						<property name="successView" value="admin/notice/notice_create" />
+					</bean>
+				</entry>
+				<entry key="redheadcreatepre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/notice/notice_createredhead" />
 					</bean>
 				</entry>
 				<entry key="create">
@@ -31,8 +41,17 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="redheadcreate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeRedHeadCreateProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
 				<entry key="updatedispatcher">
-					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeUpdateDispatcherProcess">
+						<property name="articleService" ref="articleService" />
 						<property name="successView" value="admin/notice/notice_updatedispatcher" />
 					</bean>
 				</entry>
@@ -43,8 +62,22 @@
 						<property name="successView" value="admin/notice/notice_update" />
 					</bean>
 				</entry>
+				<entry key="redheadupdatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeRedHeadUpdatePreProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="admin/notice/notice_updateredhead" />
+					</bean>
+				</entry>
 				<entry key="update">
 					<bean class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeUpdateProcess">
+						<property name="articleService" ref="articleService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="redheadupdate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.notice.NoticeRedHeadUpdateProcess">
 						<property name="articleService" ref="articleService" />
 						<property name="successView" value="jsonView" />
 					</bean>
