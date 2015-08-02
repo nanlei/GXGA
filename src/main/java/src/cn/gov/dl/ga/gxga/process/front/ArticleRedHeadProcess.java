@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
 import cn.gov.dl.ga.gxga.service.front.IndexService;
@@ -31,10 +32,21 @@ public class ArticleRedHeadProcess extends Process {
 
 		HashMap<String, String> config = JSONParser.parseJSON(redHeadConfig);
 
-		model.put("branchFileNo", config.get("branchFileNo"));
-		model.put("articleTitle", config.get("articleTitle"));
-		model.put("bottomEnding", config.get("bottomEnding"));
-		model.put("bottomDate", config.get("bottomDate"));
+		if (Constant.ARTICLETYPE_BRANCHFILE.equals(article.get("articleType"))) {
+			model.put("branchFileNo", config.get("branchFileNo"));
+			model.put("articleTitle", config.get("articleTitle"));
+			model.put("bottomEnding", config.get("bottomEnding"));
+			model.put("bottomDate", config.get("bottomDate"));
+		} else if (Constant.ARTICLETYPE_NOTICE.equals(article
+				.get("articleType"))) {
+			model.put("topUnit", config.get("topUnit"));
+			model.put("noticeNo", config.get("noticeNo"));
+			model.put("topDate", config.get("topDate"));
+			model.put("noticeHost", config.get("noticeHost"));
+			model.put("noticeContact", config.get("noticeContact"));
+			model.put("noticePhone", config.get("noticePhone"));
+			model.put("bottomDate", config.get("bottomDate"));
+		}
 
 		model.put("article", article);
 

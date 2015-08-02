@@ -174,6 +174,12 @@
         	<#elseif article.articleBizType="RED">
             <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/articleRedHead.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
         	</#if>
+        <#elseif article.articleType="NOTICE">
+        	<#if article.articleBizType="NOR">
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+        	<#elseif article.articleBizType="RED">
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/articleRedHead.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+        	</#if>
 		<#else>
 		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
 		</#if>

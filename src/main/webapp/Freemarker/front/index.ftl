@@ -298,7 +298,11 @@ function setTab(name,cursel,n){
                             <div id="con_two_1">
                                 <ul class="mnlist">
                                 	<#list noticeList as notice>
+                                	<#if notice.articleBizType="NOR">
                                 	<li title="${notice.articleTitle}"><a href="${base}/front/article.do?articleId=${notice.articleId}">${notice.articleTitle}</a></li>
+                                	<#elseif notice.articleBizType="RED">
+                                	<li title="${notice.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${notice.articleId}">${notice.articleTitle}</a></li>
+                                	</#if>
                                 	</#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=NOTICE">更多>></a></h2>

@@ -5,14 +5,11 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.gov.dl.ga.gxga.common.PagingList;
-import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
-import cn.gov.dl.ga.gxga.process.admin.notice.data.NoticeDecorator;
 import cn.gov.dl.ga.gxga.service.admin.ArticleService;
 
-public class NoticeSearchProcess extends Process {
+public class NoticeUpdateDispatcherProcess extends Process {
 	private ArticleService articleService;
 
 	public void setArticleService(ArticleService articleService) {
@@ -24,13 +21,12 @@ public class NoticeSearchProcess extends Process {
 			HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
-		PagingList articles = articleService.searchArticlesByType(request,
-				Constant.ARTICLETYPE_NOTICE);
+		String articleId = (String) request.getAttribute("articleId");
 
-		new NoticeDecorator(articles.getList()).decorate();
+		HashMap<String, Object> article = articleService
+				.getArticleById(articleId);
 
-		model.put("total", articles.getRowCount());
-		model.put("data", articles.getList());
+		model.put("article", article);
 
 		return new Result(this.getSuccessView(), model);
 	}
