@@ -52,6 +52,8 @@ public class ArticleService extends BaseService {
 		String articleTile = params.get("articleTitle");
 		String articleStatus = params.get("articleStatus");
 		String departmentId = params.get("departmentId");
+		String createByTimeStart = params.get("createByTimeStart");
+		String createByTimeEnd = params.get("createByTimeEnd");
 
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
@@ -74,6 +76,12 @@ public class ArticleService extends BaseService {
 				"a.articleStatus=?", articleStatus);
 		helper.setParam(StringUtils.isNotEmpty(departmentId),
 				"a.departmentId=?", departmentId);
+		helper.setParam(StringUtils.isNotEmpty(createByTimeStart),
+				"unix_timestamp(a.createByTime) > unix_timestamp(?)",
+				createByTimeStart);
+		helper.setParam(StringUtils.isNotEmpty(createByTimeEnd),
+				"unix_timestamp(a.createByTime) < unix_timestamp(?)",
+				createByTimeEnd);
 
 		return helper;
 	}
@@ -97,6 +105,8 @@ public class ArticleService extends BaseService {
 		String articleTile = params.get("articleTitle");
 		String articleStatus = params.get("articleStatus");
 		String departmentId = params.get("departmentId");
+		String createByTimeStart = params.get("createByTimeStart");
+		String createByTimeEnd = params.get("createByTimeEnd");
 
 		QueryHelper helper = new QueryHelper(
 				SQL_SEARCH_ARTICLES_BY_TYPE_AND_CODE_PREFIX,
@@ -117,6 +127,12 @@ public class ArticleService extends BaseService {
 				"a.articleStatus=?", articleStatus);
 		helper.setParam(StringUtils.isNotEmpty(departmentId),
 				"a.departmentId=?", departmentId);
+		helper.setParam(StringUtils.isNotEmpty(createByTimeStart),
+				"unix_timestamp(a.createByTime) > unix_timestamp(?)",
+				createByTimeStart);
+		helper.setParam(StringUtils.isNotEmpty(createByTimeEnd),
+				"unix_timestamp(a.createByTime) < unix_timestamp(?)",
+				createByTimeEnd);
 
 		return helper;
 	}

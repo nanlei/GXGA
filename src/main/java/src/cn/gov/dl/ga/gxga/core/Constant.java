@@ -75,9 +75,11 @@ public interface Constant {
 	public static final String CACHE_DEPARTMENT = "DEPARTMENT";
 
 	/* 状态常量集 */
-	public static final String STS_NEW = "NEW";
-	public static final String STS_WAI = "WAI";
-	public static final String STS_RUN = "RUN";
+	public static final String STS_NEW = "NEW";// 新建/待处理
+	public static final String STS_WAI = "WAI";// 处理中
+	public static final String STS_RUN = "RUN";// 正常
+	public static final String STS_FIN = "FIN";// 结束/办结
+	public static final String STS_OVT = "OVT";// 超时
 
 	/* 文章类型常量集 */
 	public static final String ARTICLETYPE_LAW = "LAW";// 法律纵览
@@ -100,6 +102,9 @@ public interface Constant {
 
 	public static final String ARTICLEBIZTYPE_NOR = "NOR";// 普通文章
 	public static final String ARTICLEBIZTYPE_RED = "RED";// 红头文件
+
+	/* EXTERNAL TRANSACTION类型常量集 */
+	public static final String EXTERNALTRANSACTIONTYPE_MXW = "MXW";// 民心网
 
 	/* WORD类型常量集 */
 	public static final String DOCWORD_POLICECASE = "POLICECASE";
