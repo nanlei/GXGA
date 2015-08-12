@@ -26,6 +26,20 @@
 						<property name="successView" value="front/oa/overtimemeal_list" />
 					</bean>
 				</entry>
+				<entry key="minxinwang">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.minxinwang.MinXinWangListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/minxinwang_list" />
+					</bean>
+				</entry>
+				<entry key="minxinwangdetail">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.minxinwang.MinXinWangDetailProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/minxinwang_detail" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

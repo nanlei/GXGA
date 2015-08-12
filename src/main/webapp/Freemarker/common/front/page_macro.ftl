@@ -399,6 +399,18 @@
 </div>
 </#macro>
 
+<#macro oaPanel>
+<div class="rnav">
+<h2 class="srnt">网上办公</h2>
+	<ul>
+	    <li class="on"><a href="${base}/front/oa.do">会议列表</a></li>
+	    <li><a href="${base}/front/oa.do?command=assetrepair">设备维修</a></li>
+	    <li><a href="${base}/front/oa.do?command=overtimemeal">加班用餐</a></li>
+	    <li><a href="${base}/front/oa.do?command=minxinwang"">民心网</a></li>
+	</ul>
+</div>
+</#macro>
+
 <#macro duty>
 <div class="m_duty s_od mb_20">
 	<h2 class="mt1"><span class="f_r">详情</span>值班安排</h2>
