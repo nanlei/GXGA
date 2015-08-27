@@ -44,7 +44,7 @@
         <div field="attachmentOrder" width="80" headerAlign="center" align="center" allowSort="true">附件排序</div>
         <div field="categoryName" width="80" headerAlign="center" align="center" allowSort="false">所属目录</div>
         <div field="createByName" width="80" headerAlign="center" align="center" allowSort="false">创建人</div>
-        <div field="createByTime" width="80" headerAlign="center" align="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">创建时间</div>
+        <div field="createByTime" width="80" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">创建时间</div>
         <div field="createByIP" width="80" headerAlign="center" align="center" allowSort="false">IP</div>
     </div>
 </div>
@@ -55,7 +55,7 @@
 	var grid = mini.get("datagrid1");
 	Search();
 	
-	grid.sortBy("attachmentId", "desc");
+	grid.sortBy("createByTime", "desc");
 	
 	function Search() {
 		var form = new mini.Form("#datacon1");
@@ -70,7 +70,7 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/attachment.do?command=uploadpre",
+			url: "${base}/admin/attachment.do?command=uploadpre",
 			title: "新建附件", width: 400, height: 350,
 			ondestroy: function (action) {
 				Search();
@@ -83,7 +83,7 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/attachment.do?command=updatepre&attachmentId="+rows[0].attachmentId,
+				url: "${base}/admin/attachment.do?command=updatepre&attachmentId="+rows[0].attachmentId,
 				title: "修改附件", width: 400, height: 440,
 				ondestroy: function (action) {
 					Search();
@@ -138,7 +138,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/attachment.do?command=delete",
+    		url: "${base}/admin/attachment.do?command=delete",
     		data: { attachmentIds: ids },
     		success: function (data) {
     			try{

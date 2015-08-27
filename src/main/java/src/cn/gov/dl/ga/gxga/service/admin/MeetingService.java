@@ -31,6 +31,7 @@ public class MeetingService extends BaseService {
 		return getPagingList(helper.getQuerySql(), request, helper.getParams());
 	}
 
+	@SuppressWarnings("unchecked")
 	private QueryHelper buildQueryCondition(HttpServletRequest request)
 			throws Exception {
 		String condition = (String) request.getAttribute("condition");
@@ -47,9 +48,18 @@ public class MeetingService extends BaseService {
 		sortField = StringUtils.isEmpty(sortField) ? "meetingId" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
+		Map<String, Object> loginUser = (Map<String, Object>) request
+				.getSession().getAttribute(Constant.LOGIN_USER);
+
+		int roleId = (Integer) loginUser.get("roleId");
+		int user_departmentId = (Integer) loginUser.get("departmentId");
+		
 		QueryHelper helper = new QueryHelper(SQL_SEARCH_MEETING_PREFIX,
 				SQL_SEARCH_MEETING_SUFFIX + sortField + " " + sortOrder);
 
+		if (roleId != 1) {// Not Super Admin
+			helper.setParam(true, "m.departmentId=?", user_departmentId);
+		}
 		helper.setParam(true, "m.departmentId=d.departmentId");
 		helper.setParam(StringUtils.isNotEmpty(departmentId),
 				"m.departmentId=?", departmentId);

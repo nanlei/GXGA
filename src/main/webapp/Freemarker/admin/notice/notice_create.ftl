@@ -1,5 +1,5 @@
 <@admin.page title="通知通报新建" js=["/components/ckfinder/ckfinder.js"]>
-<@admin.conArea title="前台综合>>通知通报>>新建" id="form1">
+<@admin.conArea title="前台综合>>通知通报>>普通文件>>新建" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td><label>文章标题:</label></td>
@@ -8,6 +8,10 @@
 	<tr>
 		<td><label>文章排序:</label></td>
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" /></td>
+	</tr>
+	<tr>
+		<td><label>文章日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" format="yyyy-MM-dd" showTime="true" /></td>
 	</tr>
 	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="请输入内容（通知通报）" /></td>
@@ -43,7 +47,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/notice.do?command=create",
+    		url: "${base}/admin/notice.do?command=create",
     		data: { object: json, articleContent : editor.getData()},
     		type: "POST",
     		cache: false,

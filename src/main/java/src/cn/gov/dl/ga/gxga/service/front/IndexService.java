@@ -8,17 +8,18 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import cn.gov.dl.ga.gxga.common.PagingList;
+import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.service.BaseService;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class IndexService extends BaseService {
-	private static final String SQL_GET_ARTICLE_BY_TYPE = "select articleId, articleTitle from doc_article where articleType=? order by createByTime desc limit 0,5";
+	private static final String SQL_GET_ARTICLE_BY_TYPE = "select articleId, articleTitle, articleBizType from doc_article where articleType=? order by createByTime desc limit 0,5";
 
 	public List<Map<String, Object>> getArticleByType(String articleType) {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_TYPE, articleType);
 	}
 
-	private static final String SQL_GET_ARTICLE_LIST_BY_TYPE = "select articleId, articleType, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=? order by createByTime desc";
+	private static final String SQL_GET_ARTICLE_LIST_BY_TYPE = "select articleId, articleType, articleTitle, articleBizType, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=? order by articleDate desc, createByTime desc";
 
 	public PagingList getArticleListByType(HttpServletRequest request,
 			String articleType) {
@@ -56,13 +57,13 @@ public class IndexService extends BaseService {
 				request, 30, new Object[] { articleType, articleCode });
 	}
 
-	private static final String SQL_GET_ARTICLE_BY_DCID_FOR_LIST = "select articleId, articleTitle, articleType, articleCode,date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId=? order by articleOrder asc limit 0,8";
+	private static final String SQL_GET_ARTICLE_BY_DCID_FOR_LIST = "select articleId, articleTitle, articleType, articleCode,date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId=? order by createByTime desc limit 0,8";
 
 	public List<Map<String, Object>> getArticleListByDcId(String dcId) {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_DCID_FOR_LIST, dcId);
 	}
 
-	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, videoId, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
+	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, articleBizType, redHeadConfig, videoId, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
 
 	public Map<String, Object> getArticleById(String articleId) {
 		return jt
@@ -81,8 +82,8 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_LINK_BY_TYPE, linkType);
 	}
 
-	private static final String SQL_GET_LATEST_ARTICLES = "select articleId, articleTitle, articleType, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by createByTime desc limit 0,20";
-	private static final String SQL_GET_LATEST = "select articleId, articleTitle, articleType, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by createByTime desc";
+	private static final String SQL_GET_LATEST_ARTICLES = "select articleId, articleTitle, articleType, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by articleDate desc, createByTime desc limit 0,20";
+	private static final String SQL_GET_LATEST = "select articleId, articleTitle, articleType, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where length(articleCode)=0 order by articleDate desc, createByTime desc";
 
 	public List<Map<String, Object>> getLatestArticles() {
 		return jt.queryForList(SQL_GET_LATEST_ARTICLES);
@@ -128,6 +129,13 @@ public class IndexService extends BaseService {
 
 	public List<Map<String, Object>> getDuty() {
 		return jt.queryForList(SQL_GET_DUTY_LIST);
+	}
+
+	private static final String SQL_GET_DUTY_LIST_FOR_YEAR_AND_MONTH = "select date_format(dutyDate,'%Y-%m-%d') as dutyDate, dutyManager, dutyLeader, dutyPolice from fun_duty d where date_format(d.dutyDate,'%m')=date_format(?,'%m') order by d.dutyDate";
+
+	public List<Map<String, Object>> getDuty(String yearAndMonth) {
+		return jt.queryForList(SQL_GET_DUTY_LIST_FOR_YEAR_AND_MONTH,
+				yearAndMonth + "01");
 	}
 
 	private static final String SQL_GET_DUTY_PLAN_LIST = "select d.departmentName, dp.dpId, dp.dpUrl,date_format(dp.createByTime,'%Y-%m-%d') as createByTime from hr_department d, fun_duty_plan dp where d.departmentId=dp.departmentId";
@@ -252,7 +260,7 @@ public class IndexService extends BaseService {
 				new Object[] { dcId }, String.class);
 	}
 
-	private static final String SQL_GET_ARTICLE_LIST_BY_DCID = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId>0 and dcId=?";
+	private static final String SQL_GET_ARTICLE_LIST_BY_DCID = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where dcId>0 and dcId=? order by createByTime desc";
 
 	public PagingList getArticleListByDcId(HttpServletRequest request,
 			String dcId) {
@@ -294,7 +302,7 @@ public class IndexService extends BaseService {
 	}
 
 	// Emergency Notice
-	private static final String SQL_GET_EMERGENCY_NOTICE_LIST = "select noticeTitle, noticeImageUrl, noticeAttachmentUrl from fun_emergency_notice order by noticeOrder asc";
+	private static final String SQL_GET_EMERGENCY_NOTICE_LIST = "select noticeTitle, noticeImageUrl, noticeAttachmentUrl from fun_emergency_notice where noticeStatus='RUN' order by noticeOrder asc";
 
 	public List<Map<String, Object>> getEmergencyNoticeList() {
 		return jt.queryForList(SQL_GET_EMERGENCY_NOTICE_LIST);
@@ -342,7 +350,7 @@ public class IndexService extends BaseService {
 				jobCategoryId);
 	}
 
-	private static final String SQL_GET_JOB_ARTICLES = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where jobCategoryId>0 and jobCategoryId=?";
+	private static final String SQL_GET_JOB_ARTICLES = "select articleId, articleTitle, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where jobCategoryId>0 and jobCategoryId=? order by createByTime desc";
 
 	public PagingList getJobArticles(HttpServletRequest request,
 			String jobCategoryId) {
@@ -365,4 +373,22 @@ public class IndexService extends BaseService {
 		return getPagingList(SQL_SEARCH_FOR_INDEX, request, 30,
 				new Object[] { articleTitle });
 	}
+
+	// PoliceCase
+	private static final String SQL_GET_POLICE_CASE = "select * from ("
+			+ "select articleId as articleId, articleTitle as articleTitle, '' as filePath, 'POLICECASE' as articleType, 'ARTICLE' as type, articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleType=?"
+			+ " union "
+			+ "select wordId as articleId, wordTitle as articleTitle, filePath, 'POLICECASE' as articleType, 'WORD' as type, wordDate as articleDate, wordDate as createByTime from doc_word where wordType=?) result "
+			+ "order by articleDate desc, createByTime desc";
+
+	public List<Map<String, Object>> getPoliceCase() {
+		return jt.queryForList(SQL_GET_POLICE_CASE + INDEX_LIST_LIMT,
+				Constant.ARTICLETYPE_POLICECASE, Constant.DOCWORD_POLICECASE);
+	}
+
+	public PagingList getPoliceCaseList(HttpServletRequest request) {
+		return getPagingList(SQL_GET_POLICE_CASE, request, 30, new Object[] {
+				Constant.ARTICLETYPE_POLICECASE, Constant.DOCWORD_POLICECASE });
+	}
+
 }

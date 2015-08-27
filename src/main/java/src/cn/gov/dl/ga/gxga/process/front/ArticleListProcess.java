@@ -23,6 +23,7 @@ public class ArticleListProcess extends Process {
 	public Result process(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
+		request.setAttribute("paging", "front");
 
 		String articleType = (String) request.getAttribute("type");
 
@@ -30,6 +31,8 @@ public class ArticleListProcess extends Process {
 
 		if ("ISSUEWORD".equals(articleType)) {
 			articleList = indexService.getIssueWordList(request);
+		} else if ("POLICECASE".equals(articleType)) {
+			articleList = indexService.getPoliceCaseList(request);
 		} else {
 			articleList = indexService.getArticleListByType(request,
 					articleType);

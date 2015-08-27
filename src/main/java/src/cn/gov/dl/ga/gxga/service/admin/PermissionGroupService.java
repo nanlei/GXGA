@@ -19,7 +19,7 @@ import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class PermissionGroupService extends BaseService {
 	private static final String SQL_SEARCH_PERMISSIONGROUP_PREFIX = "select permissionGroupId, permissionGroupName, permissionGroupDescription, permissionGroupOrder, case when isInit='Y' then '是' else '否' end isInit from sys_permissiongroup";
-	private static final String SQL_SEARCH_PERMISSIONGROUP_SUFFIX = "order by permissionGroupOrder asc";
+	private static final String SQL_SEARCH_PERMISSIONGROUP_SUFFIX = "order by permissionGroupOrder asc, permissionGroupId asc";
 
 	public PagingList searchPermissionGroup(HttpServletRequest request) {
 		QueryHelper helper = buildQueryCondition(request);

@@ -9,6 +9,7 @@ import cn.gov.dl.ga.gxga.common.PagingList;
 import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
+import cn.gov.dl.ga.gxga.process.admin.branchfile.data.BranchFileDecorator;
 import cn.gov.dl.ga.gxga.service.admin.ArticleService;
 
 public class BranchFileSearchProcess extends Process {
@@ -25,6 +26,8 @@ public class BranchFileSearchProcess extends Process {
 
 		PagingList articles = articleService.searchArticlesByType(request,
 				Constant.ARTICLETYPE_BRANCHFILE);
+
+		new BranchFileDecorator(articles.getList()).decorate();
 
 		model.put("total", articles.getRowCount());
 		model.put("data", articles.getList());

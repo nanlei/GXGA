@@ -23,8 +23,9 @@
     <div property="columns">
         <div type="checkcolumn"></div>
         <div type="indexcolumn"headerAlign="center">序号</div>
-        <div field="noticeTitle" width="220" headerAlign="center" allowSort="true">通知标题</div>
-        <div field="noticeOrder" width="220" headerAlign="center" allowSort="true">排序</div>
+        <div field="noticeTitle" width="220" headerAlign="center" align="center" allowSort="true">通知标题</div>
+        <div field="noticeOrder" width="220" headerAlign="center" align="center" allowSort="true">排序</div>
+        <div field="noticeStatus" width="220" headerAlign="center" align="center" allowSort="false">状态</div>
         <div field="createByName" width="70" headerAlign="center" align="center" allowSort="false">更新人</div>
         <div field="createByTime" width="100" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">更新时间</div>
         <div field="createByIP" width="70" headerAlign="center" align="center" allowSort="false">IP</div>
@@ -53,7 +54,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/emergencynotice.do?command=createpre",
-			title: "新建紧急通知", width: 400, height: 300,
+			title: "新建紧急通知", width: 400, height: 330,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -66,7 +67,7 @@
 		if (rows.length==1) {
 			mini.open({
 				url: "${base}/admin/emergencynotice.do?command=updatepre&noticeId="+rows[0].noticeId,
-				title: "修改紧急通知", width: 450, height: 530,
+				title: "修改紧急通知", width: 450, height: 550,
 				ondestroy: function (action) {
 					Search();
                 }

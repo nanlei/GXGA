@@ -1,5 +1,5 @@
 <@admin.page title="分局文件修改" js=["/components/ckfinder/ckfinder.js"]>
-<@admin.conArea title="前台综合>>分局文件>>修改" id="form1">
+<@admin.conArea title="前台综合>>分局文件>>普通文件>>修改" id="form1">
 <input class="mini-hidden" name="articleId" value="${(article.articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
@@ -9,6 +9,10 @@
 	<tr>
 		<td><label>文章排序:</label></td>
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" value="${article.articleOrder?default('')}"/></td>
+	</tr>
+	<tr>
+		<td><label>文章日期:</label></td>
+		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" value="${article.articleDate?default('')}" format="yyyy-MM-dd" showTime="true" /></td>
 	</tr>
 	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="${article.articleContent?default('请输入内容（分局文件）')}" /></td>
@@ -43,7 +47,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/branchfile.do?command=update",
+    		url: "${base}/admin/branchfile.do?command=update",
     		data: { object : json, articleContent : editor.getData() },
     		type: "POST",
     		cache: false,

@@ -59,6 +59,8 @@ public class AdminLogonProcess extends Process {
 					user.put("departmentId", 0);
 				}
 
+				user.put("roleId", user.get("roleId"));
+
 				request.getSession().invalidate();
 				request.getSession().setAttribute(Constant.LOGIN_USER, user);
 				request.getSession().setAttribute("CKFinder_UserRole", "admin");

@@ -24,7 +24,8 @@ public class TalentSubListProcess extends Process {
 	public Result process(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
-
+		request.setAttribute("paging", "front");
+		
 		String articleCode = (String) request.getAttribute("category");
 
 		PagingList subList = indexService.getArticleSubListByTypeAndCode(

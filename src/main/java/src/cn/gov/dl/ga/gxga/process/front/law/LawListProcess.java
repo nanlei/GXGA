@@ -22,6 +22,7 @@ public class LawListProcess extends Process {
 	public Result process(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
+		request.setAttribute("paging", "front");
 
 		PagingList lawList = indexService.getArticleListByType(request,
 				Constant.ARTICLETYPE_LAW);

@@ -21,11 +21,11 @@
 			<ul class="newslist">
 				<#list latestList.list as article>
 				<#if article.articleType='LAW'>
-				<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/law.do?command=info&lawId=${article.articleId}">${article.articleTitle}</a></li>
+				<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/law.do?command=info&lawId=${article.articleId}">${article.articleTitle}</a></li>
 				<#elseif article.articleType='INFORMATIONSECURITY'>
-				<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
+				<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
 				<#else>
-				<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+				<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
 				</#if>
 				</#list>				
 			</ul>
@@ -34,18 +34,14 @@
 		</div>
         <!--left end-->
         <div class="s_right">
-            <h2>
-                <img src="${base}/images/srnavt.jpg" />
-            </h2>
+            <h2><img src="${base}/images/srnavt.jpg" /></h2>
 			<div class="rnav">
 				<h2 class="srnt">最新发布</h2>
 				<ul>
 					<li class="on"><a href="${base}/front/latest.do">最新发布</a></li>
 				</ul>
 			</div>
-            <h2 class="mb_20">
-                <img src="${base}/images/srnavb.jpg" />
-            </h2>
+            <h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
             <@p.duty/>
 			<@p.rank/>
             <@p.imageLink/>
@@ -56,5 +52,6 @@
     <!--beginning of bottom -->
     <@p.bottom/>
     <!--end of bottom -->
+    <script src="${base}/js/scrolltopcontrol.js"></script>
 </body>
 </@p.page>

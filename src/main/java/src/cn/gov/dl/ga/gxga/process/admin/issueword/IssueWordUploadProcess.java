@@ -58,7 +58,7 @@ public class IssueWordUploadProcess extends Process {
 
 					// DB
 					issueWordService.createIssueWord(request, path);
-
+					
 					// 上传
 					String realPath = servletContext.getRealPath(path);
 					file.transferTo(new File(realPath));
@@ -68,6 +68,12 @@ public class IssueWordUploadProcess extends Process {
 
 			}
 
+		}
+
+		File tmpDir = new File(servletContext.getRealPath(servletContext
+				.getContextPath() + "/file/tmp/"));
+		for (File tmp : tmpDir.listFiles()) {
+			tmp.delete();
 		}
 
 		model.put("message", "文件上传成功");

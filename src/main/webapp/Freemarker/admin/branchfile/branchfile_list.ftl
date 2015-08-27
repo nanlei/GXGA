@@ -22,7 +22,7 @@
 	<@admin.actBtn name="查询" actionName="/admin/branchfile.do?command=search" event="Search" icon="icon-search"/>
 </@admin.searchLeftArea>  
 <@admin.searchRightArea>	
-	<@admin.actBtn name="新建" actionName="/admin/branchfile.do?command=createpre" event="Add" icon="icon-add"/>
+	<@admin.actBtn name="新建" actionName="/admin/branchfile.do?command=createdispatcher" event="Add" icon="icon-add"/>
 	<@admin.actBtn name="修改" actionName="/admin/branchfile.do?command=updatedispatcher" event="Edit" icon="icon-edit"/>
 	<@admin.actBtn name="删除" actionName="/admin/branchfile.do?command=delete" event="Delete" icon="icon-remove"/>
 </@admin.searchRightArea> 
@@ -37,8 +37,10 @@
         <div type="indexcolumn"headerAlign="center">序号</div>
         <div field="articleTitle" width="200" headerAlign="center" allowSort="true">标题</div>
         <div field="articleOrder" width="60" headerAlign="center" align="center" allowSort="true">排序</div>
+        <div field="articleBizType" width="60" headerAlign="center" align="center" allowSort="false">类型</div>
         <div field="articleStatus" width="60" headerAlign="center" align="center" allowSort="false">状态</div>
         <div field="departmentName" width="70" headerAlign="center" align="center" allowSort="false">所属部门</div>
+        <div field="articleDate" width="70" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd">文章日期</div>
         <div field="createByName" width="70" headerAlign="center" align="center" allowSort="false">更新人</div>
         <div field="createByTime" width="100" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">更新时间</div>
         <div field="createByIP" width="70" headerAlign="center" align="center" allowSort="false">IP</div>
@@ -67,8 +69,8 @@
 	
 	function Add() {
 		mini.open({
-			url: "/admin/branchfile.do?command=createpre",
-			title: "新建分局文件", width: 900, height: 580,
+			url: "${base}/admin/branchfile.do?command=createdispatcher",
+			title: "新建分局文件", width: 920, height: 620,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -80,8 +82,8 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "/admin/branchfile.do?command=updatedispatcher&articleId="+rows[0].articleId,
-				title: "修改分局文件："+rows[0].articleTitle, width: 900, height: 610,
+				url: "${base}/admin/branchfile.do?command=updatedispatcher&articleId="+rows[0].articleId,
+				title: "修改分局文件："+rows[0].articleTitle, width: 920, height: 620,
 				ondestroy: function (action) {
 					Search();
                 }
@@ -135,7 +137,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/branchfile.do?command=delete",
+    		url: "${base}/admin/branchfile.do?command=delete",
     		data: { articleIds: ids },
     		success: function (data) {
     			try{

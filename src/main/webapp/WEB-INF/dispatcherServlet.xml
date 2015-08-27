@@ -28,6 +28,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/front/attachment.do">attachmentController</prop>
 				<prop key="/front/branchoverview.do">branchOverviewController</prop>
 				<prop key="/front/article.do">articleController</prop>
+				<prop key="/front/articleRedHead.do">articleRedHeadController</prop>
 				<prop key="/front/articleList.do">articleListController</prop>
 				<prop key="/front/law.do">lawController</prop>
 				<prop key="/front/informationsecurity.do">informationSecurityController</prop>
@@ -64,6 +65,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/admin/issue.do">adminIssueController</prop>
 				<prop key="/admin/issueword.do">adminIssueWordController</prop>
 				<prop key="/admin/policecase.do">adminPoliceCaseController</prop>
+				<prop key="/admin/policecaseword.do">adminPoliceCaseWordController</prop>
 				<prop key="/admin/workreport.do">adminWorkReportController</prop>
 				<prop key="/admin/politicalreport.do">adminPoliticalReportController</prop>
 				<prop key="/admin/legal.do">adminLegalController</prop>

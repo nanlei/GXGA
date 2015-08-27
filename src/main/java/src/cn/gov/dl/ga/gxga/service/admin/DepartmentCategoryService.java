@@ -40,8 +40,7 @@ public class DepartmentCategoryService extends BaseService {
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
 
-		sortField = StringUtils.isEmpty(sortField) ? "constantOrder"
-				: sortField;
+		sortField = StringUtils.isEmpty(sortField) ? "dcOrder" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
 		QueryHelper helper = new QueryHelper(

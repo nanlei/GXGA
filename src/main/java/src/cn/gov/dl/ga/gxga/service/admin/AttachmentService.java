@@ -32,6 +32,7 @@ public class AttachmentService extends BaseService {
 		return getPagingList(helper.getQuerySql(), request, helper.getParams());
 	}
 
+	@SuppressWarnings("unchecked")
 	private QueryHelper buildQueryCondition(HttpServletRequest request) {
 		String condition = (String) request.getAttribute("condition");
 		HashMap<String, String> params = JSONParser.parseJSON(condition);
@@ -44,8 +45,24 @@ public class AttachmentService extends BaseService {
 		String createByTimeStart = params.get("createByTimeStart");
 		String createByTimeEnd = params.get("createByTimeEnd");
 
+		String sortField = (String) request.getAttribute("sortField");
+		String sortOrder = (String) request.getAttribute("sortOrder");
+
+		sortField = StringUtils.isEmpty(sortField) ? "arId" : sortField;
+		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
+
+		Map<String, Object> loginUser = (Map<String, Object>) request
+				.getSession().getAttribute(Constant.LOGIN_USER);
+
+		int roleId = (Integer) loginUser.get("roleId");
+		int userId = (Integer) loginUser.get("userId");
+
 		QueryHelper helper = new QueryHelper(SQL_SEARCH_ATTACHMENT_PREFIX,
 				SQL_SEARCH_ATTACHMENT_SUFFIX);
+
+		if (roleId != 1) {// Not Super Admin
+			helper.setParam(true, "a.createBy=?", userId);
+		}
 		helper.setParam(true, "a.categoryId=c.categoryId");
 		helper.setParam(StringUtils.isNotEmpty(attachmentName),
 				"a.attachmentName like concat('%',?,'%')", attachmentName);
@@ -192,6 +209,7 @@ public class AttachmentService extends BaseService {
 		return getPagingList(helper.getQuerySql(), request, helper.getParams());
 	}
 
+	@SuppressWarnings("unchecked")
 	private QueryHelper buildQueryConditionForArticleUnselectedAttachment(
 			HttpServletRequest request, HashSet<Object> attachmentIds) {
 		String condition = (String) request.getAttribute("condition");
@@ -200,11 +218,20 @@ public class AttachmentService extends BaseService {
 		String attachmentName = params.get("attachmentName");
 		String attachmentDescription = params.get("attachmentDescription");
 		String categoryId = params.get("categoryId");
+		
+		Map<String, Object> loginUser = (Map<String, Object>) request
+				.getSession().getAttribute(Constant.LOGIN_USER);
+
+		int roleId = (Integer) loginUser.get("roleId");
+		int userId = (Integer) loginUser.get("userId");
 
 		QueryHelper helper = new QueryHelper(
 				SQL_GET_ATTACHMENT_UNSELECTED_FOR_ARTICLE_PREFIX,
 				SQL_GET_ATTACHMENT_UNSELECTED_FOR_ARTICLE_SUFFIX);
 
+		if (roleId != 1) {// Not Super Admin
+			helper.setParam(true, "a.createBy=?", userId);
+		}
 		helper.setParam(StringUtils.isNotEmpty(attachmentName),
 				"a.attachmentName like concat('%',?,'%')", attachmentName);
 		helper.setParam(StringUtils.isNotEmpty(attachmentDescription),

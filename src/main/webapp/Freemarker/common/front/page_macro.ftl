@@ -23,7 +23,7 @@
 	</script>
 	<link href="${base}/css/style.css" rel="stylesheet" type="text/css" />
 	<!--banner-->
-	<script src="${base}/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+	<script src="${base}/js/jquery-1.11.2.min.js" type="text/javascript"></script>
 	<script src="${base}/js/pic_circle.js" type="text/javascript"></script>
 	<!--[if IE 6]>
 	<script src="${base}/js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
@@ -157,13 +157,31 @@
 	<ul class="newslist">
 		<#list articleList.list as article>
 		<#if article.articleType='LAW'>
-		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/law.do?command=info&lawId=${article.articleId}">${article.articleTitle}</a></li>
+		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/law.do?command=info&lawId=${article.articleId}">${article.articleTitle}</a></li>
 		<#elseif article.articleType='INFORMATIONSECURITY'>
-		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
+		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
 		<#elseif article.articleType='ISSUEWORD'>
-		<li><span class="date2"></span><a href="${base}${article.filePath}">${article.issueDate}</a></li>
+		<li><span class="date2"></span><a href="${base}${article.filePath}">昨日要情${article.issueDate}</a></li>
+		<#elseif article.articleType='POLICECASE'>
+			<#if article.type=='ARTICLE'>
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+            <#elseif article.type='WORD'>
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}${article.filePath}">${article.articleTitle}</a></li>
+            </#if>
+        <#elseif article.articleType="BRANCHFILE">
+        	<#if article.articleBizType="NOR">
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+        	<#elseif article.articleBizType="RED">
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/articleRedHead.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+        	</#if>
+        <#elseif article.articleType="NOTICE">
+        	<#if article.articleBizType="NOR">
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+        	<#elseif article.articleBizType="RED">
+            <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/articleRedHead.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+        	</#if>
 		<#else>
-		<li><span class="date2">【${article.createByTime}】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
+		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
 		</#if>
 		</#list>
 	</ul>
@@ -284,7 +302,7 @@
 		<#assign imageList=ftlUtil.getImageByArticleId('${article.articleId}')/>
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：${article.createByTime}</h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
 		<#if imageList?size!=0>
 		<div class="sac">
 			<#list imageList as image>
@@ -298,7 +316,7 @@
 	<#else><#-- ATTACHMENT -->
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：${article.createByTime}</h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
 		<div style="font-family:仿宋">${article.articleContent}</div>
 	</div>
 	<div class="page">
@@ -382,7 +400,7 @@
 </#macro>
 
 <#macro duty>
-<div class="s_od mb_20">
+<div class="m_duty s_od mb_20">
 	<h2 class="mt1"><span class="f_r">详情</span>值班安排</h2>
 	<h2 class="m_txt1"><span class="f_r"><a href="${base}/front/duty.do">查看详情</a></span>${ftlUtil.getToday()}</h2>
 	<div class="mod_c">
@@ -646,7 +664,6 @@ jQuery(".slideGroup .slideBox").slide({
 			<span>当前显示 1-${rowCount} 条 / 共 ${rowCount} 条</span>
 		</#if>
 	</#if>
-	<ol class="pagerpro">
 	<#if (pageCount <= 5)>
 		<#local startPage = 1>
 		<#local endPage = pageCount>
@@ -665,6 +682,11 @@ jQuery(".slideGroup .slideBox").slide({
 	     <a href="${getPageUrl(1,pageSize)}" title="第一页">首页</a>
 	     <a href="${getPageUrl(pageNum-1,pageSize)}" title="上页">上一页</a>
 	  </#if>
+	  <#if (startPage<0)>
+	  	<#local startPage = 1>
+	  <#elseif ((endPage-startPage)>=10)>
+	  	<#local startPage = startPage+3>
+	  </#if>
 	  <#list startPage..endPage as x>
 	     <#if x=pageNum>
 	        <span class="current"><a href="#">${x}</a></span>
@@ -677,8 +699,8 @@ jQuery(".slideGroup .slideBox").slide({
 	     <a href="${getPageUrl(pageCount + 1,pageSize)}" title="最后一页">尾页</a>
 	   </#if> 
 	</#if>
-	</#if>
-</div>
+	</div>
+</#if>
 </#macro>
 
 <#macro birthday birthdayList>
@@ -757,8 +779,9 @@ jQuery(".slideGroup .slideBox").slide({
                             <li>
                             	<h2><span>${birthday.employeeName}</span>${birthday.departmentName}</h2>
                             </li>
-                        </#list>
+                        	</#list>
                         </ul>
+                        <ul id="marquee2_2"></ul>
                     </div>
                     <#if (birthdayList?size>3)>
                     <script type="text/javascript">marqueeStart(2, "up");</script>
@@ -904,6 +927,6 @@ jQuery(".slideGroup .slideBox").slide({
             $("#left_scroll").hide().find(".left_scroll_bg").text("1");
         });
     </script>
-    <script src="${base}/js/jquery-1.11.1.min.js"></script>
+    <script src="${base}/js/jquery-1.11.2.min.js"></script>
 </#if>
 </#macro>

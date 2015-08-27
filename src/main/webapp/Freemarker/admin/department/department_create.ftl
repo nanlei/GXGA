@@ -57,7 +57,7 @@
 		form.loading("操作中，请稍后......");
 		
 		$.ajax({
-			url: "/admin/department.do?command=create",
+			url: "${base}/admin/department.do?command=create",
 			data: { object: json },
 			cache: false,
 			success: function (data) {

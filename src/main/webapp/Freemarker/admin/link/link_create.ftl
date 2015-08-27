@@ -45,7 +45,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "/admin/link.do?command=create",
+    		url: "${base}/admin/link.do?command=create",
     		data: { object: json },
     		cache: false,
     		success: function (data) {

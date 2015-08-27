@@ -222,7 +222,7 @@
                 <marquee id="b" onmouseover="this.stop()" style=" width: 251px; height: 533px; " onmouseout="this.start()" scrollamount="2" direction="up">
                     <ul class="news">
                     	<#list latestArticleList as latestArticle>
-                        <li title="${latestArticle.articleTitle}"><span class="date">${latestArticle.createByTime}</span><a href="${base}/front/article.do?articleId=${latestArticle.articleId}">${latestArticle.articleTitle}</a></li>
+                        <li title="${latestArticle.articleTitle}"><span class="date"><#if latestArticle.articleDate??>${latestArticle.articleDate}<#else>${latestArticle.createByTime}</#if></span><a href="${base}/front/article.do?articleId=${latestArticle.articleId}">${latestArticle.articleTitle}</a></li>
                         </#list>
                     </ul>
                 </marquee>
@@ -269,7 +269,11 @@ function setTab(name,cursel,n){
                             <div id="con_one_2" style="display:none">
                                 <ul class="mnlist">
                                 	<#list branchFileList as branchFile>
+                                	<#if branchFile.articleBizType="NOR">
                                 	<li title="${branchFile.articleTitle}"><a href="${base}/front/article.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a></li>
+                                	<#elseif branchFile.articleBizType="RED">
+                                	<li title="${branchFile.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a></li>
+                                	</#if>
                                 	</#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=BRANCHFILE">更多>></a></h2>
@@ -294,7 +298,11 @@ function setTab(name,cursel,n){
                             <div id="con_two_1">
                                 <ul class="mnlist">
                                 	<#list noticeList as notice>
+                                	<#if notice.articleBizType="NOR">
                                 	<li title="${notice.articleTitle}"><a href="${base}/front/article.do?articleId=${notice.articleId}">${notice.articleTitle}</a></li>
+                                	<#elseif notice.articleBizType="RED">
+                                	<li title="${notice.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${notice.articleId}">${notice.articleTitle}</a></li>
+                                	</#if>
                                 	</#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=NOTICE">更多>></a></h2>
@@ -302,7 +310,7 @@ function setTab(name,cursel,n){
                             <div id="con_two_2" style="display:none">
                                 <ul class="mnlist">
                                 	<#list issueWordList as issueWord>
-                                    <li><a href="${base}${issueWord.filePath}">${issueWord.issueDate}</a></li>
+                                    <li><a href="${base}${issueWord.filePath}">昨日要情${issueWord.issueDate}</a></li>
                                     </#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=ISSUEWORD">更多>></a></h2>
@@ -381,7 +389,11 @@ function setTab(name,cursel,n){
                             <div id="con_five_1">
                                 <ul class="mnlist">
                                 	<#list policeCaseList as policeCase>
+                                	<#if policeCase.type=='ARTICLE'>
                                 	<li title="${policeCase.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCase.articleId}">${policeCase.articleTitle}</a></li>
+                                	<#elseif policeCase.type='WORD'>
+                                	<li title="${policeCase.articleTitle}"><a href="${base}${policeCase.filePath}">${policeCase.articleTitle}</a></li>
+                                	</#if>
                                 	</#list>
                                 </ul>
                                 <h2 class="tab_more"><a href="${base}/front/articleList.do?type=POLICECASE">更多>></a></h2>
@@ -473,6 +485,7 @@ function setTab(name,cursel,n){
     <@p.bottom/>
     <!--end of bottom -->
 	<script src="${base}/js/scroll.js"></script>
+	<script src="${base}/js/scrolltopcontrol.js"></script>
 </body>
 <@p.frontJS />
 </@p.page>

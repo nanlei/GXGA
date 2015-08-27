@@ -23,18 +23,14 @@
 		</div>
 		<!--left end-->
 		<div class="s_right">
-			<h2>
-				<img src="${base}/images/srnavt.jpg" />
-			</h2>
+			<h2><img src="${base}/images/srnavt.jpg" /></h2>
 			<div class="rnav">
 				<h2 class="srnt">通讯录</h2>
 				<ul>
 					<li class="on"><a href="${base}/front/contact.do">通讯录</a></li>
 				</ul>
 			</div>
-			<h2 class="mb_20" >
-				<img src="${base}/images/srnavb.jpg" />
-			</h2>
+			<h2 class="mb_20"><img src="${base}/images/srnavb.jpg" /></h2>
             <@p.duty/>
 			<@p.rank/>
             <@p.imageLink/>
@@ -45,5 +41,6 @@
     <!--beginning of bottom -->
     <@p.bottom/>
     <!--end of bottom -->
+    <script src="${base}/js/scrolltopcontrol.js"></script>
 </body>
 </@p.page>

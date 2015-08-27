@@ -54,8 +54,7 @@ public class IndexProcess extends Process {
 				.getArticleByType(Constant.ARTICLETYPE_LEGAL);
 		List<Map<String, Object>> disciplineList = indexService
 				.getArticleByType(Constant.ARTICLETYPE_DISCIPLINE);
-		List<Map<String, Object>> policeCaseList = indexService
-				.getArticleByType(Constant.ARTICLETYPE_POLICECASE);
+		List<Map<String, Object>> policeCaseList = indexService.getPoliceCase();
 		List<Map<String, Object>> experienceList = indexService
 				.getArticleByType(Constant.ARTICLETYPE_EXPERIENCE);
 		List<Map<String, Object>> policeCultureList = indexService

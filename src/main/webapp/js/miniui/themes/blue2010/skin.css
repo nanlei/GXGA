@@ -322,7 +322,7 @@ a:hover.mini-calendar-menu-year
 }
 .mini-splitter-handler
 {
-    background:url(images/splitter/splitter.gif) repeat-y;
+    /*background:url(images/splitter/splitter.gif) repeat-y;*/
 }
 .mini-splitter .mini-splitter-pane1{
     border-color:#849dbd;
@@ -520,59 +520,71 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 }
 
 /* bottom */
-.mini-tabs-position-bottom .mini-tabs-space,
-.mini-tabs-position-bottom .mini-tabs-space2
+.mini-tabs-header-bottom .mini-tabs-space,
+.mini-tabs-header-bottom .mini-tabs-space2
 {
     border:0;
     border-top: 1px solid #859ebf;
 }
-.mini-tabs-position-bottom .mini-tabs-bodys
+.mini-tabs-header-bottom .mini-tabs-bodys
 {    
     border:solid 1px #859ebf;
     border-bottom:0;
 }
-.mini-tabs-position-bottom .mini-tab-active
+.mini-tabs-header-bottom .mini-tab-active
 {
     border-top:solid 1px white;
     border-bottom:solid 1px #859ebf;
 }
-
+.mini-tabs-body-bottom
+{
+    border:solid 1px #859ebf;
+    border-bottom:0;
+}
 /* left */
-.mini-tabs-position-left .mini-tabs-space,
-.mini-tabs-position-left .mini-tabs-space2
+.mini-tabs-header-left .mini-tabs-space,
+.mini-tabs-header-left .mini-tabs-space2
 {
     border:0;
     border-right: 1px solid #859ebf;
 }
-.mini-tabs-position-left .mini-tabs-bodys
+.mini-tabs-header-left .mini-tabs-bodys
 {
     border:solid 1px #859ebf;
     border-left:0;
 }
-.mini-tabs-position-left .mini-tab-active
+.mini-tabs-header-left .mini-tab-active
 {    
     border:solid 1px #859ebf;
     border-right:solid 1px white;
 }
-
+.mini-tabs-body-left
+{
+    border:solid 1px #859ebf;
+    border-left:0;
+}
 /* right */
-.mini-tabs-position-right .mini-tabs-space,
-.mini-tabs-position-right .mini-tabs-space2
+.mini-tabs-header-right .mini-tabs-space,
+.mini-tabs-header-right .mini-tabs-space2
 {
     border:0;
     border-left: 1px solid #859ebf;
 }
-.mini-tabs-position-right .mini-tabs-bodys
+.mini-tabs-header-right .mini-tabs-bodys
 {    
     border:solid 1px #859ebf;
     border-right:0;
 }
-.mini-tabs-position-right .mini-tab-active
+.mini-tabs-header-right .mini-tab-active
 {    
     border:solid 1px #859ebf;
     border-left:solid 1px white;
 }
-
+.mini-tabs-body-right
+{
+    border:solid 1px #859ebf;
+    border-right:0;
+}
 /*---------------------- tree -----------------------------*/
 
 .mini-tree-node-hover .mini-tree-nodeshow
@@ -649,4 +661,22 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 .mini-pager-last
 {
     background-image:url(images/pager/last.gif);
+}
+
+/*---------------------- progressbar -----------------------------*/
+.mini-progressbar
+{
+    border:1px solid #8ba0bc;
+}
+.mini-progressbar-border
+{
+    border:1px solid #8ba0bc;
+}
+.mini-progressbar-bar
+{
+    background: url("images/button/button.gif") repeat-x scroll 0 0 #d1dfef;
+}
+.mini-progressbar-text
+{ 
+    color:#222; 
 }

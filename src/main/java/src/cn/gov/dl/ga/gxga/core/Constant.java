@@ -98,6 +98,12 @@ public interface Constant {
 	public static final String ARTICLETYPE_EVALUATION = "EVALUATION";// 综合考评
 	public static final String ARTICLETYPE_TALENT = "TALENT";// 人才市场
 
+	public static final String ARTICLEBIZTYPE_NOR = "NOR";// 普通文章
+	public static final String ARTICLEBIZTYPE_RED = "RED";// 红头文件
+
+	/* WORD类型常量集 */
+	public static final String DOCWORD_POLICECASE = "POLICECASE";
+
 	/* 首页链接常量集 */
 	public static final String LINKTYPE_QGK = "QGK";// 全国库
 	public static final String LINKTYPE_STK = "STK";// 省厅库

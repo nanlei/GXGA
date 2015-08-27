@@ -15,23 +15,23 @@
 {
     border-radius:4px;   
 }
-.mini-tabs-position-right .mini-tab
+.mini-tabs-header-right .mini-tab
 {
     border-top-left-radius:0px;
     border-bottom-left-radius:0px;     
 }
 
-.mini-tabs-position-left .mini-tab
+.mini-tabs-header-left .mini-tab
 {
     border-top-right-radius:0px;
     border-bottom-right-radius:0px;     
 }
-.mini-tabs-position-bottom .mini-tab
+.mini-tabs-header-bottom .mini-tab
 {
     border-top-right-radius:0px;
     border-top-left-radius:0px;     
 }
-.mini-tabs-position-top .mini-tab
+.mini-tabs-header-top .mini-tab
 {
     border-bottom-right-radius:0px;
     border-bottom-left-radius:0px; 
@@ -545,59 +545,71 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 }
 
 /* bottom */
-.mini-tabs-position-bottom .mini-tabs-space,
-.mini-tabs-position-bottom .mini-tabs-space2
+.mini-tabs-header-bottom .mini-tabs-space,
+.mini-tabs-header-bottom .mini-tabs-space2
 {
     border:0;
     border-top: 1px solid #ccc;
 }
-.mini-tabs-position-bottom .mini-tabs-bodys
+.mini-tabs-header-bottom .mini-tabs-bodys
 {    
     border:solid 1px #ccc;
     border-bottom:0;
 }
-.mini-tabs-position-bottom .mini-tab-active
+.mini-tabs-header-bottom .mini-tab-active
 {
     border-top:solid 1px white;
     border-bottom:solid 1px #ccc;
 }
-
+.mini-tabs-body-bottom
+{
+    border:solid 1px #ccc;
+    border-bottom:0;
+}
 /* left */
-.mini-tabs-position-left .mini-tabs-space,
-.mini-tabs-position-left .mini-tabs-space2
+.mini-tabs-header-left .mini-tabs-space,
+.mini-tabs-header-left .mini-tabs-space2
 {
     border:0;
     border-right: 1px solid #ccc;
 }
-.mini-tabs-position-left .mini-tabs-bodys
+.mini-tabs-header-left .mini-tabs-bodys
 {
     border:solid 1px #ccc;
     border-left:0;
 }
-.mini-tabs-position-left .mini-tab-active
+.mini-tabs-header-left .mini-tab-active
 {    
     border:solid 1px #ccc;
     border-right:solid 1px white;
 }
-
+.mini-tabs-body-left
+{
+    border:solid 1px #ccc;
+    border-left:0;
+}
 /* right */
-.mini-tabs-position-right .mini-tabs-space,
-.mini-tabs-position-right .mini-tabs-space2
+.mini-tabs-header-right .mini-tabs-space,
+.mini-tabs-header-right .mini-tabs-space2
 {
     border:0;
     border-left: 1px solid #ccc;
 }
-.mini-tabs-position-right .mini-tabs-bodys
+.mini-tabs-header-right .mini-tabs-bodys
 {    
     border:solid 1px #ccc;
     border-right:0;
 }
-.mini-tabs-position-right .mini-tab-active
+.mini-tabs-header-right .mini-tab-active
 {    
     border:solid 1px #ccc;
     border-left:solid 1px white;
 }
-
+.mini-tabs-body-right
+{
+    border:solid 1px #ccc;
+    border-right:0;
+}
 /*---------------------- tree -----------------------------*/
 
 
@@ -688,4 +700,33 @@ html body .mini-grid-row-selected, body .mini-grid-row-selected .mini-grid-froze
 .mini-pager-last
 {
     background-image:url(images/pager/last.gif);
+}
+
+/*htmlfile*/
+.mini-htmlfile .mini-buttonedit-button
+{   
+    border:1px solid #cccccc;
+    border-top:#ffffff; 
+    border-right:#ffffff;
+    background:#ffffff;
+    color:#333; 
+}
+/*---------------------- progressbar -----------------------------*/
+.mini-progressbar
+{
+    border:1px solid #ccc;
+    border-radius: 4px; 
+}
+.mini-progressbar-border
+{
+    border:1px solid #ccc;
+    border-radius: 4px; 
+}
+.mini-progressbar-bar
+{
+    background:#e2eff8;
+}
+.mini-progressbar-text
+{ 
+    color:#222; 
 }
