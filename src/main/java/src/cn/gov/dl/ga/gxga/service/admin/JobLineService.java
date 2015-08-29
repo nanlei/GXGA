@@ -36,8 +36,7 @@ public class JobLineService extends BaseService {
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
 
-		sortField = StringUtils.isEmpty(sortField) ? "articleOrder"
-				: sortField;
+		sortField = StringUtils.isEmpty(sortField) ? "articleOrder" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
 		QueryHelper helper = new QueryHelper(
@@ -56,6 +55,8 @@ public class JobLineService extends BaseService {
 
 	public int createArticleForJobLine(HttpServletRequest request) {
 		HashMap<String, Object> parameters = buildInsertCondition(request);
+
+		parameters.put("articleBizType", Constant.ARTICLEBIZTYPE_NOR);
 
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
 				"doc_article").usingGeneratedKeyColumns("articleId");

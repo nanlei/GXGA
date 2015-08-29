@@ -42,7 +42,7 @@ public class MenuService extends BaseService {
 		return categories;
 	}
 
-	private static final String SQL_GET_PERMISSIONS = "select sys_permission.permissionid, sys_permission.categoryid, sys_permission.permissionname, sys_permission.permissionurl, sys_permission.permissionorder "
+	private static final String SQL_GET_PERMISSIONS = "select distinct sys_permission.permissionid, sys_permission.categoryid, sys_permission.permissionname, sys_permission.permissionurl, sys_permission.permissionorder "
 			+ "from sys_permission, sys_permissiongroup_permission, sys_role_permissiongroup, sys_user "
 			+ "where sys_permission.permissionid=sys_permissiongroup_permission.permissionid "
 			+ "and sys_permissiongroup_permission.permissiongroupid=sys_role_permissiongroup.permissiongroupid "

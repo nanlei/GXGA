@@ -69,7 +69,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为民心网诉求问题请示单查询页面<br>
+本页面为民心网诉求问题请示单详情页面<br>
 </@admin.conArea>
 <@admin.script>
 

@@ -10,7 +10,7 @@
     <!--topbg end-->
     <div class="mc">
     	<div class="location">
-    		<a href="${base}/index.do">首页</a> > <a href="${base}/front/oa.do">网上办公</a> > <span>民心网</span>
+    		<a href="${base}/index.do">首页</a> > <a href="${base}/front/oa.do">网上办公</a> > <a href="${base}/front/oa.do?command=minxinwang">民心网</a> > <span>${transaction.transactionTitle}</span>
     	</div>
     	<div class="left">
     		<h2 class="st">

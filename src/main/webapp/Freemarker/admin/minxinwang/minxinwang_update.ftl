@@ -1,4 +1,4 @@
-<@admin.page title="民心网新建">
+<@admin.page title="民心网修改">
 <@admin.conArea title="网上办公>>民心网>>修改" id="form1">
 <input class="mini-hidden" name="transactionId" value="${(transaction.transactionId)?default('')}"/>
 <@admin.con id="datacon1">

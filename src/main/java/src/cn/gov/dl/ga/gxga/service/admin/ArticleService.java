@@ -640,6 +640,8 @@ public class ArticleService extends BaseService {
 		HashMap<String, Object> parameters = buildInsertCondition(request,
 				null, null, dcId, videoId);
 
+		parameters.put("articleBizType", Constant.ARTICLEBIZTYPE_NOR);
+
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
 				"doc_article").usingGeneratedKeyColumns("articleId");
 

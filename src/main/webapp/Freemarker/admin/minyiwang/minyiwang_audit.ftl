@@ -1,5 +1,5 @@
-<@admin.page title="民心网">
-<@admin.conArea title="网上办公>>民心网>>日志>>查询" id="form1">
+<@admin.page title="民意网">
+<@admin.conArea title="网上办公>>民意网>>日志>>查询" id="form1">
 <input class="mini-hidden" name="transactionId" value="${(transactionId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
@@ -12,24 +12,24 @@
 	</tr>
 <@admin.searchArea colspan="8">
 <@admin.searchLeftArea>	
-	<@admin.actBtn name="查询" actionName="/admin/minxinwang.do?command=auditsearch" event="Search" icon="icon-search"/>
+	<@admin.actBtn name="查询" actionName="/admin/minyiwang.do?command=auditsearch" event="Search" icon="icon-search"/>
 </@admin.searchLeftArea>  
 <@admin.searchRightArea>	
-
+	<@admin.actBtn name="删除" actionName="/admin/minyiwang.do?command=auditdelete" event="Delete" icon="icon-remove"/>
 </@admin.searchRightArea> 
 </@admin.searchArea>
 </@admin.con>
 </@admin.conArea>
 <@admin.dataArea id="form2"> 
 <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;padding:0;margin:0;" allowResize="true"
-    url="${base}/admin/minxinwang.do?command=auditsearch"  idField="auditId" multiSelect="true" 
-    <#if ftlUtil.hasPermission('/admin/minxinwang.do?command=auditdetail','${loginUser.roleId}')>
+    url="${base}/admin/minyiwang.do?command=auditsearch"  idField="auditId" multiSelect="true" 
+    <#if ftlUtil.hasPermission('/admin/minyiwang.do?command=auditdetail','${loginUser.roleId}')>
     onshowrowdetail="onShowRowDetail" autoHideRowDetail="true" enableHotTrack="false">
     <#else>
     >
     </#if>
     <div property="columns">
-    	<#if ftlUtil.hasPermission('/admin/minxinwang.do?command=auditdetail','${loginUser.roleId}')>
+    	<#if ftlUtil.hasPermission('/admin/minyiwang.do?command=auditdetail','${loginUser.roleId}')>
     	<div type="expandcolumn"></div>
     	</#if>
         <div type="checkcolumn"></div>
@@ -41,7 +41,7 @@
 </div>
 </@admin.dataArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为民心网诉求问题请示单日志页面。点击加号可以看到日志变更详细信息。<br>
+本页面为民意网转办通知单日志页面。点击加号可以看到日志变更详细信息，日志信息只能删除。<br>
 </@admin.conArea>
 <style type="text/css">
 .detailForm td
@@ -84,7 +84,7 @@
         var td = grid.getRowDetailCellEl(row);
 
         $.ajax({
-            url: "${base}/admin/minxinwang.do?command=auditdetail&auditId="+row.auditId,
+            url: "${base}/admin/minyiwang.do?command=auditdetail&auditId="+row.auditId,
             success: function (data) {
                 td.innerHTML = "";
 
@@ -101,5 +101,65 @@
             }
         });
 	}
+    
+    function Delete() {
+    	var rows = grid.getSelecteds();
+    	
+    	if (rows.length > 0) {
+    		mini.showMessageBox({
+    			title: "提示", 
+    			message: "确定删除吗？",
+    			buttons: ["ok","no"],
+    			iconCls: "mini-messagebox-info", 
+    			callback: function(action){
+    				if(action=="ok"){
+    					doDelete(rows);
+    				}
+   		 		}
+   		 	});
+        } else {
+        	mini.showMessageBox({
+        		title:"提示",
+        		message:"请至少选择一条记录",
+        		buttons:["ok"],
+        		iconCls:"mini-messagebox-info"
+        	});
+        }
+    }
+    
+    function doDelete(rows){
+    	var idsStr = [];
+    	
+    	for (var i = 0, l = rows.length; i < l; i++) {
+    		var r = rows[i];
+    		
+    		idsStr.push(r.auditId);
+    	}
+    	
+    	var ids = idsStr.join(',');
+    	
+    	grid.loading("删除中，请稍后......");
+    	
+    	$.ajax({
+    		url: "${base}/admin/minyiwang.do?command=auditdelete",
+    		data: { auditIds: ids },
+    		success: function (data) {
+    			try{
+    				if(data.status=="true"){
+    					grid.unmask();
+    					Search();
+    					mini.alert("数据删除成功");
+    				}
+    			}catch(e){
+    				grid.unmask();
+    				mini.alert(data);
+    			}
+    		},
+    		error: function (jqXHR, textStatus, errorThrown) {
+    			grid.unmask();
+    			mini.alert(jqXHR.responseText);
+    		}
+    	});          
+    }
 </@admin.script>
 </@admin.page>

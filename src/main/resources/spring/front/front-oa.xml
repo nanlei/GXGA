@@ -40,6 +40,13 @@
 						<property name="successView" value="front/oa/minxinwang_detail" />
 					</bean>
 				</entry>
+				<entry key="minyiwang">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.minyiwang.MinYiWangListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/minyiwang_list" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

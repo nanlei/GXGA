@@ -400,13 +400,15 @@
 </#macro>
 
 <#macro oaPanel>
+<#assign command=RequestParameters.command?default('') />
 <div class="rnav">
 <h2 class="srnt">网上办公</h2>
 	<ul>
-	    <li class="on"><a href="${base}/front/oa.do">会议列表</a></li>
-	    <li><a href="${base}/front/oa.do?command=assetrepair">设备维修</a></li>
-	    <li><a href="${base}/front/oa.do?command=overtimemeal">加班用餐</a></li>
-	    <li><a href="${base}/front/oa.do?command=minxinwang"">民心网</a></li>
+	    <li <#if command=''>class="on"</#if>><a href="${base}/front/oa.do">会议列表</a></li>
+	    <li <#if command?contains('assetrepair')>class="on"</#if>><a href="${base}/front/oa.do?command=assetrepair">设备维修</a></li>
+	    <li <#if command?contains('overtimemeal')>class="on"</#if>><a href="${base}/front/oa.do?command=overtimemeal">加班用餐</a></li>
+	    <li <#if command?contains('minxinwang')>class="on"</#if>><a href="${base}/front/oa.do?command=minxinwang"">民心网</a></li>
+        <li <#if command?contains('minyiwang')>class="on"</#if>><a href="${base}/front/oa.do?command=minyiwang"">民意网</a></li>
 	</ul>
 </div>
 </#macro>
