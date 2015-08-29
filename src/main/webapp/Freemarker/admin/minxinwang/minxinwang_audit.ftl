@@ -1,4 +1,4 @@
-<@admin.page title="民心网" js=["/js/jquery.tmpl.min.js"]>
+<@admin.page title="民心网">
 <@admin.conArea title="网上办公>>民心网>>日志>>查询" id="form1">
 <input class="mini-hidden" name="transactionId" value="${(transactionId)?default('')}"/>
 <@admin.con id="datacon1">

@@ -2,7 +2,7 @@
 <@admin.conArea title="人力资源>>人员管理>>修改" id="form1">
 <input class="mini-hidden" name="employeeId" value="${(employee.employeeId)?default('')}"/>
 <fieldset id="fieldset1" style="border:solid 1px #aaa;margin:0;"> 
-<legend onclick="FieldsetClick('fieldset1');"><img src="/images/admin/arrow_u.gif" title="隐藏" border="0">基本信息</legend> 
+<legend onclick="FieldsetClick('fieldset1');"><img src="${base}/images/admin/arrow_u.gif" title="隐藏" border="0">基本信息</legend> 
 <ul style="padding:6px 0 0 6px;margin:0px;">
 <@admin.con id="datacon1">
 	<tr>
@@ -43,7 +43,7 @@
 </ul>
 </fieldset>
 <fieldset id="fieldset2" style="border:solid 1px #aaa;margin:0;"> 
-<legend onclick="FieldsetClick('fieldset2');"><img src="/images/admin/arrow_u.gif" title="隐藏" border="0">学历教育</legend> 
+<legend onclick="FieldsetClick('fieldset2');"><img src="${base}/images/admin/arrow_u.gif" title="隐藏" border="0">学历教育</legend> 
 <ul style="padding:6px 0 0 6px;margin:0px;">
 <@admin.con id="datacon2">
 	<tr>
@@ -77,7 +77,7 @@
 </ul>
 </fieldset>
 <fieldset id="fieldset3" style="border:solid 1px #aaa;margin:0;"> 
-<legend onclick="FieldsetClick('fieldset3');"><img src="/images/admin/arrow_u.gif" title="隐藏" border="0">工作情况</legend> 
+<legend onclick="FieldsetClick('fieldset3');"><img src="${base}/images/admin/arrow_u.gif" title="隐藏" border="0">工作情况</legend> 
 <ul style="padding:6px 0 0 6px;margin:0px;">
 <@admin.con id="datacon3">
 	<tr>

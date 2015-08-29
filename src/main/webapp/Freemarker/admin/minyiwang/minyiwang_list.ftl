@@ -1,5 +1,5 @@
-<@admin.page title="民心网">
-<@admin.conArea title="网上办公>>民心网>>查询" id="form1">
+<@admin.page title="民意网">
+<@admin.conArea title="网上办公>>民意网>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>编号:</td>
@@ -19,20 +19,20 @@
 	</tr>
 <@admin.searchArea colspan="8">
 <@admin.searchLeftArea>	
-	<@admin.actBtn name="查询" actionName="/admin/minxinwang.do?command=search" event="Search" icon="icon-search"/>
+	<@admin.actBtn name="查询" actionName="/admin/minyiwang.do?command=search" event="Search" icon="icon-search"/>
 </@admin.searchLeftArea>  
 <@admin.searchRightArea>	
-	<@admin.actBtn name="查看" actionName="/admin/minxinwang.do?command=detaildispatcher" event="Detail" icon="icon-find"/>
-	<@admin.actBtn name="新建" actionName="/admin/minxinwang.do?command=createpre" event="Add" icon="icon-add"/>
-	<@admin.actBtn name="修改" actionName="/admin/minxinwang.do?command=updatedispatcher" event="Edit" icon="icon-edit"/>
-	<@admin.actBtn name="删除" actionName="/admin/minxinwang.do?command=delete" event="Delete" icon="icon-remove"/>
+	<@admin.actBtn name="查看" actionName="/admin/minyiwang.do?command=detaildispatcher" event="Detail" icon="icon-find"/>
+	<@admin.actBtn name="新建" actionName="/admin/minyiwang.do?command=createpre" event="Add" icon="icon-add"/>
+	<@admin.actBtn name="修改" actionName="/admin/minyiwang.do?command=updatedispatcher" event="Edit" icon="icon-edit"/>
+	<@admin.actBtn name="删除" actionName="/admin/minyiwang.do?command=delete" event="Delete" icon="icon-remove"/>
 </@admin.searchRightArea> 
 </@admin.searchArea>
 </@admin.con>
 </@admin.conArea>
 <@admin.dataArea id="form2"> 
 <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;padding:0;margin:0;" allowResize="true"
-    url="/admin/minxinwang.do?command=search"  idField="transactionId" multiSelect="true">
+    url="/admin/minyiwang.do?command=search"  idField="transactionId" multiSelect="true">
     <div property="columns">
         <div type="checkcolumn"></div>
         <div type="indexcolumn"headerAlign="center">序号</div>
@@ -71,8 +71,8 @@
 		var rows = grid.getSelecteds();
 		if (rows.length==1) {
 			mini.open({
-				url: "${base}/admin/minxinwang.do?command=detaildispatcher&transactionId="+rows[0].transactionId,
-				title: "查看民心网单："+rows[0].transactionTitle+" ("+rows[0].transactionNo+")", width: 900, height: 600,
+				url: "${base}/admin/minyiwang.do?command=detaildispatcher&transactionId="+rows[0].transactionId,
+				title: "查看民意网单："+rows[0].transactionTitle+" ("+rows[0].transactionNo+")", width: 900, height: 600,
 				ondestroy: function (action) {
 					Search();
 	            }
@@ -89,8 +89,8 @@
 		
 	function Add() {
 		mini.open({
-			url: "${base}/admin/minxinwang.do?command=createpre",
-			title: "新建民心网单", width: 900, height: 600,
+			url: "${base}/admin/minyiwang.do?command=createpre",
+			title: "新建民意网单", width: 900, height: 600,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -102,8 +102,8 @@
 		
 		if (rows.length==1) {
 			mini.open({
-				url: "${base}/admin/minxinwang.do?command=updatedispatcher&transactionId="+rows[0].transactionId,
-				title: "修改民心网单："+rows[0].transactionTitle+" ("+rows[0].transactionNo+")", width: 900, height: 600,
+				url: "${base}/admin/minyiwang.do?command=updatedispatcher&transactionId="+rows[0].transactionId,
+				title: "修改民意网单："+rows[0].transactionTitle+" ("+rows[0].transactionNo+")", width: 900, height: 600,
 				ondestroy: function (action) {
 					Search();
                 }
@@ -157,7 +157,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "${base}/admin/minxinwang.do?command=delete",
+    		url: "${base}/admin/minyiwang.do?command=delete",
     		data: { transactionIds: ids },
     		success: function (data) {
     			try{

@@ -89,6 +89,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/admin/assetrepair.do">adminAssetRepairController</prop>
 				<prop key="/admin/overtimemeal.do">adminOvertimeMealController</prop>
 				<prop key="/admin/minxinwang.do">adminMinXinWangController</prop> <!-- 民心网 -->
+				<prop key="/admin/minyiwang.do">adminMinYiWangController</prop> <!-- 民意网 -->
 				<!-- HR -->
 				<prop key="/admin/position.do">adminPositionController</prop>
 				<prop key="/admin/department.do">adminDepartmentController</prop>

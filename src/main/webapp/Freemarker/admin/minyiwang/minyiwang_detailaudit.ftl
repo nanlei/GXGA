@@ -1,5 +1,5 @@
-<@admin.page title="民心网">
-<@admin.conArea title="网上办公>>民心网>>日志>>查询" id="form1">
+<@admin.page title="民意网">
+<@admin.conArea title="网上办公>>民意网>>日志>>查询" id="form1">
 <input class="mini-hidden" name="transactionId" value="${(transactionId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
@@ -12,7 +12,7 @@
 	</tr>
 <@admin.searchArea colspan="8">
 <@admin.searchLeftArea>	
-	<@admin.actBtn name="查询" actionName="/admin/minxinwang.do?command=auditsearch" event="Search" icon="icon-search"/>
+	<@admin.actBtn name="查询" actionName="/admin/minyiwang.do?command=auditsearch" event="Search" icon="icon-search"/>
 </@admin.searchLeftArea>  
 <@admin.searchRightArea>	
 
@@ -22,14 +22,14 @@
 </@admin.conArea>
 <@admin.dataArea id="form2"> 
 <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;padding:0;margin:0;" allowResize="true"
-    url="${base}/admin/minxinwang.do?command=auditsearch"  idField="auditId" multiSelect="true" 
-    <#if ftlUtil.hasPermission('/admin/minxinwang.do?command=auditdetail','${loginUser.roleId}')>
+    url="${base}/admin/minyiwang.do?command=auditsearch"  idField="auditId" multiSelect="true" 
+    <#if ftlUtil.hasPermission('/admin/minyiwang.do?command=auditdetail','${loginUser.roleId}')>
     onshowrowdetail="onShowRowDetail" autoHideRowDetail="true" enableHotTrack="false">
     <#else>
     >
     </#if>
     <div property="columns">
-    	<#if ftlUtil.hasPermission('/admin/minxinwang.do?command=auditdetail','${loginUser.roleId}')>
+    	<#if ftlUtil.hasPermission('/admin/minyiwang.do?command=auditdetail','${loginUser.roleId}')>
     	<div type="expandcolumn"></div>
     	</#if>
         <div type="checkcolumn"></div>
@@ -41,7 +41,7 @@
 </div>
 </@admin.dataArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为民心网诉求问题请示单日志页面。点击加号可以看到日志变更详细信息。<br>
+本页面为民意网转办通知单日志页面。点击加号可以看到日志变更详细信息。<br>
 </@admin.conArea>
 <style type="text/css">
 .detailForm td
@@ -84,7 +84,7 @@
         var td = grid.getRowDetailCellEl(row);
 
         $.ajax({
-            url: "${base}/admin/minxinwang.do?command=auditdetail&auditId="+row.auditId,
+            url: "${base}/admin/minyiwang.do?command=auditdetail&auditId="+row.auditId,
             success: function (data) {
                 td.innerHTML = "";
 

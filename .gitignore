@@ -1,5 +1,6 @@
 /target
 
 /log
+/src/main/webapp/file
 .settings
 .project
