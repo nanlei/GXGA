@@ -4,101 +4,99 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
-	<!-- MinYiWang -->
-	<bean id="adminMinYiWangController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+	<!-- PublicCommunication -->
+	<bean id="adminPubCommController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
 		<property name="processMap">
 			<map>
 				<entry key="default">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/minyiwang/minyiwang_list" />
+						<property name="successView" value="admin/pubcomm/pubcomm_list" />
 					</bean>
 				</entry>
 				<entry key="search">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangSearchProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommSearchProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="createpre">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/minyiwang/minyiwang_create" />
+						<property name="successView" value="admin/pubcomm/pubcomm_create" />
 					</bean>
 				</entry>
 				<entry key="create">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangCreateProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommCreateProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="detaildispatcher">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView"
-							value="admin/minyiwang/minyiwang_detaildispatcher" />
+						<property name="successView" value="admin/pubcomm/pubcomm_detaildispatcher" />
 					</bean>
 				</entry>
 				<entry key="detail">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangDetailProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommDetailProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
-						<property name="successView" value="admin/minyiwang/minyiwang_detail" />
+						<property name="successView" value="admin/pubcomm/pubcomm_detail" />
 					</bean>
 				</entry>
 				<entry key="detailaudit">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/minyiwang/minyiwang_detailaudit" />
+						<property name="successView" value="admin/pubcomm/pubcomm_detailaudit" />
 					</bean>
 				</entry>
 				<entry key="updatedispatcher">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView"
-							value="admin/minyiwang/minyiwang_updatedispatcher" />
+						<property name="successView" value="admin/pubcomm/pubcomm_updatedispatcher" />
 					</bean>
 				</entry>
 				<entry key="updatepre">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangUpdatePreProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommUpdatePreProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
-						<property name="successView" value="admin/minyiwang/minyiwang_update" />
+						<property name="successView" value="admin/pubcomm/pubcomm_update" />
 					</bean>
 				</entry>
 				<entry key="update">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangUpdateProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommUpdateProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="delete">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangDeleteProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommDeleteProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="audit">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/minyiwang/minyiwang_audit" />
+						<property name="successView" value="admin/pubcomm/pubcomm_audit" />
 					</bean>
 				</entry>
 				<entry key="auditsearch">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangAuditSearchProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommAuditSearchProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="auditdetail">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangAuditDetailProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommAuditDetailProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="auditdelete">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.minyiwang.MinYiWangAuditDeleteProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommAuditDeleteProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
@@ -106,4 +104,6 @@
 			</map>
 		</property>
 	</bean>
+
+	<!-- PublicMailBox -->
 </beans>

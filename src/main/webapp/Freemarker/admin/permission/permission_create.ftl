@@ -71,6 +71,7 @@
     		$("#menuInput").attr("value","");
     	}else{
     		$("#menuInput").show();
+    		mini.get("upperId").setRequired(true);
     	}
     }
     

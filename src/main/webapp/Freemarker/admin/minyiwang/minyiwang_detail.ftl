@@ -1,5 +1,5 @@
 <@admin.page title="民意网新建">
-<@admin.conArea title="网上办公>>民意网>>新建" id="form1">
+<@admin.conArea title="网上办公>>民意网>>详情" id="form1">
 <fieldset id="fieldset1" style="border:solid 1px #aaa;margin:0;"> 
 <legend onclick="FieldsetClick('fieldset1');"><img src="${base}/images/admin/arrow_u.gif" title="隐藏" border="0">转办通知单</legend> 
 <ul style="padding:6px 0 0 6px;margin:0px;">
@@ -69,6 +69,10 @@
 	<tr>
 		<td><label>排序:</label></td>
 		<td colspan="3"><input class="mini-textbox" required="true" name="transactionOrder" style="width:100%;" value="${transaction.transactionOrder}"/></td>
+	</tr>
+	<tr>
+		<td><label>状态:</label></td>
+		<td colspan="3"><input class="mini-combobox" required="true" name="transactionStatus" style="width:100%;" value="${transaction.transactionStatus}" textField="text" valueField="id" url="${base}/data/externaltransaction_sts.txt"/></td>
 	</tr>
 </@admin.con>
 </ul>

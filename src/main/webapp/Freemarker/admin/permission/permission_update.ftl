@@ -72,6 +72,7 @@
     		$("#menuInput").attr("value","");
     	}else{
     		$("#menuInput").show();
+    		mini.get("upperId").setRequired(true);
     	}
     }
     
@@ -147,6 +148,15 @@
     	
     	upPermission.setValue(tmpUpperId);
     	upPermission.setText(tipUpPermission);
+    	
+    	var YN=isMenu.getValue();
+    	if(YN=="Y"){
+    		$("#menuInput").hide();
+    		$("#menuInput").attr("value","");
+    	}else{
+    		$("#menuInput").show();
+    		mini.get("upperId").setRequired(true);
+    	}
     }
     
 	function closeWindow(){

@@ -409,6 +409,7 @@
 	    <li <#if command?contains('overtimemeal')>class="on"</#if>><a href="${base}/front/oa.do?command=overtimemeal">加班用餐</a></li>
 	    <li <#if command?contains('minxinwang')>class="on"</#if>><a href="${base}/front/oa.do?command=minxinwang"">民心网</a></li>
         <li <#if command?contains('minyiwang')>class="on"</#if>><a href="${base}/front/oa.do?command=minyiwang"">民意网</a></li>
+        <li <#if command?contains('pubcomm')>class="on"</#if>><a href="${base}/front/oa.do?command=pubcomm"">公众交流平台</a></li>
 	</ul>
 </div>
 </#macro>
