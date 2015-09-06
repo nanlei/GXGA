@@ -408,6 +408,12 @@ public class IndexService extends BaseService {
 				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_MYW });
 	}
 
+	// PubComm
+	public PagingList getPubCommList(HttpServletRequest request) {
+		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
+				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_PUBCOMM });
+	}
+
 	public HashMap<String, Object> getTransactionById(String transactionId) {
 		return (HashMap<String, Object>) jt.queryForMap(
 				SQL_GET_EXTERNAL_TRANSACTION_BY_ID, transactionId);
