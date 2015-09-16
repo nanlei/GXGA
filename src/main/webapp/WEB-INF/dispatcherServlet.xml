@@ -91,6 +91,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/admin/minxinwang.do">adminMinXinWangController</prop> <!-- 民心网 -->
 				<prop key="/admin/minyiwang.do">adminMinYiWangController</prop> <!-- 民意网 -->
 				<prop key="/admin/pubcomm.do">adminPubCommController</prop> <!-- 公众交流平台 -->
+				<prop key="/admin/officalmailbox.do">adminOfficalMailBoxontroller</prop> <!-- 局长信箱 -->
 				<!-- HR -->
 				<prop key="/admin/position.do">adminPositionController</prop>
 				<prop key="/admin/department.do">adminDepartmentController</prop>

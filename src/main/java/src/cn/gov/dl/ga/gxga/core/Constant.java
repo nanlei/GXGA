@@ -107,6 +107,7 @@ public interface Constant {
 	public static final String EXTERNALTRANSACTIONTYPE_MXW = "MXW";// 民心网
 	public static final String EXTERNALTRANSACTIONTYPE_MYW = "MYW";// 民意网
 	public static final String EXTERNALTRANSACTIONTYPE_PUBCOMM = "PUBCOMM";// 公众交流平台
+	public static final String EXTERNALTRANSACTIONTYPE_OFFICALMAILBOX = "OFFICALMAILBOX";// 局长信箱
 
 	/* WORD类型常量集 */
 	public static final String DOCWORD_POLICECASE = "POLICECASE";
