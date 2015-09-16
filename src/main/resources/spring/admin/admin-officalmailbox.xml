@@ -4,99 +4,106 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
-	<!-- PublicCommunication -->
-	<bean id="adminPubCommController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+	<!-- OfficalMailBox -->
+	<bean id="adminOfficalMailBoxontroller" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
 		<property name="processMap">
 			<map>
 				<entry key="default">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/pubcomm/pubcomm_list" />
+						<property name="successView" value="admin/officalmailbox/officalmailbox_list" />
 					</bean>
 				</entry>
 				<entry key="search">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommSearchProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxSearchProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="createpre">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/pubcomm/pubcomm_create" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_create" />
 					</bean>
 				</entry>
 				<entry key="create">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommCreateProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxCreateProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="detaildispatcher">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/pubcomm/pubcomm_detaildispatcher" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_detaildispatcher" />
 					</bean>
 				</entry>
 				<entry key="detail">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommDetailProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxDetailProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
-						<property name="successView" value="admin/pubcomm/pubcomm_detail" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_detail" />
 					</bean>
 				</entry>
 				<entry key="detailaudit">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/pubcomm/pubcomm_detailaudit" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_detailaudit" />
 					</bean>
 				</entry>
 				<entry key="updatedispatcher">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/pubcomm/pubcomm_updatedispatcher" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_updatedispatcher" />
 					</bean>
 				</entry>
 				<entry key="updatepre">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommUpdatePreProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxUpdatePreProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
-						<property name="successView" value="admin/pubcomm/pubcomm_update" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_update" />
 					</bean>
 				</entry>
 				<entry key="update">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommUpdateProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxUpdateProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="delete">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommDeleteProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxDeleteProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="audit">
 					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
-						<property name="successView" value="admin/pubcomm/pubcomm_audit" />
+						<property name="successView"
+							value="admin/officalmailbox/officalmailbox_audit" />
 					</bean>
 				</entry>
 				<entry key="auditsearch">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommAuditSearchProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxAuditSearchProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="auditdetail">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommAuditDetailProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxAuditDetailProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
 				<entry key="auditdelete">
 					<bean
-						class="cn.gov.dl.ga.gxga.process.admin.pubcomm.PubCommAuditDeleteProcess">
+						class="cn.gov.dl.ga.gxga.process.admin.officalmailbox.OfficalMailBoxAuditDeleteProcess">
 						<property name="externalTransactionService" ref="externalTransactionService" />
 						<property name="successView" value="jsonView" />
 					</bean>

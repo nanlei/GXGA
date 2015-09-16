@@ -54,6 +54,13 @@
 						<property name="successView" value="front/oa/pubcomm_list" />
 					</bean>
 				</entry>
+				<entry key="officalmailbox">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.officalmailbox.OfficalMailBoxListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/officalmailbox_list" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

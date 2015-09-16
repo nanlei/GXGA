@@ -413,6 +413,12 @@ public class IndexService extends BaseService {
 		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
 				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_PUBCOMM });
 	}
+	
+	// OfficalMailBox
+	public PagingList getOfficalMailBox(HttpServletRequest request){
+		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
+				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_OFFICALMAILBOX });
+	}
 
 	public HashMap<String, Object> getTransactionById(String transactionId) {
 		return (HashMap<String, Object>) jt.queryForMap(
