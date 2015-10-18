@@ -214,9 +214,9 @@
 		filebrowserBrowseUrl : '${base}/components/ckfinder/ckfinder.html',
     	filebrowserImageBrowseUrl : '${base}/components/ckfinder/ckfinder.html?type=Images',
     	filebrowserFlashBrowseUrl : '${base}/components/ckfinder/ckfinder.html?type=Flash',
-		filebrowserUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&Type=File',  
-		filebrowserImageUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&Type=Image',  
-		filebrowserFlashUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&Type=Flash',
+		filebrowserUploadUrl : '${base}/ckeditor/uploader?Type=files',  
+		filebrowserImageUploadUrl : '${base}/ckeditor/uploader?Type=images',  
+		filebrowserFlashUploadUrl : '${base}/ckeditor/uploader?Type=flash',
 		on: {
                 instanceReady: function( ev ) {
                     this.dataProcessor.writer.setRules( 'p', {

@@ -391,4 +391,38 @@ public class IndexService extends BaseService {
 				Constant.ARTICLETYPE_POLICECASE, Constant.DOCWORD_POLICECASE });
 	}
 
+	// External Transaction
+	private static final String SQL_GET_EXTERNAL_TRANSACTION_LIST = "select transactionId, transactionNo, transactionTitle, transactionConfig, transactionStatus, date_format(createByTime,'%Y-%m-%d') as createByTime from oa_external_transaction where transactionType=?";
+
+	private static final String SQL_GET_EXTERNAL_TRANSACTION_BY_ID = "select * from oa_external_transaction where transactionId=?";
+
+	// MinXinWang
+	public PagingList getMinXinWangList(HttpServletRequest request) {
+		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
+				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_MXW });
+	}
+
+	// MinYiWang
+	public PagingList getMinYiWangList(HttpServletRequest request) {
+		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
+				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_MYW });
+	}
+
+	// PubComm
+	public PagingList getPubCommList(HttpServletRequest request) {
+		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
+				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_PUBCOMM });
+	}
+	
+	// OfficalMailBox
+	public PagingList getOfficalMailBox(HttpServletRequest request){
+		return getPagingList(SQL_GET_EXTERNAL_TRANSACTION_LIST, request, 30,
+				new Object[] { Constant.EXTERNALTRANSACTIONTYPE_OFFICALMAILBOX });
+	}
+
+	public HashMap<String, Object> getTransactionById(String transactionId) {
+		return (HashMap<String, Object>) jt.queryForMap(
+				SQL_GET_EXTERNAL_TRANSACTION_BY_ID, transactionId);
+	}
+
 }

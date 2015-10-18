@@ -26,6 +26,41 @@
 						<property name="successView" value="front/oa/overtimemeal_list" />
 					</bean>
 				</entry>
+				<entry key="minxinwang">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.minxinwang.MinXinWangListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/minxinwang_list" />
+					</bean>
+				</entry>
+				<entry key="minxinwangdetail">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.minxinwang.MinXinWangDetailProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/minxinwang_detail" />
+					</bean>
+				</entry>
+				<entry key="minyiwang">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.minyiwang.MinYiWangListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/minyiwang_list" />
+					</bean>
+				</entry>
+				<entry key="pubcomm">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.pubcomm.PubCommListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/pubcomm_list" />
+					</bean>
+				</entry>
+				<entry key="officalmailbox">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.front.oa.officalmailbox.OfficalMailBoxListProcess">
+						<property name="indexService" ref="indexService" />
+						<property name="successView" value="front/oa/officalmailbox_list" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

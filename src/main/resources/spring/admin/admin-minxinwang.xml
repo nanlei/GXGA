@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	<!-- MinXinWang -->
+	<bean id="adminMinXinWangController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="default">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/minxinwang/minxinwang_list" />
+					</bean>
+				</entry>
+				<entry key="search">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangSearchProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="createpre">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/minxinwang/minxinwang_create" />
+					</bean>
+				</entry>
+				<entry key="create">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangCreateProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="detaildispatcher">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/minxinwang/minxinwang_detaildispatcher" />
+					</bean>
+				</entry>
+				<entry key="detail">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangDetailProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="admin/minxinwang/minxinwang_detail" />
+					</bean>
+				</entry>
+				<entry key="detailaudit">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/minxinwang/minxinwang_detailaudit" />
+					</bean>
+				</entry>
+				<entry key="updatedispatcher">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView"
+							value="admin/minxinwang/minxinwang_updatedispatcher" />
+					</bean>
+				</entry>
+				<entry key="updatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangUpdatePreProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="admin/minxinwang/minxinwang_update" />
+					</bean>
+				</entry>
+				<entry key="update">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangUpdateProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="delete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangDeleteProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="audit">
+					<bean class="cn.gov.dl.ga.gxga.process.DefaultProcess">
+						<property name="successView" value="admin/minxinwang/minxinwang_audit" />
+					</bean>
+				</entry>
+				<entry key="auditsearch">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangAuditSearchProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="auditdetail">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangAuditDetailProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="auditdelete">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.minxinwang.MinXinWangAuditDeleteProcess">
+						<property name="externalTransactionService" ref="externalTransactionService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

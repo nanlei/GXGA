@@ -31,7 +31,7 @@
 </@admin.conArea>
 <@admin.dataArea id="form2"> 
 <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;padding:0;margin:0;" allowResize="true"
-    url="/admin/law.do?command=search"  idField="articleId" multiSelect="true" onload="javascript:Compare()">
+    url="/admin/law.do?command=search"  idField="articleId" multiSelect="true">
     <div property="columns">
         <div type="checkcolumn"></div>
         <div type="indexcolumn"headerAlign="center">序号</div>
