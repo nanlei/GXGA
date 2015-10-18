@@ -4,3 +4,4 @@
 /src/main/webapp/file
 .settings
 .project
+.classpath
