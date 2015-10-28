@@ -158,7 +158,7 @@ public final class SystemCache {
 
 	private void loadConstant() {
 		logger.info("{}", "Loading Constant...");
-		
+
 		List<String> constantTypes = jt.queryForList(
 				SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
 
