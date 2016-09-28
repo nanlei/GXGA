@@ -13,7 +13,7 @@ import cn.gov.dl.ga.gxga.service.BaseService;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class IndexService extends BaseService {
-	private static final String SQL_GET_ARTICLE_BY_TYPE = "select articleId, articleTitle, articleBizType from doc_article where articleType=? order by createByTime desc limit 0,5";
+	private static final String SQL_GET_ARTICLE_BY_TYPE = "select articleId, articleTitle, articleBizType from doc_article where articleType=? order by articleDate desc limit 0,5";
 
 	public List<Map<String, Object>> getArticleByType(String articleType) {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_TYPE, articleType);

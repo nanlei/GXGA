@@ -51,7 +51,7 @@
 	var grid = mini.get("datagrid1");
 	Search();
 	
-	grid.sortBy("createByTime", "desc");
+	grid.sortBy("articleDate", "desc");
 	
 	function Search() {
 		var form = new mini.Form("#datacon1");
