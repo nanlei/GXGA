@@ -1,5 +1,5 @@
-<@admin.page title="警情研判">
-<@admin.conArea title="前台综合>>警情研判>>WORD>>查询" id="form1">
+<@admin.page title="每日警情">
+<@admin.conArea title="前台综合>>每日警情>>WORD>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>日期:</td>
@@ -45,7 +45,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/policecaseword.do?command=uploadpre",
-			title: "上传警情研判Word", width: 400, height: 350,
+			title: "上传每日警情Word", width: 400, height: 350,
 			ondestroy: function (action) {
 				Search();
 			}

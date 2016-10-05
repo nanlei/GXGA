@@ -1,5 +1,5 @@
-<@admin.page title="警情研判上传">
-<@admin.conArea title="前台综合>>警情研判>>WORD>>上传" id="form1" fileUpload="true" action="/admin/policecaseword.do?command=upload">
+<@admin.page title="每日警情上传">
+<@admin.conArea title="前台综合>>每日警情>>WORD>>上传" id="form1" fileUpload="true" action="/admin/policecaseword.do?command=upload">
 <@admin.con id="datacon1">
 	<tr>
 		<td><label>标题:</label></td>

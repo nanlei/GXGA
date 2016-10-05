@@ -1,5 +1,5 @@
-<@admin.page title="工作简报新建" js=["/components/ckfinder/ckfinder.js"]>
-<@admin.conArea title="前台综合>>工作简报>>新建" id="form1">
+<@admin.page title="工作动态新建" js=["/components/ckfinder/ckfinder.js"]>
+<@admin.conArea title="前台综合>>工作动态>>新建" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td><label>文章标题:</label></td>
@@ -14,7 +14,7 @@
 		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" format="yyyy-MM-dd" showTime="true" /></td>
 	</tr>
 	<tr>
-		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="请输入内容（工作简报）" /></td>
+		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="请输入内容（工作动态）" /></td>
 	</tr>
 <@admin.searchArea colspan="2">
 <@admin.searchRightArea>
@@ -24,7 +24,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为工作简报新建页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
+本页面为工作动态新建页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
 若要添加附件，请先保存，然后在【修改】页面进行勾选。
 </@admin.conArea>
 <@admin.script>
@@ -54,7 +54,7 @@
     			try{
     				if(data.status=="true"){
     					form.unmask();
-    					mini.alert("工作简报新建成功");
+    					mini.alert("工作动态新建成功");
     				}
     			}catch(e){
     				form.unmask();

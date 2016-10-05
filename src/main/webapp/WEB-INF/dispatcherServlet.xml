@@ -41,6 +41,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/front/oa.do">oaController</prop>
 				<prop key="/front/job.do">jobController</prop>
 				<prop key="/front/search.do">searchController</prop>
+				<prop key="/front/monthlystar.do">monthlyStarController</prop>
 				<!-- ADMIN -->
 				<prop key="/admin/login.do">adminLoginController</prop>
 				<prop key="/admin/logon.do">adminLogonController</prop>
@@ -67,12 +68,14 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/admin/policecase.do">adminPoliceCaseController</prop>
 				<prop key="/admin/policecaseword.do">adminPoliceCaseWordController</prop>
 				<prop key="/admin/workreport.do">adminWorkReportController</prop>
-				<prop key="/admin/politicalreport.do">adminPoliticalReportController</prop>
+				<prop key="/admin/politicalreport.do">adminPoliticalReportController</prop><!-- 政工简报 -->
+				<prop key="/admin/politicalnotice.do">adminPoliticalNoticeController</prop><!-- 政工通知 -->
 				<prop key="/admin/legal.do">adminLegalController</prop>
 				<prop key="/admin/discipline.do">adminDisciplineController</prop>
 				<prop key="/admin/experience.do">adminExperienceController</prop>
 				<prop key="/admin/policeculture.do">adminPoliceCultureController</prop>
 				<prop key="/admin/evaluation.do">adminEvaluationController</prop>
+				<prop key="/admin/monthlystar.do">adminMonthlyStarController</prop><!-- 每月之星 -->
 				<!-- DEPT -->
 				<prop key="/admin/branchdepartment.do">adminBranchDepartmentController</prop>
 				<prop key="/admin/departmentcategory.do">adminDepartmentCategoryController</prop>

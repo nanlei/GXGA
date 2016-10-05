@@ -1,5 +1,5 @@
-<@admin.page title="警情研判修改">
-<@admin.conArea title="前台综合>>警情研判>>附件明细" id="fieldset1">
+<@admin.page title="每日警情修改">
+<@admin.conArea title="前台综合>>每日警情>>附件明细" id="fieldset1">
 <input class="mini-hidden" name="articleId" id="articleId" value="${(articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>

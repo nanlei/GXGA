@@ -63,13 +63,10 @@ public class UserService extends BaseService {
 		QueryHelper helper = new QueryHelper(SQL_SEARCH_USER_PREFIX,
 				SQL_SEARCH_USER_SUFFIX + sortField + " " + sortOrder);
 		helper.setParam(true, "u.roleId=r.roleId");
-		helper.setParam(StringUtils.isNotEmpty(userName),
-				"u.userName like concat('%',?,'%')", userName);
-		helper.setParam(StringUtils.isNotEmpty(realName),
-				"u.realName like concat('%',?,'%')", realName);
+		helper.setParam(StringUtils.isNotEmpty(userName), "u.userName like concat('%',?,'%')", userName);
+		helper.setParam(StringUtils.isNotEmpty(realName), "u.realName like concat('%',?,'%')", realName);
 		helper.setParam(StringUtils.isNotEmpty(isLock), "u.isLock=?", isLock);
-		helper.setParam(StringUtils.isNotEmpty(isSignRole), "u.isSignRole=?",
-				isSignRole);
+		helper.setParam(StringUtils.isNotEmpty(isSignRole), "u.isSignRole=?", isSignRole);
 		helper.setParam(StringUtils.isNotEmpty(bindIP), "u.bindIP=?", bindIP);
 		helper.setParam(StringUtils.isNotEmpty(roleId), "u.roleId=?", roleId);
 
@@ -79,18 +76,17 @@ public class UserService extends BaseService {
 	private static final String SQL_CHECK_USERNAME = "select count(*) from sys_user where userName=?";
 
 	public int checkUserName(String userName) {
-		return jt.queryForObject(SQL_CHECK_USERNAME, new Object[] { userName },
-				Integer.class);
+		return jt.queryForObject(SQL_CHECK_USERNAME, new Object[] { userName }, Integer.class);
 	}
 
 	// private static final String SQL_INSERT_USER =
-	// "insert into sys_user(userName, realName, password, bindIP, userOrder, roleId, isLock) values(?,?,?,?,?,?,?)";
+	// "insert into sys_user(userName, realName, password, bindIP, userOrder,
+	// roleId, isLock) values(?,?,?,?,?,?,?)";
 
 	public int addUser(HttpServletRequest request) {
 		HashMap<String, Object> parameters = buildUserInsertCondition(request);
 
-		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
-				"sys_user").usingGeneratedKeyColumns("userId");
+		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName("sys_user").usingGeneratedKeyColumns("userId");
 
 		Number id = insert.executeAndReturnKey(parameters);
 
@@ -104,21 +100,18 @@ public class UserService extends BaseService {
 	public void addUserAndEmployee(HttpServletRequest request) {
 		// add user
 		HashMap<String, Object> parametersUser = buildUserInsertCondition(request);
-		SimpleJdbcInsert insertUser = new SimpleJdbcInsert(jt).withTableName(
-				"sys_user").usingGeneratedKeyColumns("userId");
+		SimpleJdbcInsert insertUser = new SimpleJdbcInsert(jt).withTableName("sys_user")
+				.usingGeneratedKeyColumns("userId");
 		Number idUser = insertUser.executeAndReturnKey(parametersUser);
 		int userId = idUser.intValue();
 
 		String realName = (String) parametersUser.get("realName");
 
 		// add employee
-		HashMap<String, Object> parametersEmployee = buildEmployeeInsertCondition(
-				userId, realName);
-		SimpleJdbcInsert insertEmployee = new SimpleJdbcInsert(jt)
-				.withTableName("hr_employee").usingGeneratedKeyColumns(
-						"employeeId");
-		Number idEmployee = insertEmployee
-				.executeAndReturnKey(parametersEmployee);
+		HashMap<String, Object> parametersEmployee = buildEmployeeInsertCondition(userId, realName);
+		SimpleJdbcInsert insertEmployee = new SimpleJdbcInsert(jt).withTableName("hr_employee")
+				.usingGeneratedKeyColumns("employeeId");
+		Number idEmployee = insertEmployee.executeAndReturnKey(parametersEmployee);
 		int employeeId = idEmployee.intValue();
 
 		// update user
@@ -126,8 +119,7 @@ public class UserService extends BaseService {
 
 	}
 
-	private HashMap<String, Object> buildEmployeeInsertCondition(int userId,
-			String employeeName) {
+	private HashMap<String, Object> buildEmployeeInsertCondition(int userId, String employeeName) {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("userId", userId);
 		parameters.put("employeeName", employeeName);
@@ -135,8 +127,7 @@ public class UserService extends BaseService {
 		return parameters;
 	}
 
-	private HashMap<String, Object> buildUserInsertCondition(
-			HttpServletRequest request) {
+	private HashMap<String, Object> buildUserInsertCondition(HttpServletRequest request) {
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> objectMap = JSONParser.parseJSON(object);
 
@@ -166,8 +157,7 @@ public class UserService extends BaseService {
 	private static final String SQL_GET_USER_BY_ID = "select * from sys_user where userId=?";
 
 	public HashMap<String, Object> getUserById(String userId) {
-		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_USER_BY_ID,
-				userId);
+		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_USER_BY_ID, userId);
 	}
 
 	private static final String SQL_UPDATE_USER = "update sys_user set realName=?, bindIP=?, userOrder=?, roleId=?, isLock=?, isSignRole=? where userId=?";
@@ -182,8 +172,7 @@ public class UserService extends BaseService {
 	public void deleteUser(final String[] userIds) {
 		jt.batchUpdate(SQL_DELETE_USER, new BatchPreparedStatementSetter() {
 			@Override
-			public void setValues(PreparedStatement ps, int i)
-					throws SQLException {
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
 				ps.setInt(1, Integer.parseInt(userIds[i]));
 			}
 
@@ -193,19 +182,17 @@ public class UserService extends BaseService {
 			}
 		});
 
-		jt.batchUpdate(SQL_DELETE_EMPLOYEE_BY_USERID,
-				new BatchPreparedStatementSetter() {
-					@Override
-					public void setValues(PreparedStatement ps, int i)
-							throws SQLException {
-						ps.setInt(1, Integer.parseInt(userIds[i]));
-					}
+		jt.batchUpdate(SQL_DELETE_EMPLOYEE_BY_USERID, new BatchPreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setInt(1, Integer.parseInt(userIds[i]));
+			}
 
-					@Override
-					public int getBatchSize() {
-						return userIds.length;
-					}
-				});
+			@Override
+			public int getBatchSize() {
+				return userIds.length;
+			}
+		});
 	}
 
 	private static final String SQL_RESET_PASSOWRD = "update sys_user set password=? where userId=?";

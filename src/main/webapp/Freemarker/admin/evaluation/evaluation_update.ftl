@@ -1,5 +1,5 @@
-<@admin.page title="综合考评修改" js=["/components/ckfinder/ckfinder.js"]>
-<@admin.conArea title="前台综合>>综合考评>>修改" id="form1">
+<@admin.page title="督导考核修改" js=["/components/ckfinder/ckfinder.js"]>
+<@admin.conArea title="前台综合>>督导考核>>修改" id="form1">
 <input class="mini-hidden" name="articleId" value="${(article.articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
@@ -15,7 +15,7 @@
 		<td><input class="mini-datepicker" required="true" name="articleDate" style="width:150px;" value="${article.articleDate?default('')}" format="yyyy-MM-dd" showTime="true" /></td>
 	</tr>
 	<tr>
-		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="${article.articleContent?default('请输入内容（综合考评）')}" /></td>
+		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="${article.articleContent?default('请输入内容（督导考核）')}" /></td>
 	</tr>
 <@admin.searchArea colspan="2">
 <@admin.searchRightArea>
@@ -25,7 +25,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为综合考评修改页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
+本页面为督导考核修改页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
 若要添加附件，然后在【图片明细】页面进行勾选。
 </@admin.conArea>
 <@admin.script>
@@ -55,7 +55,7 @@
     			try{
     				if(data.status=="true"){
     					form.unmask();
-    					mini.alert("综合考评文本修改成功");
+    					mini.alert("督导考核文本修改成功");
     				}
     			}catch(e){
     				form.unmask();

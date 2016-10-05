@@ -40,8 +40,8 @@
 				</div>
 			</div>
 		<div class="m_in">
-			<h2 class="mt2"><span>今日要闻</span></h2>
-			<h2 class="min_t"><marquee><#if topNews??><a href="${base}/front/article.do?articleId=${topNews.articleId}">${topNews.articleTitle}</a><#else>&nbsp;</#if></marquee></h2>
+			<h2 class="mt2"><a href="${base}/front/articleList.do?type=IMAGENEWS">更多>></a><span>今日要闻</span></h2>
+			<h2 class="min_t"><marquee scrollamount="4"><#if topNews??><a href="${base}/front/article.do?articleId=${topNews.articleId}">${topNews.articleTitle}</a><#else>&nbsp;</#if></marquee></h2>
 			<div class="min_left">
 				<div id="banner">
 					<div id="f_div">
@@ -233,247 +233,96 @@
             <img src="images/add2.jpg" />
         </h2>
         <!--add end-->
-        <div class="m_left">
-            <div class="oa"><a href="http://10.80.1.225:9080/oa/oa/index.jsp"><img src="${base}/images/oa.jpg" /></a></div>
-            <div class="m_tab">
-                <div class="m_tab1 mr_10">
-                    <script>
-<!--
-function setTab(name,cursel,n){
- for(i=1;i<=n;i++){
-  var menu=document.getElementById(name+i);
-  var con=document.getElementById("con_"+name+"_"+i);
-  menu.className=i==cursel?"hover":"";
-  con.style.display=i==cursel?"block":"none";
- }
-}
-//-->
-                    </script>
-                    <div id="lib_Tab1">
-                        <div class="lib_Menubox lib_tabborder">
-                            <ul>
-                                <li id="one1" onclick="setTab('one',1,4)" class="hover">上级文件</li>
-                                <li id="one2" onclick="setTab('one',2,4)">分局文件</li>
-                               
-                            </ul>
-                        </div>
-                        <div class="lib_Contentbox lib_tabborder">
-                            <div id="con_one_1">
-                            <ul class="mnlist">
-                                <#list superiorFileList as superiorFile>
-                                <li title="${superiorFile.articleTitle}"><a href="${base}/front/article.do?articleId=${superiorFile.articleId}">${superiorFile.articleTitle}</a></li>
-                                </#list>
-                            </ul>
-                            <h2 class="tab_more"><a href="${base}/front/articleList.do?type=SUPERIORFILE">更多>></a></h2>
-                            </div>
-                            <div id="con_one_2" style="display:none">
-                                <ul class="mnlist">
-                                	<#list branchFileList as branchFile>
-                                	<#if branchFile.articleBizType="NOR">
-                                	<li title="${branchFile.articleTitle}"><a href="${base}/front/article.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a></li>
-                                	<#elseif branchFile.articleBizType="RED">
-                                	<li title="${branchFile.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a></li>
-                                	</#if>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=BRANCHFILE">更多>></a></h2>
-                            </div>
-                          
-                        </div>
-                    </div>
-
-                    
-
-                </div>
-                <div class="m_tab1">
-                    <div id="lib_Tab2">
-                        <div class="lib_Menubox lib_tabborder">
-                            <ul>
-                                <li id="two1" onclick="setTab('two',1,4)" class="hover">通知通报</li>
-                                <li id="two2" onclick="setTab('two',2,4)" >昨日要情</li>
-                               
-                            </ul>
-                        </div>
-                        <div class="lib_Contentbox lib_tabborder">
-                            <div id="con_two_1">
-                                <ul class="mnlist">
-                                	<#list noticeList as notice>
-                                	<#if notice.articleBizType="NOR">
-                                	<li title="${notice.articleTitle}"><a href="${base}/front/article.do?articleId=${notice.articleId}">${notice.articleTitle}</a></li>
-                                	<#elseif notice.articleBizType="RED">
-                                	<li title="${notice.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${notice.articleId}">${notice.articleTitle}</a></li>
-                                	</#if>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=NOTICE">更多>></a></h2>
-                            </div>
-                            <div id="con_two_2" style="display:none">
-                                <ul class="mnlist">
-                                	<#list issueWordList as issueWord>
-                                    <li><a href="${base}${issueWord.filePath}">昨日要情${issueWord.issueDate}</a></li>
-                                    </#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=ISSUEWORD">更多>></a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="m_tab1 mr_10">
-                    <div id="lib_Tab3">
-                        <div class="lib_Menubox lib_tabborder">
-                            <ul>
-                                <li id="three1" onclick="setTab('three', 1, 4)" class="hover">工作简报</li>
-                                <li id="three2" onclick="setTab('three', 2, 4)" >政工简报</li>
-                            </ul>
-                        </div>
-                        <div class="lib_Contentbox lib_tabborder">
-                            <div id="con_three_1">
-                                <ul class="mnlist">
-                                	<#list workReportList as workReport>
-                                	<li title="${workReport.articleTitle}"><a href="${base}/front/article.do?articleId=${workReport.articleId}">${workReport.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=WORKREPORT">更多>></a></h2>
-                            </div>
-                            <div id="con_three_2" style="display:none">
-                                <ul class="mnlist">
-                                	<#list politicalReportList as politicalReport>
-                                	<li title="${politicalReport.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalReport.articleId}">${politicalReport.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=POLITICALREPORT">更多>></a></h2>
-                            </div>
-                          
-                        </div>
-                    </div>
-                </div>
-                <div class="m_tab1">
-                    <div id="lib_Tab4">
-                        <div class="lib_Menubox lib_tabborder">
-                            <ul>
-                                <li id="four1" onclick="setTab('four', 1, 4)" class="hover">公安法制</li>
-                                <li id="four2" onclick="setTab('four', 2, 4)" >纪检监察</li>
-                            </ul>
-                        </div>
-                        <div class="lib_Contentbox lib_tabborder">
-                            <div id="con_four_1">
-                                <ul class="mnlist">
-                                	<#list legalList as legal>
-                                	<li title="${legal.articleTitle}"><a href="${base}/front/article.do?articleId=${legal.articleId}">${legal.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=LEGAL">更多>></a></h2>
-                            </div>
-                            <div id="con_four_2" style="display:none">
-                                <ul class="mnlist">
-                                	<#list disciplineList as discipline>
-                                	<li title="${discipline.articleTitle}"><a href="${base}/front/article.do?articleId=${discipline.articleId}">${discipline.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=DISCIPLINE">更多>></a></h2>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="m_tab1 mr_10">
-                    <div id="lib_Tab5">
-                        <div class="lib_Menubox lib_tabborder">
-                            <ul>
-                                <li id="five1" onclick="setTab('five', 1, 4)">警情研判</li>
-                                <li id="five2" onclick="setTab('five', 2, 4)" class="hover">警营文化</li>
-                                
-                            </ul>
-                        </div>
-                        <div class="lib_Contentbox lib_tabborder">
-                            <div id="con_five_1">
-                                <ul class="mnlist">
-                                	<#list policeCaseList as policeCase>
-                                	<#if policeCase.type=='ARTICLE'>
-                                	<li title="${policeCase.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCase.articleId}">${policeCase.articleTitle}</a></li>
-                                	<#elseif policeCase.type='WORD'>
-                                	<li title="${policeCase.articleTitle}"><a href="${base}${policeCase.filePath}">${policeCase.articleTitle}</a></li>
-                                	</#if>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=POLICECASE">更多>></a></h2>
-                            </div>
-                            <div id="con_five_2" style="display:none">
-                                <ul class="mnlist">
-                                	<#list policeCultureList as policeCulture>
-                                	<li title="${policeCulture.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCulture.articleId}">${policeCulture.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=POLICECULTURE">更多>></a></h2>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-                <div class="m_tab1">
-                    <div id="lib_Tab6">
-                        <div class="lib_Menubox lib_tabborder">
-                            <ul>
-                                <li id="six1" onclick="setTab('six', 1, 4)">综合考评</li>
-                                <li id="six2" onclick="setTab('six', 2, 4)" class="hover">经验交流</li>
-                               
-                            </ul>
-                        </div>
-                        <div class="lib_Contentbox lib_tabborder">
-                            <div id="con_six_1">
-                                <ul class="mnlist">
-                                    <#list evaluationList as evaluation>
-                                	<li title="${evaluation.articleTitle}"><a href="${base}/front/article.do?articleId=${evaluation.articleId}">${evaluation.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=EVALUATION">更多>></a></h2>
-                            </div>
-                            <div id="con_six_2" style="display:none">
-                                <ul class="mnlist">
-                                	<#list experienceList as experience>
-                                	<li title="${experience.articleTitle}"><a href="${base}/front/article.do?articleId=${experience.articleId}">${experience.articleTitle}</a></li>
-                                	</#list>
-                                </ul>
-                                <h2 class="tab_more"><a href="${base}/front/articleList.do?type=EXPERIENCE">更多>></a></h2>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<@p.asLink qgkList=qgkList stkList=stkList sjkList=sjkList />
-            <div class="em"><a href="${base}/front/mailbox.do"><img src="${base}/images/e.jpg" /></a></div>
-            <@p.login/>          
-        </div>
+ 
+        <!-- m_left start -->
+		<div class="m_left">
+			<div class="con1 mr_15 mb_20">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=NOTICE">更多>></a><span>通知通报</span></h2>
+				<ul class="mnlist">
+				    <#list noticeList as notice>
+                    <#if notice.articleBizType="NOR">
+                    <li title="${notice.articleTitle}"><a href="${base}/front/article.do?articleId=${notice.articleId}">${notice.articleTitle}</a>${notice.articleDate}</li>
+                    <#elseif notice.articleBizType="RED">
+                    <li title="${notice.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${notice.articleId}">${notice.articleTitle}</a>${notice.articleDate}</li>
+                    </#if>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1 mb_20">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=BRANCHFILE">更多>></a><span>分局文件</span></h2>
+				<ul class="mnlist">
+                    <#list branchFileList as branchFile>
+                    <#if branchFile.articleBizType="NOR">
+                    <li title="${branchFile.articleTitle}"><a href="${base}/front/article.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a>${branchFile.articleDate}</li>
+                    <#elseif branchFile.articleBizType="RED">
+                    <li title="${branchFile.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a>${branchFile.articleDate}</li>
+                    </#if>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1 mr_15 mb_20">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=WORKREPORT">更多>></a><span>工作动态</span></h2>
+				<ul class="mnlist">
+                	<#list workReportList as workReport><#-- 工作动态(工作简报) -->
+                    <li title="${workReport.articleTitle}"><a href="${base}/front/article.do?articleId=${workReport.articleId}">${workReport.articleTitle}</a>${workReport.articleDate}</li>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1 mb_20">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=POLICECASE">更多>></a><span>每日警情</span></h2>
+				<ul class="mnlist">
+                	<#list policeCaseList as policeCase><#-- 每日警情(警情研判) -->
+                    <#if policeCase.type=='ARTICLE'>
+                    <li title="${policeCase.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCase.articleId}">${policeCase.articleTitle}</a>${policeCase.articleDate}</li>
+                    <#elseif policeCase.type='WORD'>
+                    <li title="${policeCase.articleTitle}"><a href="${base}${policeCase.filePath}">${policeCase.articleTitle}</a>${policeCase.articleDate}</li>
+                    </#if>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1 mr_15 mb_20">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=POLITICALNOTICE">更多>></a><span>政工通知</span></h2>
+				<ul class="mnlist">
+                	<#list politicalNoticeList as politicalNotice>
+                    <li title="${politicalNotice.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalNotice.articleId}">${politicalNotice.articleTitle}</a>${politicalNotice.articleDate}</li>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1 mb_20">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=POLITICALREPORT">更多>></a><span>政工简报</span></h2>
+				<ul class="mnlist">
+                	<#list politicalReportList as politicalReport>
+                    <li title="${politicalReport.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalReport.articleId}">${politicalReport.articleTitle}</a>${politicalReport.articleDate}</li>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1 mr_15">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=EVALUATION">更多>></a><span>督导考核</span></h2>
+				<ul class="mnlist">
+                	<#list evaluationList as evaluation><#-- 督导考核(综合考评) -->
+                    <li title="${evaluation.articleTitle}"><a href="${base}/front/article.do?articleId=${evaluation.articleId}">${evaluation.articleTitle}</a>${evaluation.articleDate}</li>
+                    </#list>
+				</ul>
+			</div>
+			<div class="con1">
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=LEGAL">更多>></a><span>公安法制</span></h2>
+				<ul class="mnlist">
+					<#list legalList as legal>
+                    <li title="${legal.articleTitle}"><a href="${base}/front/article.do?articleId=${legal.articleId}">${legal.articleTitle}</a>${legal.articleDate}</li>
+                    </#list>
+				</ul>
+			</div> 
+		</div>
         <!--left end-->
         <div class="m_right">       
-               <h2 class="mt5">分局大事记</h2>
-            <div class="fjdsjc">
-                <marquee id="b"  style="FONT-SIZE: 9pt;  width: 251px; height: 167px; "
-                          scrollamount="2" direction="up" onmouseover="this.stop()" onmouseout="this.start()">
-                     <#list memorabiliaIndexList as memorabiliaIndex>
-                    <h2 style="text-align:center;"><span class="f_blue">${memorabiliaIndex.memorabiliaContent}</span></h2>
-                     </#list>
-                </marquee></div>
-                <h2 class="mt5">站点导航</h2>
-            <ul class="zdlist">
-                <li><a href="${base}/front/department.do?departmentCode=BGS"><img src="${base}/images/m_1.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=ZGJJC"><img src="${base}/images/m_2.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=ZHZX"><img src="${base}/images/m_3.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=XFK"><img src="${base}/images/m_4.gif" /></a></li>
-                <li><a href="http://10.80.48.78:8080/police/login_view.action"><img src="${base}/images/m_5.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=ZADD"><img src="${base}/images/m_6.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=XTJDD"><img src="${base}/images/m_7.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=GBDD"><img src="${base}/images/m_8.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=SYZDD"><img src="${base}/images/m_9.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=WADD"><img src="${base}/images/m_10.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=FZDD"><img src="${base}/images/m_11.gif" /></a></li>
-                <li><a href="${base}/front/department.do?departmentCode=BFDD"><img src="${base}/images/m_12.gif" /></a></li>
-            </ul>
+			<@p.monthlyStar monthlyStar??/>
+			<@p.indexMailbox />
+			<@p.zdList />
             <@p.dhLink qgdhList=qgdhList sndhList=sndhList sjdhList=sjdhList sjzsbmdhList=sjzsbmdhList qxfjdhList=qxfjdhList />
+            <@p.asLink qgkList=qgkList stkList=stkList sjkList=sjkList />
         </div>
         <!--right end-->
-        
+
         <!--case end-->
    	<@p.topic/>
     <@p.birthday birthdayList/>

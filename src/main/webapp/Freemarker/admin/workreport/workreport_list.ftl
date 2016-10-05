@@ -1,5 +1,5 @@
-<@admin.page title="工作简报">
-<@admin.conArea title="前台综合>>工作简报>>查询" id="form1">
+<@admin.page title="工作动态">
+<@admin.conArea title="前台综合>>工作动态>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>标题:</td>
@@ -69,7 +69,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/workreport.do?command=createpre",
-			title: "新建工作简报", width: 900, height: 600,
+			title: "新建工作动态", width: 900, height: 600,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -82,7 +82,7 @@
 		if (rows.length==1) {
 			mini.open({
 				url: "${base}/admin/workreport.do?command=updatedispatcher&articleId="+rows[0].articleId,
-				title: "修改工作简报："+rows[0].articleTitle, width: 900, height: 610,
+				title: "修改工作动态："+rows[0].articleTitle, width: 900, height: 610,
 				ondestroy: function (action) {
 					Search();
                 }

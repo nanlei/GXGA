@@ -1,5 +1,5 @@
-<@admin.page title="综合考评">
-<@admin.conArea title="前台综合>>综合考评>>查询" id="form1">
+<@admin.page title="督导考核">
+<@admin.conArea title="前台综合>>督导考核>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>标题:</td>
@@ -69,7 +69,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/evaluation.do?command=createpre",
-			title: "新建综合考评", width: 900, height: 580,
+			title: "新建督导考核", width: 900, height: 580,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -82,7 +82,7 @@
 		if (rows.length==1) {
 			mini.open({
 				url: "${base}/admin/evaluation.do?command=updatedispatcher&articleId="+rows[0].articleId,
-				title: "修改综合考评："+rows[0].articleTitle, width: 900, height: 610,
+				title: "修改督导考核："+rows[0].articleTitle, width: 900, height: 610,
 				ondestroy: function (action) {
 					Search();
                 }
