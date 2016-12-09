@@ -1,5 +1,5 @@
-<@admin.page title="政工通知">
-<@admin.conArea title="前台综合>>政工通知>>查询" id="form1">
+<@admin.page title="政工纪检">
+<@admin.conArea title="前台综合>>政工纪检>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>标题:</td>
@@ -69,7 +69,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/politicalnotice.do?command=createpre",
-			title: "新建政工通知", width: 900, height: 600,
+			title: "新建政工纪检", width: 900, height: 600,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -82,7 +82,7 @@
 		if (rows.length==1) {
 			mini.open({
 				url: "${base}/admin/politicalnotice.do?command=updatedispatcher&articleId="+rows[0].articleId,
-				title: "修改政工通知："+rows[0].articleTitle, width: 900, height: 610,
+				title: "修改政工纪检："+rows[0].articleTitle, width: 900, height: 610,
 				ondestroy: function (action) {
 					Search();
                 }

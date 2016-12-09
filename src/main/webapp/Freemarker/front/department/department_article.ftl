@@ -23,7 +23,7 @@
             	<#elseif dc.dcCode=='SYZDD'><a href="${base}/front/department.do?departmentCode=SYZDD">食药侦大队</a>
             	<#elseif dc.dcCode=='WADD'><a href="${base}/front/department.do?departmentCode=WADD">网安大队</a>
             	<#elseif dc.dcCode=='FZDD'><a href="${base}/front/department.do?departmentCode=FZDD">法制大队</a>
-            	<#elseif dc.dcCode=='BFDD'><a href="${base}/front/department.do?departmentCode=BFDD">边防大队</a>
+            	<#elseif dc.dcCode=='BFDD'><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a>
             	<#elseif dc.dcCode=='LSTJD'><a href="${base}/front/department.do?departmentCode=LSTJD">蓝鲨突击队</a>
             	</#if> >
             <span>${dc.dcName}</span>
@@ -80,7 +80,7 @@
                     <li <#if dc.dcCode=='SYZDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=SYZDD">食药侦大队</a></li>
                     <li <#if dc.dcCode=='WADD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=WADD">网安大队</a></li>
                     <li <#if dc.dcCode=='FZDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=FZDD">法制大队</a></li>
-                    <li <#if dc.dcCode=='BFDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=BFDD">边防大队</a></li>
+                    <li <#if dc.dcCode=='BFDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a></li>
                     <li <#if dc.dcCode=='LSTJD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=LSTJD">蓝鲨突击队</a></li>
                 </ul>
             </div>

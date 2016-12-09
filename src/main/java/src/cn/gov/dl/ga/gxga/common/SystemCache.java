@@ -58,8 +58,7 @@ public final class SystemCache {
 	}
 
 	public void init(ServletContext sc) {
-		jt = (JdbcTemplate) WebApplicationContextUtils
-				.getWebApplicationContext(sc).getBean("jdbcTemplate");
+		jt = (JdbcTemplate) WebApplicationContextUtils.getWebApplicationContext(sc).getBean("jdbcTemplate");
 
 		res = ResourceBundle.getBundle("conf");
 
@@ -113,8 +112,18 @@ public final class SystemCache {
 		}
 
 		// Load external IP
-		List<String> externalIP = jt.queryForList(SQL.SQL_LOAD_EXTERNAL_IP,
-				String.class);
+		List<String> externalIP = jt.queryForList(SQL.SQL_LOAD_EXTERNAL_IP, String.class);
+
+		for (String ip : externalIP) {
+			ipSet.add(ip);
+		}
+	}
+
+	public void refreshIP() {
+		logger.info("{}", "Refreshing IP Set...");
+
+		// Load external IP
+		List<String> externalIP = jt.queryForList(SQL.SQL_LOAD_EXTERNAL_IP, String.class);
 
 		for (String ip : externalIP) {
 			ipSet.add(ip);
@@ -130,8 +139,7 @@ public final class SystemCache {
 
 		HashMap<String, String> sessionPermission = new HashMap<String, String>();
 
-		List<Map<String, Object>> permissionList = jt
-				.queryForList(SQL.SQL_LOAD_PERMISSION);
+		List<Map<String, Object>> permissionList = jt.queryForList(SQL.SQL_LOAD_PERMISSION);
 
 		for (int i = 0; i < permissionList.size(); i++) {
 			Map<String, Object> permission = permissionList.get(i);
@@ -159,22 +167,17 @@ public final class SystemCache {
 	private void loadConstant() {
 		logger.info("{}", "Loading Constant...");
 
-		List<String> constantTypes = jt.queryForList(
-				SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
+		List<String> constantTypes = jt.queryForList(SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
 
 		for (String constantType : constantTypes) {
-			List<Map<String, Object>> constants = jt.queryForList(
-					SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
+			List<Map<String, Object>> constants = jt.queryForList(SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
 			constantMap.put(constantType, constants);
 		}
 
-		List<Map<String, Object>> categories = jt
-				.queryForList(SQL.SQL_LOAD_CATEGORY);
+		List<Map<String, Object>> categories = jt.queryForList(SQL.SQL_LOAD_CATEGORY);
 		List<Map<String, Object>> roles = jt.queryForList(SQL.SQL_LOAD_ROLE);
-		List<Map<String, Object>> positions = jt
-				.queryForList(SQL.SQL_LOAD_POSITION);
-		List<Map<String, Object>> departments = jt
-				.queryForList(SQL.SQL_LOAD_DEPARTMENT);
+		List<Map<String, Object>> positions = jt.queryForList(SQL.SQL_LOAD_POSITION);
+		List<Map<String, Object>> departments = jt.queryForList(SQL.SQL_LOAD_DEPARTMENT);
 		constantMap.put(Constant.CACHE_CATEGORY, categories);
 		constantMap.put(Constant.CACHE_ROLE, roles);
 		constantMap.put(Constant.CACHE_POSITION, positions);
@@ -183,29 +186,23 @@ public final class SystemCache {
 
 	private void refreshConstant(String constantName) {
 		if (Constant.CACHE_CONSTANT.equals(constantName)) {
-			List<String> constantTypes = jt.queryForList(
-					SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
+			List<String> constantTypes = jt.queryForList(SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
 
 			for (String constantType : constantTypes) {
-				List<Map<String, Object>> constants = jt.queryForList(
-						SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
+				List<Map<String, Object>> constants = jt.queryForList(SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
 				constantMap.put(constantType, constants);
 			}
 		} else if (Constant.CACHE_CATEGORY.equals(constantName)) {
-			List<Map<String, Object>> categories = jt
-					.queryForList(SQL.SQL_LOAD_CATEGORY);
+			List<Map<String, Object>> categories = jt.queryForList(SQL.SQL_LOAD_CATEGORY);
 			constantMap.put(Constant.CACHE_CATEGORY, categories);
 		} else if (Constant.CACHE_ROLE.equals(constantName)) {
-			List<Map<String, Object>> categories = jt
-					.queryForList(SQL.SQL_LOAD_ROLE);
+			List<Map<String, Object>> categories = jt.queryForList(SQL.SQL_LOAD_ROLE);
 			constantMap.put(Constant.CACHE_ROLE, categories);
 		} else if (Constant.CACHE_POSITION.equals(constantName)) {
-			List<Map<String, Object>> positions = jt
-					.queryForList(SQL.SQL_LOAD_POSITION);
+			List<Map<String, Object>> positions = jt.queryForList(SQL.SQL_LOAD_POSITION);
 			constantMap.put(Constant.CACHE_POSITION, positions);
 		} else if (Constant.CACHE_DEPARTMENT.equals(constantName)) {
-			List<Map<String, Object>> departments = jt
-					.queryForList(SQL.SQL_LOAD_DEPARTMENT);
+			List<Map<String, Object>> departments = jt.queryForList(SQL.SQL_LOAD_DEPARTMENT);
 			constantMap.put(Constant.CACHE_DEPARTMENT, departments);
 		}
 	}

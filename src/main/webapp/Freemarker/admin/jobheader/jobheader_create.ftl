@@ -3,11 +3,11 @@
 <@admin.con id="datacon1">
 	<tr>
 		<td><label>标题:</label></td>
-		<td><input id="fileupload1" class="mini-textbox" name="jobTitle" style="width:180px;" required="true" /></td>
+		<td><input id="jobTitle" class="mini-textbox" name="jobTitle" style="width:180px;" required="true" /></td>
 	</tr>
 	<tr>
 		<td><label>排序:</label></td>
-		<td><input id="fileupload1" class="mini-textbox" name="jobOrder" style="width:180px;" required="true" /></td>
+		<td><input id="jobOrder" class="mini-textbox" name="jobOrder" style="width:180px;" required="true" /></td>
 	</tr>
 	<tr>
 		<td><label>图片:</label></td>

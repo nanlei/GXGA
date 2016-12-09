@@ -1,5 +1,5 @@
-<@admin.page title="政工通知修改" js=["/components/ckfinder/ckfinder.js"]>
-<@admin.conArea title="前台综合>>政工通知>>修改" id="form1">
+<@admin.page title="政工纪检修改" js=["/components/ckfinder/ckfinder.js"]>
+<@admin.conArea title="前台综合>>政工纪检>>修改" id="form1">
 <input class="mini-hidden" name="articleId" value="${(article.articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
@@ -25,7 +25,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为政工通知修改页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
+本页面为政工纪检修改页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
 若要添加附件，然后在【图片明细】页面进行勾选。
 </@admin.conArea>
 <@admin.script>
@@ -55,7 +55,7 @@
     			try{
     				if(data.status=="true"){
     					form.unmask();
-    					mini.alert("政工通知文本修改成功");
+    					mini.alert("政工纪检文本修改成功");
     				}
     			}catch(e){
     				form.unmask();
