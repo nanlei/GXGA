@@ -310,7 +310,7 @@ public class IndexService extends BaseService {
 	}
 
 	// Job
-	private static final String SQL_GET_JOB_LIST = "select jh.jobId, jh.jobTitle, jh.jobImageUrl from doc_job_header jh";
+	private static final String SQL_GET_JOB_LIST = "select jh.jobId, jh.jobTitle, jh.jobImageUrl from doc_job_header jh order by jh.jobOrder";
 
 	public List<Map<String, Object>> getJobList() {
 		return jt.queryForList(SQL_GET_JOB_LIST);

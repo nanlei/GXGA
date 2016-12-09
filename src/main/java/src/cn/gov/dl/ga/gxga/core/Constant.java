@@ -92,7 +92,7 @@ public interface Constant {
 	public static final String ARTICLETYPE_NOTICE = "NOTICE";// 通知通报
 	public static final String ARTICLETYPE_WORKREPORT = "WORKREPORT";// 工作动态(工作简报)
 	public static final String ARTICLETYPE_POLITICALREPORT = "POLITICALREPORT";// 政工简报
-	public static final String ARTICLETYPE_POLITICALNOTICE = "POLITICALNOTICE";// 政工通知
+	public static final String ARTICLETYPE_POLITICALNOTICE = "POLITICALNOTICE";// 政工纪检(政工通知)
 	public static final String ARTICLETYPE_LEGAL = "LEGAL";// 公安法制
 	public static final String ARTICLETYPE_DISCIPLINE = "DISCIPLINE";// 纪检监察
 	public static final String ARTICLETYPE_POLICECASE = "POLICECASE";// 每日警情(警情研判)

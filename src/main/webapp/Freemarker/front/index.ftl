@@ -241,9 +241,9 @@
 				<ul class="mnlist">
 				    <#list noticeList as notice>
                     <#if notice.articleBizType="NOR">
-                    <li title="${notice.articleTitle}"><a href="${base}/front/article.do?articleId=${notice.articleId}">${notice.articleTitle}</a>${notice.articleDate}</li>
+                    <li title="${notice.articleTitle}"><a href="${base}/front/article.do?articleId=${notice.articleId}">${cutText(notice.articleTitle,19,' ...')}<@p.showNewGif notice.articleDate /></a>${notice.articleDate}</li>
                     <#elseif notice.articleBizType="RED">
-                    <li title="${notice.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${notice.articleId}">${notice.articleTitle}</a>${notice.articleDate}</li>
+                    <li title="${notice.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${notice.articleId}">${cutText(notice.articleTitle,19,' ...')}<@p.showNewGif notice.articleDate /></a>${notice.articleDate}</li>
                     </#if>
                     </#list>
 				</ul>
@@ -253,9 +253,9 @@
 				<ul class="mnlist">
                     <#list branchFileList as branchFile>
                     <#if branchFile.articleBizType="NOR">
-                    <li title="${branchFile.articleTitle}"><a href="${base}/front/article.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a>${branchFile.articleDate}</li>
+                    <li title="${branchFile.articleTitle}"><a href="${base}/front/article.do?articleId=${branchFile.articleId}">${cutText(branchFile.articleTitle,19,' ...')}<@p.showNewGif branchFile.articleDate /></a>${branchFile.articleDate}</li>
                     <#elseif branchFile.articleBizType="RED">
-                    <li title="${branchFile.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${branchFile.articleId}">${branchFile.articleTitle}</a>${branchFile.articleDate}</li>
+                    <li title="${branchFile.articleTitle}"><a href="${base}/front/articleRedHead.do?articleId=${branchFile.articleId}">${cutText(branchFile.articleTitle,19,' ...')}<@p.showNewGif branchFile.articleDate /></a>${branchFile.articleDate}</li>
                     </#if>
                     </#list>
 				</ul>
@@ -264,7 +264,7 @@
 				<h2 class="mt4"><a href="${base}/front/articleList.do?type=WORKREPORT">更多>></a><span>工作动态</span></h2>
 				<ul class="mnlist">
                 	<#list workReportList as workReport><#-- 工作动态(工作简报) -->
-                    <li title="${workReport.articleTitle}"><a href="${base}/front/article.do?articleId=${workReport.articleId}">${workReport.articleTitle}</a>${workReport.articleDate}</li>
+                    <li title="${workReport.articleTitle}"><a href="${base}/front/article.do?articleId=${workReport.articleId}">${cutText(workReport.articleTitle,19,' ...')}<@p.showNewGif workReport.articleDate /></a>${workReport.articleDate}</li>
                     </#list>
 				</ul>
 			</div>
@@ -273,18 +273,18 @@
 				<ul class="mnlist">
                 	<#list policeCaseList as policeCase><#-- 每日警情(警情研判) -->
                     <#if policeCase.type=='ARTICLE'>
-                    <li title="${policeCase.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCase.articleId}">${policeCase.articleTitle}</a>${policeCase.articleDate}</li>
+                    <li title="${policeCase.articleTitle}"><a href="${base}/front/article.do?articleId=${policeCase.articleId}">${cutText(policeCase.articleTitle,19,' ...')}<@p.showNewGif policeCase.articleDate /></a>${policeCase.articleDate}</li>
                     <#elseif policeCase.type='WORD'>
-                    <li title="${policeCase.articleTitle}"><a href="${base}${policeCase.filePath}">${policeCase.articleTitle}</a>${policeCase.articleDate}</li>
+                    <li title="${policeCase.articleTitle}"><a href="${base}${policeCase.filePath}">${cutText(policeCase.articleTitle,19,' ...')}<@p.showNewGif policeCase.articleDate /></a>${policeCase.articleDate}</li>
                     </#if>
                     </#list>
 				</ul>
 			</div>
 			<div class="con1 mr_15 mb_20">
-				<h2 class="mt4"><a href="${base}/front/articleList.do?type=POLITICALNOTICE">更多>></a><span>政工通知</span></h2>
+				<h2 class="mt4"><a href="${base}/front/articleList.do?type=POLITICALNOTICE">更多>></a><span>政工纪检</span></h2>
 				<ul class="mnlist">
                 	<#list politicalNoticeList as politicalNotice>
-                    <li title="${politicalNotice.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalNotice.articleId}">${politicalNotice.articleTitle}</a>${politicalNotice.articleDate}</li>
+                    <li title="${politicalNotice.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalNotice.articleId}">${cutText(politicalNotice.articleTitle,19,' ...')}<@p.showNewGif politicalNotice.articleDate /></a>${politicalNotice.articleDate}</li>
                     </#list>
 				</ul>
 			</div>
@@ -292,7 +292,7 @@
 				<h2 class="mt4"><a href="${base}/front/articleList.do?type=POLITICALREPORT">更多>></a><span>政工简报</span></h2>
 				<ul class="mnlist">
                 	<#list politicalReportList as politicalReport>
-                    <li title="${politicalReport.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalReport.articleId}">${politicalReport.articleTitle}</a>${politicalReport.articleDate}</li>
+                    <li title="${politicalReport.articleTitle}"><a href="${base}/front/article.do?articleId=${politicalReport.articleId}">${cutText(politicalReport.articleTitle,19,' ...')}<@p.showNewGif politicalReport.articleDate /></a>${politicalReport.articleDate}</li>
                     </#list>
 				</ul>
 			</div>
@@ -300,7 +300,7 @@
 				<h2 class="mt4"><a href="${base}/front/articleList.do?type=EVALUATION">更多>></a><span>督导考核</span></h2>
 				<ul class="mnlist">
                 	<#list evaluationList as evaluation><#-- 督导考核(综合考评) -->
-                    <li title="${evaluation.articleTitle}"><a href="${base}/front/article.do?articleId=${evaluation.articleId}">${evaluation.articleTitle}</a>${evaluation.articleDate}</li>
+                    <li title="${evaluation.articleTitle}"><a href="${base}/front/article.do?articleId=${evaluation.articleId}">${cutText(evaluation.articleTitle,19,' ...')}<@p.showNewGif evaluation.articleDate /></a>${evaluation.articleDate}</li>
                     </#list>
 				</ul>
 			</div>
@@ -308,14 +308,14 @@
 				<h2 class="mt4"><a href="${base}/front/articleList.do?type=LEGAL">更多>></a><span>公安法制</span></h2>
 				<ul class="mnlist">
 					<#list legalList as legal>
-                    <li title="${legal.articleTitle}"><a href="${base}/front/article.do?articleId=${legal.articleId}">${legal.articleTitle}</a>${legal.articleDate}</li>
+                    <li title="${legal.articleTitle}"><a href="${base}/front/article.do?articleId=${legal.articleId}">${cutText(legal.articleTitle,19,' ...')}<@p.showNewGif legal.articleDate /></a>${legal.articleDate}</li>
                     </#list>
 				</ul>
 			</div> 
 		</div>
         <!--left end-->
         <div class="m_right">       
-			<@p.monthlyStar monthlyStar??/>
+			<@p.monthlystar />
 			<@p.indexMailbox />
 			<@p.zdList />
             <@p.dhLink qgdhList=qgdhList sndhList=sndhList sjdhList=sjdhList sjzsbmdhList=sjzsbmdhList qxfjdhList=qxfjdhList />

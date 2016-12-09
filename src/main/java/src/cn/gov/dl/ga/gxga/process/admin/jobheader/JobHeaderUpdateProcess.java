@@ -9,6 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -26,20 +27,16 @@ public class JobHeaderUpdateProcess extends Process {
 	}
 
 	@Override
-	public Result process(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
 		String jobId = (String) request.getAttribute("jobId");
 
-		HashMap<String, Object> jobHeader = jobHeaderService
-				.getJobHeaderById(jobId);
+		HashMap<String, Object> jobHeader = jobHeaderService.getJobHeaderById(jobId);
 
-		ServletContext servletContext = request.getSession()
-				.getServletContext();
+		ServletContext servletContext = request.getSession().getServletContext();
 
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				servletContext);
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(servletContext);
 
 		// 检查form中是否有enctype="multipart/form-data"
 		if (multipartResolver.isMultipart(request)) {
@@ -50,38 +47,35 @@ public class JobHeaderUpdateProcess extends Process {
 
 			while (iterator.hasNext()) {
 				// 一次遍历所有文件
-				MultipartFile file = multiRequest.getFile(iterator.next()
-						.toString());
-				if (file != null && file.getSize() > 0) {
-					String path = servletContext.getContextPath()
-							+ "/file/jobheader/"
-							+ new Date().getTime()
-							+ "."
-							+ CoreUtil.getFileExtensionName(file
-									.getOriginalFilename());
-					// 上传
-					String realPath = servletContext.getRealPath(path);
-					file.transferTo(new File(realPath));
+				MultipartFile file = multiRequest.getFile(iterator.next().toString());
+				if (StringUtils.isNotEmpty(file.getOriginalFilename())) {
+					if (file.getSize() == 0) {
+						model.put("message", "文件无效，请重试");
 
-					// DB更新
-					jobHeaderService.updateHeader(request, path);
+						return new Result(this.getSuccessView(), model);
+					} else {
+						String path = servletContext.getContextPath() + "/file/jobheader/" + new Date().getTime() + "."
+								+ CoreUtil.getFileExtensionName(file.getOriginalFilename());
 
-					// 原有文件删除
-					File oldFile = new File(
-							servletContext.getRealPath((String) jobHeader
-									.get("jobImageUrl")));
-					oldFile.delete();
+						// 上传
+						String realPath = servletContext.getRealPath(path);
+						file.transferTo(new File(realPath));
+
+						// DB更新
+						jobHeaderService.updateHeader(request, path);
+
+						// 原有文件删除
+						File oldFile = new File(servletContext.getRealPath((String) jobHeader.get("jobImageUrl")));
+						oldFile.delete();
+					}
 				} else {
-					model.put("message", "文件无效，请重试");
+					// Only DB
+					jobHeaderService.updateHeader(request, null);
 				}
 			}
-		} else {
-			// Only DB
-			jobHeaderService.updateHeader(request, null);
 		}
 
-		File tmpDir = new File(servletContext.getRealPath(servletContext
-				.getContextPath() + "/file/tmp/"));
+		File tmpDir = new File(servletContext.getRealPath(servletContext.getContextPath() + "/file/tmp/"));
 		for (File tmp : tmpDir.listFiles()) {
 			tmp.delete();
 		}

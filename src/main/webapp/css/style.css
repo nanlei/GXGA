@@ -557,9 +557,9 @@ hr{border:5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10p
 .Monthlystar{background:#dd5a49;color:#fff;padding-top:20px;height:326px;}
 .Monthlystar p{ text-align:center;padding:20px 0 20px 0;}
 .Monthlystar h2 a{ cursor:pointer;}
-.Monthlystar p img{width:153px;}
+.Monthlystar p img{width:160px;height:190px;}
 .Monthlystar h2{text-align:center;}
-.Monthlystar div{font-size:12px;width:210px;margin:0 auto;padding-bottom:10px; text-align:left;}
+.Monthlystar div{font-size:12px;width:210px;margin:0 auto;padding-bottom:10px; text-align:center;}
 .Monthlystar div a{color:#fff;}
 .i_em{height:50px;margin-bottom:10px;width:251px;float:none;padding-top:10px;}
 .i_em img{width:251px;height:50px;}

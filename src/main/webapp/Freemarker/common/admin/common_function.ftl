@@ -12,7 +12,7 @@
 <#function cutText text maxLen suffix="">
 <#if (maxLen < 0)><#return text></#if>
 <#if (text?string?length > maxLen)>
-	<#return action.substring(text, maxLen*2, suffix)>
+	<#return ftlUtil.substring(text, maxLen*2, suffix)>
 <#else>
 	<#return text>
 </#if>
@@ -35,4 +35,8 @@
 	<#else>
 	<#return "">
 	</#if>
+</#function>
+
+<#function daysOffset date>
+<#return ftlUtil.getDaysOffset(date)>
 </#function>

@@ -114,7 +114,7 @@
 	<#elseif articleType='ISSUEWORD'>昨日要情
 	<#elseif articleType='WORKREPORT'>工作动态
 	<#elseif articleType='POLITICALREPORT'>政工简报
-	<#elseif articleType='POLITICALNOTICE'>政工通知
+	<#elseif articleType='POLITICALNOTICE'>政工纪检
 	<#elseif articleType='LEGAL'>公安法制
 	<#elseif articleType='DISCIPLINE'>纪检监察
 	<#elseif articleType='POLICECASE'>每日警情
@@ -142,7 +142,7 @@
 		<#elseif articleType='ISSUEWORD'>昨日要情
 		<#elseif articleType='WORKREPORT'>工作动态
 		<#elseif articleType='POLITICALREPORT'>政工简报
-		<#elseif articleType='POLITICALNOTICE'>政工通知
+		<#elseif articleType='POLITICALNOTICE'>政工纪检
 		<#elseif articleType='LEGAL'>公安法制
 		<#elseif articleType='DISCIPLINE'>纪检监察
 		<#elseif articleType='POLICECASE'>每日警情
@@ -204,7 +204,7 @@
 	<#elseif articleType='ISSUEWORD'>昨日要情
 	<#elseif articleType='WORKREPORT'>工作动态
 	<#elseif articleType='POLITICALREPORT'>政工简报
-	<#elseif articleType='POLITICALNOTICE'>政工通知
+	<#elseif articleType='POLITICALNOTICE'>政工纪检
 	<#elseif articleType='LEGAL'>公安法制
 	<#elseif articleType='DISCIPLINE'>纪检监察
 	<#elseif articleType='POLICECASE'>每日警情
@@ -226,7 +226,7 @@
 		<li <#if articleType='ISSUEWORD'>class="on"</#if>><a href="${base}/front/articleList.do?type=ISSUEWORD">昨日要情</a></li>
 		<li <#if articleType='WORKREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=WORKREPORT">工作动态</a></li>
 		<li <#if articleType='POLITICALREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALREPORT">政工简报</a></li>
-		<li <#if articleType='POLITICALNOTICE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALNOTICE">政工通知</a></li>
+		<li <#if articleType='POLITICALNOTICE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALNOTICE">政工纪检</a></li>
 		<li <#if articleType='LEGAL'>class="on"</#if>><a href="${base}/front/articleList.do?type=LEGAL">公安法制</a></li>
 		<li <#if articleType='DISCIPLINE'>class="on"</#if>><a href="${base}/front/articleList.do?type=DISCIPLINE">纪检监察</a></li>
 		<li <#if articleType='POLICECASE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLICECASE">每日警情</a></li>
@@ -261,7 +261,7 @@
     <#elseif article.articleType='POLITICALREPORT'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">政工简报</a>
     <#elseif article.articleType='POLITICALNOTICE'>
-    <a href="${base}/front/articleList.do?type=${article.articleType}">政工通知</a>
+    <a href="${base}/front/articleList.do?type=${article.articleType}">政工纪检</a>
     <#elseif article.articleType='LEGAL'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">公安法制</a>
     <#elseif article.articleType='DISCIPLINE'>
@@ -294,7 +294,7 @@
 			<#elseif article.articleType='NOTICE'>通知通报
 			<#elseif article.articleType='WORKREPORT'>工作动态
 			<#elseif article.articleType='POLITICALREPORT'>政工简报
-			<#elseif article.articleType='POLITICALNOTICE'>政工通知
+			<#elseif article.articleType='POLITICALNOTICE'>政工纪检
 			<#elseif article.articleType='LEGAL'>公安法制
 			<#elseif article.articleType='DISCIPLINE'>纪检监察
 			<#elseif article.articleType='POLICECASE'>每日警情
@@ -362,7 +362,7 @@
 	<#elseif article.articleType='NOTICE'>通知通报
 	<#elseif article.articleType='WORKREPORT'>工作动态
 	<#elseif article.articleType='POLITICALREPORT'>政工简报
-	<#elseif article.articleType='POLITICALNOTICE'>政工通知
+	<#elseif article.articleType='POLITICALNOTICE'>政工纪检
 	<#elseif article.articleType='LEGAL'>公安法制
 	<#elseif article.articleType='DISCIPLINE'>纪检监察
 	<#elseif article.articleType='POLICECASE'>每日警情
@@ -391,7 +391,7 @@
 		<#elseif article.articleType='POLITICALREPORT'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">政工简报</a></li>
 		<#elseif article.articleType='POLITICALNOTICE'>
-		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">政工通知</a></li>
+		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">政工纪检</a></li>
 		<#elseif article.articleType='LEGAL'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">公安法制</a></li>
 		<#elseif article.articleType='DISCIPLINE'>
@@ -896,11 +896,11 @@ jQuery(".slideGroup .slideBox").slide({
 </#macro>
 
 <#-- Monthly Star -->
-<#macro monthlyStar monthlyStar>
+<#macro monthlystar>
 <div class="Monthlystar">
 	<h2><a href="${base}/front/monthlystar.do"><img src="${base}/images/ms_title.png" /></a></h2>
-	<#if monthlyStar?if_exists>
-	<p><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}"><img src="${base}${monthlyStar.imageUrl}" /></p>
+	<#if monthlyStar??>
+	<p><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}"><img src="${base}${monthlyStar.imageUrl}" width="259" height="217"/></p>
 	<div><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}">${monthlyStar.articleTitle}</a></div>
 	<#else>
 	</#if>
@@ -929,7 +929,7 @@ jQuery(".slideGroup .slideBox").slide({
 	<li><a href="${base}/front/department.do?departmentCode=SYZDD">食药侦大队</a></li>
 	<li><a href="${base}/front/department.do?departmentCode=WADD">网安大队</a></li>
 	<li><a href="${base}/front/department.do?departmentCode=FZDD">法制大队</a></li>
-	<li><a href="${base}/front/department.do?departmentCode=BFDD">边防大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a></li>
 </ul>
 </#macro>
 
@@ -998,4 +998,8 @@ jQuery(".slideGroup .slideBox").slide({
 		</#list>
 	</select>
 </div>
+</#macro>
+
+<#macro showNewGif date>
+<#if daysOffset(date?string)<=3><img src="${base}/images/new.gif" /></#if>
 </#macro>

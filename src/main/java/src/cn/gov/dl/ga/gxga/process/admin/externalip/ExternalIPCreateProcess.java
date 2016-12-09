@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.gov.dl.ga.gxga.common.SystemCache;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
 import cn.gov.dl.ga.gxga.service.admin.ExternalIPService;
@@ -22,6 +23,8 @@ public class ExternalIPCreateProcess extends Process {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
 		externalIPService.addExternalIP(request);
+		
+		SystemCache.getInstants().refreshIP();
 
 		model.put("status", "true");
 

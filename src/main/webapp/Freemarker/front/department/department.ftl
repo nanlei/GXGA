@@ -24,7 +24,7 @@
             	<#elseif departmentCode=='SYZDD'>食药侦大队
             	<#elseif departmentCode=='WADD'>网安大队
             	<#elseif departmentCode=='FZDD'>法制大队
-            	<#elseif departmentCode=='BFDD'>边防大队
+            	<#elseif departmentCode=='CRJDD'>出入境大队
             	<#elseif departmentCode=='LSTJD'>蓝鲨突击队
             	</#if>
             </span>
@@ -127,7 +127,7 @@
                     	</#list>
                     </dd>
                     </#if>
-                	<dt <#if departmentCode=='BFDD'>class="slider_open"</#if>><a href="${base}/front/department.do?departmentCode=BFDD">边防大队</a></dt>
+                	<dt <#if departmentCode=='BFDD'>class="slider_open"</#if>><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a></dt>
                     <#if departmentCode=='BFDD'>
                     <dd>
                     	<#list categoryList as category>
