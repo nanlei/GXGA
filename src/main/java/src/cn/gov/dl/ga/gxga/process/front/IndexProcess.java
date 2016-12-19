@@ -85,6 +85,8 @@ public class IndexProcess extends Process {
 
 		// Monthly Star
 		Map<String, Object> monthlyStar = indexService.getMonthlyStar();
+		String monthlyStarId = String.valueOf(monthlyStar.get("articleId"));
+		List<Map<String, Object>> monthlyStarImages = indexService.getMonthlyStarImages(monthlyStarId);
 
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
@@ -130,6 +132,7 @@ public class IndexProcess extends Process {
 		model.put("jobList", jobList);
 
 		model.put("monthlyStar", monthlyStar);
+		model.put("monthlyStarImages", monthlyStarImages);
 
 		return new Result(this.getSuccessView(), model);
 	}

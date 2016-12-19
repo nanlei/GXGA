@@ -22,7 +22,7 @@
         <table cellpadding="0" cellspacing="0" align="center">
             <tr>
                 <td align="center">
-                    <h4 style="margin:0;line-height:22px;font-size:13px;text-align:left;">未选择图片(仅能选择一张)：</h4>
+                    <h4 style="margin:0;line-height:22px;font-size:13px;text-align:left;">未选择图片：</h4>
                     <@admin.hasPermission actionName="/admin/image.do?command=unselectedsearch">
                     <div id="serachGrid" class="mini-datagrid" style="width:390px;height:180px;" showPageSize="false" showPageIndex="false" pagerStyle="padding:2px;" multiSelect="true" url="/admin/image.do?command=unselectedsearch&articleId=${(articleId)?default('')}">
                         <div property="columns">
@@ -42,7 +42,7 @@
             	</@admin.hasPermission>
                 </td>
                 <td align="center">
-                    <h4 style="margin:0;line-height:22px;font-size:13px;text-align:left;">已选择图片(仅能是一张)：</h4>
+                    <h4 style="margin:0;line-height:22px;font-size:13px;text-align:left;">已选择图片(滚动时按图片上传先后为序，图片名称为人名)：</h4>
                     <@admin.hasPermission actionName="/admin/image.do?command=selectedsearch">
                     <div id="selectedList" class="mini-datagrid" style="width:390px;height:180px;" showPageSize="false" showPageIndex="false" pagerStyle="padding:2px;" multiSelect="true" url="/admin/image.do?command=selectedsearch&articleId=${(articleId)?default('')}">     
                         <div property="columns">
@@ -85,19 +85,19 @@
 	}
 	
 	function addSelecteds() {
-	    var totalCount = selectedList.totalCount;
+	    //var totalCount = selectedList.totalCount;
 	    
-	    if(totalCount==1){
-		    mini.alert("仅能选择一张图片作为首页图片");
-		    return;	    
-	    }
+	    //if(totalCount==1){
+		    //mini.alert("仅能选择一张图片作为首页图片");
+		    //return;	    
+	    //}
 		
 		var rows = serachGrid.getSelecteds();
 		
-		if(rows.length>1) {
-		    mini.alert("仅能选择一张图片作为首页图片");
-		    return;
-		}
+		//if(rows.length>1) {
+		    //mini.alert("仅能选择一张图片作为首页图片");
+		    //return;
+		//}
 		
 		if (rows.length > 0) {
 			var idsStr = [];

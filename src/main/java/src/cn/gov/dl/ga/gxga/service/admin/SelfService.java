@@ -209,6 +209,7 @@ public class SelfService extends BaseService {
 
 		parameters.put("mailSubject", mailSubject);
 		parameters.put("mailContent", mailContent);
+		parameters.put("departmentId", loginUser.get("departmentId"));
 		parameters.put("sts", Constant.STS_NEW);
 		parameters.put("createBy", (Integer) loginUser.get("userId"));
 		parameters.put("createByName", loginUser.get("realName"));

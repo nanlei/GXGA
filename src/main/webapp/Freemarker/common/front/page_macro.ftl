@@ -65,6 +65,8 @@
 	$(document).ready(calculateAndResetScrolls)
 	$(window).resize(calculateAndResetScrolls);
 	</script>
+	<!--mothystarbanner-->
+   <script type="text/javascript" src="${base}/js/banner.js"></script>
 </head>
 </#macro>
 
@@ -897,6 +899,20 @@ jQuery(".slideGroup .slideBox").slide({
 
 <#-- Monthly Star -->
 <#macro monthlystar>
+<div class="Monthlystar">
+	<h2><a href=""><img src="images/ms_title.png" /></a></h2>
+	<div id="focus">
+		<ul>
+			<#list monthlyStarImages as msi>
+				<li><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}" target="_blank"><img src="${msi.imageUrl}" alt="${msi.imageName}" /><span>${msi.imageName}</span></a></li>
+			</#list>
+		</ul>
+	</div>
+	<div class="ms_txt"><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}">${monthlyStar.articleTitle}</a></div>
+</div>
+</#macro>
+
+<#macro monthlystar1_bak>
 <div class="Monthlystar">
 	<h2><a href="${base}/front/monthlystar.do"><img src="${base}/images/ms_title.png" /></a></h2>
 	<#if monthlyStar??>
