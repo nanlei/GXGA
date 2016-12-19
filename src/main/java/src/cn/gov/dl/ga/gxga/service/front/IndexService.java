@@ -400,16 +400,19 @@ public class IndexService extends BaseService {
 	}
 
 	// Monthly Star
-	private static final String SQL_GET_MONTHLY_STAR = "select a.articleId, a.articleTitle, i.imageName, i.imageUrl from doc_article a, doc_article_image ai, doc_image i "
-			+ "where a.articleId = ai.articleId and ai.imageId = i.imageId and a.articleType='MONTHLYSTAR' "
-			+ "order by a.articleDate desc, a.articleOrder desc";
+	private static final String SQL_GET_MONTHLY_STAR_ARTICLE = "select articleId, articleTitle from doc_article "
+			+ "where articleType='MONTHLYSTAR' order by articleDate desc, articleOrder desc limit 1";
 
-	public HashMap<String, Object> getMonthlyStar() {
-		try {
-			return (HashMap<String, Object>) jt.queryForMap(SQL_GET_MONTHLY_STAR);
-		} catch (EmptyResultDataAccessException e) {
-			return null;
-		}
+	private static final String SQL_GET_MONTHLY_STAR_IMAGE = "select i.imageName, i.imageUrl from doc_article a, doc_article_image ai, doc_image i "
+			+ "where a.articleId = ai.articleId and ai.imageId = i.imageId and a.articleId=? "
+			+ "order by i.imageId asc";
+
+	public Map<String, Object> getMonthlyStar() {
+		return jt.queryForMap(SQL_GET_MONTHLY_STAR_ARTICLE);
+	}
+
+	public List<Map<String, Object>> getMonthlyStarImages(String articleId) {
+		return jt.queryForList(SQL_GET_MONTHLY_STAR_IMAGE, articleId);
 	}
 
 }

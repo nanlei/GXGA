@@ -572,3 +572,18 @@ hr{border:5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10p
 .se_box2{width:230px;}
 .mb_10{margin-bottom:10px;}
 .bg_g{background:#f2f2f2;height:199px;margin-bottom:14px; text-align:center}
+
+/*for new monthlystar*/
+#focus {width:160px; height:190px; overflow:hidden; position:relative;margin:20px auto;}
+#focus ul {height:190px; position:absolute;}
+#focus ul li {float:left; width:160px; height:190px; overflow:hidden; position:relative;}
+#focus ul li img{width:160px;height:190px;}
+#focus ul li div {position:absolute; overflow:hidden;}
+#focus .btnBg {position:absolute; width:0px; height:0px; left:0; bottom:0; background:#000;display:none;}
+#focus .btn {position:absolute; width:0px; height:0px; padding:0px; right:0; bottom:0; text-align:right;}
+#focus .btn span {display:none; _zoom:1; width:0px; height:0px; _font-size:0; margin-left:0px; cursor:pointer; }
+#focus .btn span.on {background:#fff;}
+#focus .preNext {width:22px; height:50px; position:absolute; top:70px; background:url(../images/sprite.png) no-repeat 0 0; cursor:pointer;}
+#focus .pre {left:0;}
+#focus .next {right:0; background-position:right top;}
+#focus ul li span{position:absolute;top:166px;height:24px;font-size:12px;color:#333;display:block;width:100%;background:#fff;overflow:hidden;z-index:10; text-align:center;}
