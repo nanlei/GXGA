@@ -1,5 +1,5 @@
 <@admin.page title="回音壁">
-<@admin.conArea title="网上办公>>回音壁>>详情" id="form1">
+<@admin.conArea title="个人中心>>回音壁>>详情" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td><label>留言标题:</label></td>

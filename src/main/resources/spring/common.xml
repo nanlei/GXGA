@@ -64,6 +64,7 @@
 			<tx:method name="update*" rollback-for="Exception" />
 			<tx:method name="dispose*" rollback-for="Exception" />
 			<tx:method name="reply*" rollback-for="Exception" />
+			<tx:method name="evaluate*" rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
 

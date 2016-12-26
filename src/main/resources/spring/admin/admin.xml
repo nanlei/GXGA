@@ -110,6 +110,13 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="getDeptAdminEmployees">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.employee.GetDeptAdminEmployeesProcess">
+						<property name="employeeService" ref="employeeService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

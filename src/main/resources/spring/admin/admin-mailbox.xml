@@ -81,6 +81,20 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="evaluatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.mailbox.MailboxEvaluatePreProcess">
+						<property name="mailboxService" ref="mailboxService" />
+						<property name="successView" value="admin/mailbox/mailbox_evaluate" />
+					</bean>
+				</entry>
+				<entry key="evaluate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.mailbox.MailboxEvaluateProcess">
+						<property name="mailboxService" ref="mailboxService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

@@ -7,8 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.dao.EmptyResultDataAccessException;
-
 import cn.gov.dl.ga.gxga.common.PagingList;
 import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.service.BaseService;
@@ -262,7 +260,7 @@ public class IndexService extends BaseService {
 	}
 
 	// Mailbox
-	private static final String SQL_GET_MAIL_LIST = "select m.mailId, m.mailSubject, date_format(m.createByTime,'%Y-%m-%d') as createByTime, c.constantName as sts from fun_mailbox m, sys_constant c where m.sts=c.constantValue and c.constantType='MAILSTATUS' order by m.createByTime desc";
+	private static final String SQL_GET_MAIL_LIST = "select m.mailId, m.mailSubject, date_format(m.createByTime,'%Y-%m-%d') as createByTime, c.constantName as sts, m.commentByName from fun_mailbox m, sys_constant c where m.sts=c.constantValue and c.constantType='MAILSTATUS' and m.isPublic='Y' order by m.createByTime desc";
 
 	public PagingList getMailList(HttpServletRequest request) {
 		return getPagingList(SQL_GET_MAIL_LIST, request, 30);
