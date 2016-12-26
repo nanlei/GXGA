@@ -1,7 +1,5 @@
 package cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,10 +10,9 @@ import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
 import cn.gov.dl.ga.gxga.service.admin.SelfService;
-import cn.gov.dl.ga.gxga.util.CoreUtil;
 import cn.gov.dl.ga.gxga.util.JSONParser;
 
-public class MailboxUpdateProcess extends Process {
+public class MailboxEvaluateProcess extends Process {
 	private SelfService selfService;
 
 	public void setSelfService(SelfService selfService) {
@@ -33,28 +30,19 @@ public class MailboxUpdateProcess extends Process {
 		HashMap<String, String> params = JSONParser.parseJSON(object);
 
 		String mailId = params.get("mailId");
-		String mailSubject = params.get("mailSubject");
-		String mailContent = params.get("mailContent");
-		int leaderId = Integer.parseInt(params.get("leaderId"));
-		int deptAdminId = Integer.parseInt(params.get("deptAdminId"));
-		String isPublic = params.get("isPublic");
-
-		Timestamp dueDate = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse(params.get("dueDate")).getTime());
+		String rank = params.get("rank");
 
 		int createBy = (Integer) loginUser.get("userId");
-		String createByName = (String) loginUser.get("realName");
-		String createByIP = CoreUtil.getIPAddr(request);
 
-		Object[] parameters = new Object[] { mailSubject, mailContent, isPublic, leaderId, deptAdminId, dueDate,
-				createBy, createByName, createByIP, mailId, createBy };
+		Object[] parameters = new Object[] { rank, mailId, createBy };
 
 		Map<String, Object> mail = selfService.getMailById(mailId, createBy);
 
-		if ("NEW".equals(mail.get("sts"))) {
-			selfService.updateMailById(parameters);
+		if ("RUN".equals(mail.get("sts"))) {
+			selfService.evaluateMailById(parameters);
 			model.put("status", "true");
 		} else {
-			model.put("status", "notnew");
+			model.put("status", "notrun");
 		}
 
 		return new Result(this.getSuccessView(), model);

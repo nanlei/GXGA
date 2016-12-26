@@ -25,15 +25,13 @@ public class SelfService extends BaseService {
 	private static final String SQL_CHECK_USER_PASSWORD = "select count(*) from sys_user where userId=? and password=?";
 
 	public int checkUserPassword(int userId, String password) {
-		return jt.queryForObject(SQL_CHECK_USER_PASSWORD, Integer.class,
-				new Object[] { userId, password });
+		return jt.queryForObject(SQL_CHECK_USER_PASSWORD, Integer.class, new Object[] { userId, password });
 	}
 
 	private static final String SQL_UPDATE_USER_PASSWORD = "update sys_user set password=? where userId=?";
 
 	public int updateUserPassword(int userId, String password) {
-		return jt.update(SQL_UPDATE_USER_PASSWORD, new Object[] { password,
-				userId });
+		return jt.update(SQL_UPDATE_USER_PASSWORD, new Object[] { password, userId });
 	}
 
 	// EMPLOYEE
@@ -41,8 +39,7 @@ public class SelfService extends BaseService {
 
 	public HashMap<String, Object> getEmployeeByUserId(int userId) {
 		try {
-			return (HashMap<String, Object>) jt.queryForMap(
-					SQL_GET_EMPLOYEE_BY_USER_ID, userId);
+			return (HashMap<String, Object>) jt.queryForMap(SQL_GET_EMPLOYEE_BY_USER_ID, userId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -75,8 +72,7 @@ public class SelfService extends BaseService {
 
 		String actionId = params.get("actionId");
 
-		Map<String, Object> action = jt.queryForMap(SQL_GET_USER_ACTION_BY_ID,
-				actionId);
+		Map<String, Object> action = jt.queryForMap(SQL_GET_USER_ACTION_BY_ID, actionId);
 
 		String refTable = (String) action.get("refTable");
 		int refId = (Integer) action.get("refId");
@@ -94,8 +90,7 @@ public class SelfService extends BaseService {
 
 	@SuppressWarnings("unchecked")
 	private void disposeArticleSign(HttpServletRequest request, int asId) {
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> params = JSONParser.parseJSON(object);
@@ -105,8 +100,7 @@ public class SelfService extends BaseService {
 		int signBy = (Integer) loginUser.get("userId");
 		String signByName = (String) loginUser.get("realName");
 		String signByIP = CoreUtil.getIPAddr(request);
-		Object[] parameters = new Object[] { comment, signBy, signByName,
-				signByIP, asId };
+		Object[] parameters = new Object[] { comment, signBy, signByName, signByIP, asId };
 
 		jt.update(SQL_DISPOSE_ARTICLE_SIGN, parameters);
 	}
@@ -115,8 +109,7 @@ public class SelfService extends BaseService {
 
 	@SuppressWarnings("unchecked")
 	private void disposeMailbox(HttpServletRequest request, int mailId) {
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> params = JSONParser.parseJSON(object);
@@ -126,15 +119,14 @@ public class SelfService extends BaseService {
 		int commentBy = (Integer) loginUser.get("userId");
 		String commentByName = (String) loginUser.get("realName");
 		String commentByIP = CoreUtil.getIPAddr(request);
-		Object[] parameters = new Object[] { mailComment, commentBy,
-				commentByName, commentByIP, mailId };
+		Object[] parameters = new Object[] { mailComment, commentBy, commentByName, commentByIP, mailId };
 
 		jt.update(SQL_DISPOSE_MAILBOX, parameters);
 
 	}
 
 	// MAILBOX
-	private static final String SQL_SEARCH_MAIL_PREFIX = "select m.mailId, m.mailSubject, m.sts, c.constantName as statusName, createByName, date_format(m.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, m.createByIP, m.commentByName, date_format(m.commentByTime,'%Y-%m-%d %H:%i:%s') as commentByTime, m.commentByIP from fun_mailbox m, sys_constant c ";
+	private static final String SQL_SEARCH_MAIL_PREFIX = "select m.mailId, m.mailSubject, m.sts, c.constantName as statusName, case when m.isPublic='Y' then '是' else '否' end isPublic, createByName, date_format(m.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, m.createByIP, m.commentByName, date_format(m.commentByTime,'%Y-%m-%d %H:%i:%s') as commentByTime, m.commentByIP from fun_mailbox m, sys_constant c ";
 	private static final String SQL_SEARCH_MAIL_SUFFIX = "order by ";
 
 	public PagingList searchMail(HttpServletRequest request) throws Exception {
@@ -143,15 +135,14 @@ public class SelfService extends BaseService {
 	}
 
 	@SuppressWarnings("unchecked")
-	private QueryHelper buildQueryCondition(HttpServletRequest request)
-			throws Exception {
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+	private QueryHelper buildQueryCondition(HttpServletRequest request) throws Exception {
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String condition = (String) request.getAttribute("condition");
 		HashMap<String, String> params = JSONParser.parseJSON(condition);
 
 		String createByTime = params.get("createByTime");
+		String isPublic = params.get("isPublic");
 
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
@@ -163,22 +154,21 @@ public class SelfService extends BaseService {
 				SQL_SEARCH_MAIL_SUFFIX + sortField + " " + sortOrder);
 
 		helper.setParam(true, "m.createBy=?", (Integer) loginUser.get("userId"));
-		helper.setParam(true,
-				"m.sts=c.constantValue and c.constantType='MAILSTATUS'");
+		helper.setParam(true, "m.sts=c.constantValue and c.constantType='MAILSTATUS'");
 		if (StringUtils.isNotEmpty(createByTime)) {
 			helper.setParam(true, "date_format(m.createByTime,'%Y-%m-%d')=?",
-					new SimpleDateFormat("yyyy-MM-dd")
-							.format(new SimpleDateFormat("yyyy-MM-dd")
-									.parse(createByTime)));
+					new SimpleDateFormat("yyyy-MM-dd").format(new SimpleDateFormat("yyyy-MM-dd").parse(createByTime)));
+		} else if (StringUtils.isNotEmpty(isPublic)) {
+			helper.setParam(true, "m.isPublic=?", isPublic);
 		}
 		return helper;
 	}
 
-	public int createMail(HttpServletRequest request) {
+	public int createMail(HttpServletRequest request) throws Exception {
 		HashMap<String, Object> parameters = buildInsertCondition(request);
 
-		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
-				"fun_mailbox").usingGeneratedKeyColumns("mailId");
+		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName("fun_mailbox")
+				.usingGeneratedKeyColumns("mailId");
 
 		Number id = insert.executeAndReturnKey(parameters);
 
@@ -194,22 +184,29 @@ public class SelfService extends BaseService {
 	}
 
 	@SuppressWarnings("unchecked")
-	private HashMap<String, Object> buildInsertCondition(
-			HttpServletRequest request) {
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+	private HashMap<String, Object> buildInsertCondition(HttpServletRequest request) throws Exception {
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> params = JSONParser.parseJSON(object);
 
 		String mailSubject = params.get("mailSubject");
 		String mailContent = params.get("mailContent");
+		int leaderId = Integer.parseInt(params.get("leaderId"));
+		int deptAdminId = Integer.parseInt(params.get("deptAdminId"));
+		String isPublic = params.get("isPublic");
+		String dueDate = params.get("dueDate");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
+		Date d_dueDate = new SimpleDateFormat("yyyy-MM-dd").parse(dueDate);
+		parameters.put("dueDate", new Timestamp(d_dueDate.getTime()));
 		parameters.put("mailSubject", mailSubject);
 		parameters.put("mailContent", mailContent);
 		parameters.put("departmentId", loginUser.get("departmentId"));
+		parameters.put("isPublic", isPublic);
+		parameters.put("leaderId", leaderId);
+		parameters.put("deptAdminId", deptAdminId);
 		parameters.put("sts", Constant.STS_NEW);
 		parameters.put("createBy", (Integer) loginUser.get("userId"));
 		parameters.put("createByName", loginUser.get("realName"));
@@ -220,8 +217,8 @@ public class SelfService extends BaseService {
 	}
 
 	private int createUserAction(int refId, String leaderId) {
-		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
-				"sys_user_action").usingGeneratedKeyColumns("actionId");
+		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName("sys_user_action")
+				.usingGeneratedKeyColumns("actionId");
 
 		HashMap<String, Object> params = new HashMap<String, Object>();
 
@@ -241,11 +238,10 @@ public class SelfService extends BaseService {
 	private static final String SQL_GET_MAIL_BY_ID = "select * from fun_mailbox where mailId=? and createBy=?";
 
 	public HashMap<String, Object> getMailById(String mailId, int createBy) {
-		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_MAIL_BY_ID,
-				mailId, createBy);
+		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_MAIL_BY_ID, mailId, createBy);
 	}
 
-	private static final String SQL_UPDATE_MAIL_BY_ID = "update fun_mailbox set mailSubject=?, mailContent=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where mailId=? and createBy=?";
+	private static final String SQL_UPDATE_MAIL_BY_ID = "update fun_mailbox set mailSubject=?, mailContent=?, isPublic=?, leaderId=?, deptAdminId=?, dueDate=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where mailId=? and createBy=?";
 
 	public int updateMailById(Object[] parameters) {
 		return jt.update(SQL_UPDATE_MAIL_BY_ID, parameters);
@@ -255,6 +251,12 @@ public class SelfService extends BaseService {
 
 	public void deleteMail(String mailId, int createBy) {
 		jt.update(SQL_DELETE_MAIL, mailId, createBy);
+	}
+
+	private static final String SQL_EVALUATE_MAIL_BY_ID = "update fun_mailbox set sts='EVL', rank=? where mailId=? and createBy=?";
+
+	public int evaluateMailById(Object[] parameters) {
+		return jt.update(SQL_EVALUATE_MAIL_BY_ID, parameters);
 	}
 
 }

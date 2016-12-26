@@ -1,5 +1,5 @@
-<@admin.page title="局长信箱">
-<@admin.conArea title="网上办公>>局长信箱>>查询" id="form1">
+<@admin.page title="回音壁">
+<@admin.conArea title="网上办公>>回音壁>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>留言内容:</td>
@@ -8,12 +8,15 @@
 		<td><input class="mini-textbox" required="false" name="createByName"  style="width:150px;" /></td>
 		<td>发布时间:</td>
 		<td><input class="mini-datepicker" required="false" name="createByTime" style="width:150px;" /></td>
+		<td>首页是否显示:</td>
+		<td><input id="isPublic" name="isPublic" class="mini-combobox" style="width:150px;" textField="text" valueField="id" url="/admin/const.do?constant=YN" dataField="data" showNullItem="true" allowInput="false" required="false"/></td>
 	</tr>
 <@admin.searchArea colspan="8">
 <@admin.searchLeftArea>	
 	<@admin.actBtn name="查询" actionName="/admin/mailbox.do?command=search" event="Search" icon="icon-search"/>
 </@admin.searchLeftArea>
 <@admin.searchRightArea>
+	<@admin.actBtn name="评价" actionName="/admin/mailbox.do?command=evaluatepre" event="Evaluate" icon="icon-tip"/>
 	<@admin.actBtn name="查看" actionName="/admin/mailbox.do?command=detail" event="Detail" icon="icon-find"/>
 	<@admin.actBtn name="回复" actionName="/admin/mailbox.do?command=replypre" event="Reply" icon="icon-goto"/>
 	<@admin.actBtn name="新建" actionName="/admin/mailbox.do?command=createpre" event="Add" icon="icon-add"/>
@@ -59,13 +62,43 @@
 		
 		grid.gotoPage(grid.pageIndex,grid.pageSize);
 	}
+
+	function Evaluate(){
+		var rows = grid.getSelecteds();
+		
+		if (rows.length==1) {
+			if(rows[0].sts == 'RUN'){
+				mini.open({
+					url: "${base}/admin/mailbox.do?command=evaluatepre&mailId="+rows[0].mailId,
+					title: "评价回音壁留言："+rows[0].mailSubject, width: 530, height: 520,
+					ondestroy: function (action) {
+						Search();
+		            }
+		        });		
+			}else{
+	        	mini.showMessageBox({
+	        		title:"提示",
+	        		message:"当前状态不允许执行此操作",
+	        		buttons:["ok"],
+	        		iconCls:"mini-messagebox-info"
+	        	});				
+			}		
+		} else {
+        	mini.showMessageBox({
+        		title:"提示",
+        		message:"请只选择一条数据进行操作",
+        		buttons:["ok"],
+        		iconCls:"mini-messagebox-info"
+        	});
+        }
+	}
 	
 	function Detail(){
 		var rows = grid.getSelecteds();
 		if (rows.length==1) {
 			mini.open({
 				url: "${base}/admin/mailbox.do?command=detail&mailId="+rows[0].mailId,
-				title: "查看留言："+rows[0].mailSubject, width: 520, height: 520,
+				title: "查看回音壁留言："+rows[0].mailSubject, width: 520, height: 520,
 				ondestroy: function (action) {
 					Search();
 	            }
@@ -87,7 +120,7 @@
 			if(rows[0].sts!='RUN'){
 				mini.open({
 					url: "${base}/admin/mailbox.do?command=replypre&mailId="+rows[0].mailId,
-					title: "回复留言："+rows[0].mailSubject, width: 530, height: 520,
+					title: "回复回音壁留言："+rows[0].mailSubject, width: 530, height: 520,
 					ondestroy: function (action) {
 						Search();
 		            }
@@ -113,7 +146,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/mailbox.do?command=createpre",
-			title: "发布留言", width: 570, height: 320,
+			title: "发布回音壁留言", width: 570, height: 370,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -183,7 +216,7 @@
 			}else{
 				mini.open({
 					url: "${base}/admin/mailbox.do?command=updatepre&mailId="+rows[0].mailId,
-					title: "修改留言："+rows[0].mailSubject, width: 570, height: 320,
+					title: "修改留言："+rows[0].mailSubject, width: 570, height: 420,
 					ondestroy: function (action) {
 						Search();
 	                }
