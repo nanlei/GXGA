@@ -1,5 +1,7 @@
 package cn.gov.dl.ga.gxga.service.admin;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import cn.gov.dl.ga.gxga.common.PagingList;
@@ -178,7 +181,11 @@ public class SelfService extends BaseService {
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> params = JSONParser.parseJSON(object);
 
-		createUserAction(pk, params.get("leaderId"));
+		if (StringUtils.isNotEmpty(params.get("leaderId"))) {
+			createUserAction(pk, params.get("leaderId"));
+		} else if (StringUtils.isNotEmpty(params.get("deptAdminId"))) {
+			createUserAction(pk, params.get("deptAdminId"));
+		}
 
 		return pk;
 	}
@@ -192,8 +199,10 @@ public class SelfService extends BaseService {
 
 		String mailSubject = params.get("mailSubject");
 		String mailContent = params.get("mailContent");
-		int leaderId = Integer.parseInt(params.get("leaderId"));
-		int deptAdminId = Integer.parseInt(params.get("deptAdminId"));
+		Integer leaderId = StringUtils.isNotEmpty(params.get("leaderId")) ? Integer.parseInt(params.get("leaderId"))
+				: null;
+		Integer deptAdminId = StringUtils.isNotEmpty(params.get("deptAdminId"))
+				? Integer.parseInt(params.get("deptAdminId")) : null;
 		String isPublic = params.get("isPublic");
 		String dueDate = params.get("dueDate");
 
@@ -241,16 +250,26 @@ public class SelfService extends BaseService {
 		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_MAIL_BY_ID, mailId, createBy);
 	}
 
-	private static final String SQL_UPDATE_MAIL_BY_ID = "update fun_mailbox set mailSubject=?, mailContent=?, isPublic=?, leaderId=?, deptAdminId=?, dueDate=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where mailId=? and createBy=?";
+	private static final String SQL_UPDATE_MAIL_BY_ID = "update fun_mailbox set mailSubject=?, mailContent=?, isPublic=?, leaderId=?, deptAdminId=?, dueDate=? where mailId=? and createBy=?";
 
 	public int updateMailById(Object[] parameters) {
 		return jt.update(SQL_UPDATE_MAIL_BY_ID, parameters);
 	}
 
-	private static final String SQL_DELETE_MAIL = "delete from fun_mailbox where mailId=? and createBy=?";
+	private static final String SQL_DELETE_MAIL = "delete from fun_mailbox where mailId=?";
 
-	public void deleteMail(String mailId, int createBy) {
-		jt.update(SQL_DELETE_MAIL, mailId, createBy);
+	public void deleteMail(final String[] mailIds) {
+		jt.batchUpdate(SQL_DELETE_MAIL, new BatchPreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setInt(1, Integer.parseInt(mailIds[i]));
+			}
+
+			@Override
+			public int getBatchSize() {
+				return mailIds.length;
+			}
+		});
 	}
 
 	private static final String SQL_EVALUATE_MAIL_BY_ID = "update fun_mailbox set sts='EVL', rank=? where mailId=? and createBy=?";

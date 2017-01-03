@@ -11,6 +11,10 @@
 		<td>首页是否显示:</td>
 		<td><input id="isPublic" name="isPublic" class="mini-combobox" style="width:150px;" textField="text" valueField="id" url="/admin/const.do?constant=YN" dataField="data" showNullItem="true" allowInput="false" required="false"/></td>
 	</tr>
+	<tr>
+		<td><b>与我相关：</b></td>
+		<td><input id="searchMe" name="searchMe" class="mini-combobox" style="width:150px;" textField="text" valueField="id" url="${base}/data/searchme.txt" dataField="data" showNullItem="true" allowInput="false" required="false"/></td>
+	</tr>
 <@admin.searchArea colspan="8">
 <@admin.searchLeftArea>	
 	<@admin.actBtn name="查询" actionName="/admin/mailbox.do?command=search" event="Search" icon="icon-search"/>
@@ -146,7 +150,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/mailbox.do?command=createpre",
-			title: "发布回音壁留言", width: 570, height: 370,
+			title: "发布回音壁留言", width: 570, height: 390,
 			ondestroy: function (action) {
 				Search();
 			}

@@ -38,6 +38,7 @@ public class MailboxService extends BaseService {
 		String createByName = params.get("createByName");
 		String createByTime = params.get("createByTime");
 		String isPublic = params.get("isPublic");
+		String searchMe = params.get("searchMe");
 
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
@@ -47,14 +48,14 @@ public class MailboxService extends BaseService {
 
 		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
-		int roleId = (Integer) loginUser.get("roleId");
-		int departmentId = (Integer) loginUser.get("departmentId");
-
 		QueryHelper helper = new QueryHelper(SQL_SEARCH_MAIL_PREFIX,
 				SQL_SEARCH_MAIL_SUFFIX + sortField + " " + sortOrder);
 
-		if (roleId != 1) {// Not Super Admin
-			helper.setParam(true, "m.departmentId=?", departmentId);
+		if ("replyByMe".equals(searchMe)) {
+			helper.setParam(true, "(m.leaderId=? or m.deptAdminId=?) and (m.sts='NEW' or m.sts='WAI')",
+					new Object[] { loginUser.get("userId"), loginUser.get("userId") });
+		} else if ("createByMe".equals(searchMe)) {
+			helper.setParam(true, "m.createBy=?", loginUser.get("userId"));
 		}
 		helper.setParam(true, "m.sts=c.constantValue and c.constantType='MAILSTATUS'");
 		helper.setParam(StringUtils.isNotEmpty(createByName), "m.createByName like concat('%',?,'%')", createByName);
@@ -89,8 +90,10 @@ public class MailboxService extends BaseService {
 
 		String mailSubject = params.get("mailSubject");
 		String mailContent = params.get("mailContent");
-		int leaderId = Integer.parseInt(params.get("leaderId"));
-		int deptAdminId = Integer.parseInt(params.get("deptAdminId"));
+		Integer leaderId = StringUtils.isNotEmpty(params.get("leaderId")) ? Integer.parseInt(params.get("leaderId"))
+				: null;
+		Integer deptAdminId = StringUtils.isNotEmpty(params.get("deptAdminId"))
+				? Integer.parseInt(params.get("deptAdminId")) : null;
 		String dueDate = params.get("dueDate");
 
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
@@ -100,7 +103,7 @@ public class MailboxService extends BaseService {
 		parameters.put("mailSubject", mailSubject);
 		parameters.put("mailContent", mailContent);
 		parameters.put("sts", Constant.STS_NEW);
-		parameters.put("public", "1"); // 1 for public mail
+		parameters.put("isPublic", "1"); // 1 for public mail
 		parameters.put("leaderId", leaderId);
 		parameters.put("deptAdminId", deptAdminId);
 		parameters.put("departmentId", (Integer) loginUser.get("departmentId"));
@@ -118,7 +121,7 @@ public class MailboxService extends BaseService {
 		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_MAIL_BY_ID, mailId);
 	}
 
-	private static final String SQL_UPDATE_MAIL_BY_ID = "update fun_mailbox set mailSubject=?, mailContent=?, leaderId=?, deptAdminId=?, isPublic=?, dueDate=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where mailId=?";
+	private static final String SQL_UPDATE_MAIL_BY_ID = "update fun_mailbox set mailSubject=?, mailContent=?, leaderId=?, deptAdminId=?, isPublic=?, dueDate=? where mailId=?";
 
 	public int updateMailById(Object[] parameters) {
 		return jt.update(SQL_UPDATE_MAIL_BY_ID, parameters);
