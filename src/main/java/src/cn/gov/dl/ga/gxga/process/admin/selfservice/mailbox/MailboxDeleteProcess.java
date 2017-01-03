@@ -20,20 +20,33 @@ public class MailboxDeleteProcess extends Process {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Result process(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
-		String mailId = (String) request.getAttribute("mailId");
+		final String[] mailIds = ((String) request.getAttribute("mailIds")).split(",");
 
 		int createBy = (Integer) loginUser.get("userId");
 
-		selfService.deleteMail(mailId, createBy);
+		boolean deleteFlag = false;
 
-		model.put("status", "true");
+		for (int i = 0; i < mailIds.length; i++) {
+			Map<String, Object> mail = selfService.getMailById(mailIds[i], createBy);
+
+			if (createBy == (Integer) mail.get("createBy")) {
+				deleteFlag = true;
+			} else {
+				deleteFlag = false;
+			}
+		}
+
+		if (deleteFlag) {
+			selfService.deleteMail(mailIds);
+			model.put("status", "true");
+		} else {
+			model.put("status", "false");
+		}
 
 		return new Result(this.getSuccessView(), model);
 	}

@@ -63,7 +63,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/selfservice.do?command=mailboxcreatepre",
-			title: "发布回音壁留言", width: 570, height: 370,
+			title: "发布回音壁留言", width: 570, height: 420,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -84,7 +84,7 @@
 			}else{
 				mini.open({
 					url: "${base}/admin/selfservice.do?command=mailboxupdatepre&mailId="+rows[0].mailId,
-					title: "修改回音壁留言："+rows[0].mailSubject, width: 570, height: 370,
+					title: "修改回音壁留言："+rows[0].mailSubject, width: 580, height: 420,
 					ondestroy: function (action) {
 						Search();
 	                }
@@ -139,7 +139,7 @@
     	grid.loading("删除中，请稍后......");
     	
     	$.ajax({
-    		url: "${base}/admin/mailbox.do?command=delete",
+    		url: "${base}/admin/selfservice.do?command=mailboxdelete",
     		data: { mailIds: ids },
     		success: function (data) {
     			try{
@@ -147,6 +147,9 @@
     					grid.unmask();
     					Search();
     					mini.alert("数据删除成功");
+    				}else{
+    					Search();
+    					mini.alert("有不允许删除的数据，请重试");    				
     				}
     			}catch(e){
     				grid.unmask();

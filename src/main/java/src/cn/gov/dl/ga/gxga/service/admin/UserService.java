@@ -124,6 +124,7 @@ public class UserService extends BaseService {
 		parameters.put("userId", userId);
 		parameters.put("employeeName", employeeName);
 		parameters.put("departmentId", 0);
+		parameters.put("isDeptAdmin", "N");
 		return parameters;
 	}
 

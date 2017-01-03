@@ -88,7 +88,7 @@
     					form.unmask();
     					mini.showMessageBox({
     	 					title: "提示",    
-    						message: "留言尚未回复，无法评价",
+    						message: "无法对该留言进行评价",
     						buttons: ["ok"],    
     						iconCls: "mini-messagebox-info",   
     						callback: function(action){

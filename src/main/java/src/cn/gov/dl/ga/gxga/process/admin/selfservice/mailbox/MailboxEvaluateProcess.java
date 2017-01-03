@@ -38,7 +38,7 @@ public class MailboxEvaluateProcess extends Process {
 
 		Map<String, Object> mail = selfService.getMailById(mailId, createBy);
 
-		if ("RUN".equals(mail.get("sts"))) {
+		if ("RUN".equals(mail.get("sts")) && createBy == (Integer) mail.get("createBy")) {
 			selfService.evaluateMailById(parameters);
 			model.put("status", "true");
 		} else {

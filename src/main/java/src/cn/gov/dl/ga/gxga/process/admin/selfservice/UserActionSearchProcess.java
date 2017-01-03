@@ -62,7 +62,7 @@ public class UserActionSearchProcess extends Process {
 		if ("SIGN".equals(actionType)) {
 			return "文件签收";
 		} else if ("MAILBOX".equals(actionType)) {
-			return "局长信箱";
+			return "回音壁";
 		}
 		return "";
 	}

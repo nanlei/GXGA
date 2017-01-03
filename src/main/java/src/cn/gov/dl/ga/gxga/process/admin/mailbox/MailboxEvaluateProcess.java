@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
 import cn.gov.dl.ga.gxga.service.admin.MailboxService;
@@ -18,12 +19,15 @@ public class MailboxEvaluateProcess extends Process {
 		this.mailboxService = mailboxService;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> params = JSONParser.parseJSON(object);
+
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String mailId = params.get("mailId");
 		String rank = params.get("rank");
@@ -32,7 +36,7 @@ public class MailboxEvaluateProcess extends Process {
 
 		Map<String, Object> mail = mailboxService.getMailById(mailId);
 
-		if ("RUN".equals(mail.get("sts"))) {
+		if ("RUN".equals(mail.get("sts")) && loginUser.get("userId").equals(mail.get("createBy"))) {
 			mailboxService.evaluateMailById(parameters);
 			model.put("status", "true");
 		} else {
