@@ -6,7 +6,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<!-- 文件上传映射 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="1000000000" /><!-- 1G -->
+		<property name="maxUploadSize" value="10000000000" /><!-- 10G -->
 		<property name="maxInMemorySize" value="10240" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="uploadTempDir" value="file/tmp" />
@@ -42,6 +42,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/front/job.do">jobController</prop>
 				<prop key="/front/search.do">searchController</prop>
 				<prop key="/front/monthlystar.do">monthlyStarController</prop>
+				<prop key="/front/issue.do">issueController</prop>
 				<!-- ADMIN -->
 				<prop key="/admin/login.do">adminLoginController</prop>
 				<prop key="/admin/logon.do">adminLogonController</prop>
