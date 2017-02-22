@@ -95,7 +95,7 @@
 		<li <#if on="law">class="on"</#if>><a href="${base}/front/law.do">法律纵览</a></li>
 		<li <#if on="oa">class="on"</#if>><a href="${base}/front/oa.do">网上办公</a></li>
 		<li <#if on="talent">class="on"</#if>><a href="${base}/front/talent.do">人才市场</a></li>
-		<li <#if on="informationsecurity">class="on"</#if>><a href="${base}/front/informationsecurity.do">信息安全</a></li>
+		<li <#if on="issue">class="on"</#if>><a href="${base}/front/issue.do">昨日要情</a></li>
 		<li <#if on="download">class="on"</#if>><a href="${base}/front/download.do">下载中心</a></li>
 		<li <#if on="contact">class="on"</#if>><a href="${base}/front/contact.do">通讯录</a></li>
 	</ul>

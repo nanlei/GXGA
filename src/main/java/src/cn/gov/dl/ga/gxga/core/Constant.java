@@ -84,6 +84,7 @@ public interface Constant {
 	/* 文章类型常量集 */
 	public static final String ARTICLETYPE_LAW = "LAW";// 法律纵览
 	public static final String ARTICLETYPE_INFORMATIONSECURITY = "INFORMATIONSECURITY";// 信息安全
+	public static final String ARTICLETYPE_ISSUEWORD = "ISSUEWORD";// 昨日要情
 
 	public static final String ARTICLETYPE_IMAGENEWS = "IMAGENEWS";// 图片新闻
 

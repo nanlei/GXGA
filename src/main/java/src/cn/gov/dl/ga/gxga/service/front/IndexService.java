@@ -412,5 +412,4 @@ public class IndexService extends BaseService {
 	public List<Map<String, Object>> getMonthlyStarImages(String articleId) {
 		return jt.queryForList(SQL_GET_MONTHLY_STAR_IMAGE, articleId);
 	}
-
 }
