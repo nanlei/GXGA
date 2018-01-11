@@ -74,14 +74,14 @@
 <#macro banner>
 <div class="banner">
 	<div class="top">
-		<div class="logo">
+		<#--<div class="logo">
 			<a href="${base}/index.do"><img src="${base}/images/logo.png" alt="大连市公安局高新园区分局" /></a>
-		</div>
+		</div>-->
 	</div>
 	<div id="abgne_fade_pic">
-		<a href="" class="ad"><img src="${base}/images/b.jpg" /></a>
-		<a href="" class="ad"><img src="${base}/images/b.jpg" /></a>
-		<a href="" class="ad"><img src="${base}/images/b.jpg" /></a>
+		<a href="" class="ad"><img src="${base}/images/banner1.gif" /></a>
+		<a href="" class="ad"><img src="${base}/images/banner1.gif" /></a>
+		<a href="" class="ad"><img src="${base}/images/banner1.gif" /></a>
 	</div>
 </div>
 </#macro>

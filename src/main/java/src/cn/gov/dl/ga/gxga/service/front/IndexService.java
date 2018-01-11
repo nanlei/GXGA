@@ -117,13 +117,13 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_DUTY_FOR_INDEX);
 	}
 
-	private static final String SQL_GET_DUTY_LIST = "select date_format(dutyDate,'%Y-%m-%d') as dutyDate, dutyManager, dutyLeader, dutyPolice from fun_duty d where date_format(d.dutyDate,'%m')=date_format(now(),'%m') order by d.dutyDate";
+	private static final String SQL_GET_DUTY_LIST = "select date_format(dutyDate,'%Y-%m-%d') as dutyDate, dutyManager, dutyLeader, dutyPolice from fun_duty d where date_format(d.dutyDate,'%Y%m')=date_format(now(),'%Y%m') order by d.dutyDate";
 
 	public List<Map<String, Object>> getDuty() {
 		return jt.queryForList(SQL_GET_DUTY_LIST);
 	}
 
-	private static final String SQL_GET_DUTY_LIST_FOR_YEAR_AND_MONTH = "select date_format(dutyDate,'%Y-%m-%d') as dutyDate, dutyManager, dutyLeader, dutyPolice from fun_duty d where date_format(d.dutyDate,'%m')=date_format(?,'%m') order by d.dutyDate";
+	private static final String SQL_GET_DUTY_LIST_FOR_YEAR_AND_MONTH = "select date_format(dutyDate,'%Y-%m-%d') as dutyDate, dutyManager, dutyLeader, dutyPolice from fun_duty d where date_format(d.dutyDate,'%Y%m')=date_format(?,'%Y%m') order by d.dutyDate";
 
 	public List<Map<String, Object>> getDuty(String yearAndMonth) {
 		return jt.queryForList(SQL_GET_DUTY_LIST_FOR_YEAR_AND_MONTH, yearAndMonth + "01");
