@@ -612,7 +612,8 @@ public class ArticleService extends BaseService {
 		HashMap<String, String> params = JSONParser.parseJSON(condition);
 
 		String dcId = params.get("dcId");
-		int departmentId = (Integer) loginUser.get("departmentId");
+		int departmentId = Integer.parseInt(params.get("departmentId"));
+		int userDeptId = (Integer) loginUser.get("departmentId");
 
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
@@ -630,7 +631,7 @@ public class ArticleService extends BaseService {
 		helper.setParam(true,
 				"a.articleStatus=c.constantValue and c.constantType='ARTICLESTATUS'");
 		helper.setParam(StringUtils.isNotEmpty(dcId), "a.dcId=?", dcId);
-		helper.setParam(!(0 == departmentId), "a.departmentId=?", departmentId);
+		helper.setParam(!(0 == userDeptId), "a.departmentId=?", departmentId);
 
 		return helper;
 	}

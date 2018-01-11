@@ -16,7 +16,7 @@
             	<#elseif dcCode=='ZGJJC'><a href="${base}/front/department.do?departmentCode=ZGJJC">政工纪检处</a>
             	<#elseif dcCode=='ZHZX'><a href="${base}/front/department.do?departmentCode=ZHZX">指挥中心</a>
             	<#elseif dcCode=='SFK'><a href="${base}/front/department.do?departmentCode=XFK">信访科</a>
-            	<#elseif dcCode=='XZDD'><a href="http://10.80.48.78:8080/police/login_view.action">刑侦大队</a>
+            	<#elseif dcCode=='XZDD'><a href="${base}/front/department.do?departmentCode=XZDD">刑侦大队</a>
             	<#elseif dcCode=='ZADD'><a href="${base}/front/department.do?departmentCode=ZADD">治安大队</a>
             	<#elseif dcCode=='XTJDD'><a href="${base}/front/department.do?departmentCode=XTJDD">巡特警大队</a>
             	<#elseif dcCode=='GBDD'><a href="${base}/front/department.do?departmentCode=GBDD">国保大队</a>
@@ -49,7 +49,7 @@
                     <li <#if dcCode=='ZGJJC'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=ZGJJC">政工纪检处</a></li>
                     <li <#if dcCode=='ZHZX'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=ZHZX">指挥中心</a></li>
                     <li <#if dcCode=='XFK'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=XFK">信访科</a></li>
-                    <li <#if dcCode=='XZDD'>class="on"</#if>><a href="http://10.80.48.78:8080/police/login_view.action">刑侦大队</a></li>
+                    <li <#if dcCode=='XZDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=XZDD">刑侦大队</a></li>
                     <li <#if dcCode=='ZADD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=ZADD">治安大队</a></li>
                     <li <#if dcCode=='XTJDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=XTJDD">巡特警大队</a></li>
                     <li <#if dcCode=='GBDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=GBDD">国保大队</a></li>
