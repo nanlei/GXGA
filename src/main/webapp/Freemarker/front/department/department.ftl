@@ -78,7 +78,14 @@
                     	</#list>
                     </dd>
                     </#if>
-                    <dt><a href="http://10.80.48.78:8080/police/login_view.action">刑侦大队</a></dt>
+                    <dt <#if departmentCode=='XZDD'>class="slider_open"</#if>><a href="${base}/front/department.do?departmentCode=XZDD">刑侦大队</a></dt>
+                    <#if departmentCode=='XZDD'>
+                    <dd>
+                    	<#list categoryList as category>
+                        <a href="#${category.dcId}">${category.dcName}</a>
+                    	</#list>
+                    </dd>
+                    </#if>
                 	<dt <#if departmentCode=='ZADD'>class="slider_open"</#if>><a href="${base}/front/department.do?departmentCode=ZADD">治安大队</a></dt>
                     <#if departmentCode=='ZADD'>
                     <dd>

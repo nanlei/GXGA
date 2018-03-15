@@ -4,7 +4,7 @@
 	<groupId>cn.gov.dl.ga</groupId>
 	<artifactId>GXGA</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2.2.6</version>
 	<name>GXGA Web</name>
 	<url>http://maven.apache.org</url>
 	<developers>
@@ -159,24 +159,31 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.1</version>
 		</dependency>
+		<!-- <dependency> <groupId>com.ckfinder</groupId> <artifactId>CKFinder</artifactId> 
+			<version>2.4.3</version> </dependency> <dependency> <groupId>com.ckfinder</groupId> 
+			<artifactId>CKFinderPlugin-FileEditor</artifactId> <version>2.4.3</version> 
+			</dependency> <dependency> <groupId>com.ckfinder</groupId> <artifactId>CKFinderPlugin-ImageResize</artifactId> 
+			<version>2.4.3</version> </dependency> <dependency> <groupId>com.ckfinder</groupId> 
+			<artifactId>CKFinderPlugin-Watermark</artifactId> <version>2.4.3</version> 
+			</dependency> -->
 		<dependency>
-			<groupId>com.ckfinder</groupId>
-			<artifactId>CKFinder</artifactId>
+			<groupId>cksource---frederico-knabben</groupId>
+			<artifactId>ckfinder-for-java---core</artifactId>
 			<version>2.4.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ckfinder</groupId>
-			<artifactId>CKFinderPlugin-FileEditor</artifactId>
+			<groupId>cksource---frederico-knabben</groupId>
+			<artifactId>ckfinder-for-java---fileeditor-plugin</artifactId>
 			<version>2.4.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ckfinder</groupId>
-			<artifactId>CKFinderPlugin-ImageResize</artifactId>
+			<groupId>cksource---frederico-knabben</groupId>
+			<artifactId>ckfinder-for-java---imageresize-plugin</artifactId>
 			<version>2.4.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ckfinder</groupId>
-			<artifactId>CKFinderPlugin-Watermark</artifactId>
+			<groupId>cksource---frederico-knabben</groupId>
+			<artifactId>ckfinder-for-java---watermark-plugin</artifactId>
 			<version>2.4.3</version>
 		</dependency>
 		<dependency>
@@ -292,5 +299,36 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		<extensions>
+			<extension>
+				<groupId>io.packagecloud.maven.wagon</groupId>
+				<artifactId>maven-packagecloud-wagon</artifactId>
+				<version>0.0.4</version>
+			</extension>
+		</extensions>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>packagecloud-travis</id>
+			<url>packagecloud+https://packagecloud.io/nanlei1987/package</url>
+		</repository>
+		<snapshotRepository>
+			<id>packagecloud-travis</id>
+			<url>packagecloud+https://packagecloud.io/nanlei1987/package</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>nanlei1987-package</id>
+			<url>https://packagecloud.io/nanlei1987/package/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
