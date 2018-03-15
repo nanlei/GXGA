@@ -12,7 +12,7 @@ import cn.gov.dl.ga.gxga.common.PagingList;
 public class BaseService {
 	public final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	protected final String INDEX_LIST_LIMT=" limit 0,5";
+	protected final String INDEX_LIST_LIMT=" limit 0,8";
 
 	/* 设置JDBC Template */
 	protected JdbcTemplate jt;
