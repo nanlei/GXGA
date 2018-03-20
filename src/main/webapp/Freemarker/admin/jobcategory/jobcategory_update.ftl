@@ -17,7 +17,7 @@
 	</tr>
 <@admin.searchArea colspan="2">
 <@admin.searchRightArea>
-	<@admin.actBtn name="保存" actionName="/admin/jobcategory.do?command=create" event="Save"/>
+	<@admin.actBtn name="保存" actionName="/admin/jobcategory.do?command=update" event="Save"/>
 </@admin.searchRightArea>
 </@admin.searchArea>
 </@admin.con>
@@ -44,7 +44,7 @@
     	form.loading("保存中，请稍后......");
     	
     	$.ajax({
-    		url: "${base}/admin/jobcategory.do?command=create",
+    		url: "${base}/admin/jobcategory.do?command=update",
     		data: { object: json },
     		cache: false,
     		success: function (data) {
