@@ -22,95 +22,84 @@ import cn.gov.dl.ga.gxga.util.CoreUtil;
 public class EmergencyNoticeUpdateProcess extends Process {
 	private EmergencyNoticeService emergencyNoticeService;
 
-	public void setEmergencyNoticeService(
-			EmergencyNoticeService emergencyNoticeService) {
+	public void setEmergencyNoticeService(EmergencyNoticeService emergencyNoticeService) {
 		this.emergencyNoticeService = emergencyNoticeService;
 	}
 
 	@Override
-	public Result process(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
-		ServletContext servletContext = request.getSession()
-				.getServletContext();
+		String noticeMode = request.getParameter("noticeMode");
 
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				servletContext);
+		if ("SELF".equals(noticeMode)) {
 
-		// 检查form中是否有enctype="multipart/form-data"
-		if (multipartResolver.isMultipart(request)) {
-			// 将request变成多部分request
-			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-			// 获取multiRequest 中所有的文件名
-			Iterator<String> iterator = multiRequest.getFileNames();
+			ServletContext servletContext = request.getSession().getServletContext();
 
-			String imagePath = null;
-			String attachmentPath = null;
+			CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(servletContext);
 
-			String noticeId = (String) request.getAttribute("noticeId");
-			Map<String, Object> notice = emergencyNoticeService
-					.getEmergencyNoticeById(noticeId);
+			// 检查form中是否有enctype="multipart/form-data"
+			if (multipartResolver.isMultipart(request)) {
+				// 将request变成多部分request
+				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+				// 获取multiRequest 中所有的文件名
+				Iterator<String> iterator = multiRequest.getFileNames();
 
-			while (iterator.hasNext()) {
-				// 一次遍历所有文件
-				String fileName = iterator.next();
+				String imagePath = null;
+				String attachmentPath = null;
 
-				MultipartFile file = multiRequest.getFile(fileName);
-				if (file != null && file.getSize() > 0) {
-					if ("FdataImage".equals(fileName)) {
-						// 删除老文件
-						String oldImageRealPath = servletContext
-								.getRealPath((String) notice
-										.get("noticeImageUrl"));
-						File oldImageFile = new File(oldImageRealPath);
-						oldImageFile.delete();
+				String noticeId = (String) request.getAttribute("noticeId");
+				Map<String, Object> notice = emergencyNoticeService.getEmergencyNoticeById(noticeId);
 
-						imagePath = servletContext.getContextPath()
-								+ "/file/notice/image/"
-								+ new Date().getTime()
-								+ "."
-								+ CoreUtil.getFileExtensionName(file
-										.getOriginalFilename());
-						String imageRealPath = servletContext
-								.getRealPath(imagePath);
-						// 上传Image
-						file.transferTo(new File(imageRealPath));
-					} else if ("FdataAttachment".equals(fileName)) {
-						// 删除老文件
-						String oldAttachmentRealPath = servletContext
-								.getRealPath((String) notice
-										.get("noticeAttachmentUrl"));
-						File oldAttachmentFile = new File(oldAttachmentRealPath);
-						oldAttachmentFile.delete();
+				while (iterator.hasNext()) {
+					// 一次遍历所有文件
+					String fileName = iterator.next();
 
-						attachmentPath = servletContext.getContextPath()
-								+ "/file/notice/attachment/"
-								+ new Date().getTime()
-								+ "."
-								+ CoreUtil.getFileExtensionName(file
-										.getOriginalFilename());
-						String attachmentRealPath = servletContext
-								.getRealPath(attachmentPath);
-						// 上传Attachment
-						file.transferTo(new File(attachmentRealPath));
+					MultipartFile file = multiRequest.getFile(fileName);
+					if (file != null && file.getSize() > 0) {
+						if ("FdataImage".equals(fileName)) {
+							// 删除老文件
+							String oldImageRealPath = servletContext.getRealPath((String) notice.get("noticeImageUrl"));
+							File oldImageFile = new File(oldImageRealPath);
+							oldImageFile.delete();
+
+							imagePath = servletContext.getContextPath() + "/file/notice/image/" + new Date().getTime()
+									+ "." + CoreUtil.getFileExtensionName(file.getOriginalFilename());
+							String imageRealPath = servletContext.getRealPath(imagePath);
+							// 上传Image
+							file.transferTo(new File(imageRealPath));
+						} else if ("FdataAttachment".equals(fileName)) {
+							// 删除老文件
+							String oldAttachmentRealPath = servletContext
+									.getRealPath((String) notice.get("noticeAttachmentUrl"));
+							File oldAttachmentFile = new File(oldAttachmentRealPath);
+							oldAttachmentFile.delete();
+
+							attachmentPath = servletContext.getContextPath() + "/file/notice/attachment/"
+									+ new Date().getTime() + "."
+									+ CoreUtil.getFileExtensionName(file.getOriginalFilename());
+							String attachmentRealPath = servletContext.getRealPath(attachmentPath);
+							// 上传Attachment
+							file.transferTo(new File(attachmentRealPath));
+						}
+					} else {
+						model.put("message", "文件无效，请重试");
 					}
-				} else {
-					model.put("message", "文件无效，请重试");
-				}
 
-			}// end of while
+				} // end of while
 
-			// DB
-			emergencyNoticeService.updateNoticeById(multiRequest, imagePath,
-					attachmentPath);
+				// DB
+				emergencyNoticeService.updateNoticeById(multiRequest, imagePath, attachmentPath);
 
-		}
+			}
 
-		File tmpDir = new File(servletContext.getRealPath(servletContext
-				.getContextPath() + "/file/tmp/"));
-		for (File tmp : tmpDir.listFiles()) {
-			tmp.delete();
+			File tmpDir = new File(servletContext.getRealPath(servletContext.getContextPath() + "/file/tmp/"));
+			for (File tmp : tmpDir.listFiles()) {
+				tmp.delete();
+			}
+
+		} else if ("LINK-JOB".equals(noticeMode)) {
+			emergencyNoticeService.updateNoticeById(request, null, null);
 		}
 
 		model.put("message", "紧急通知修改成功");

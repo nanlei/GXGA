@@ -4,7 +4,7 @@
 	<groupId>cn.gov.dl.ga</groupId>
 	<artifactId>GXGA</artifactId>
 	<packaging>war</packaging>
-	<version>2.2.7</version>
+	<version>2.2.8</version>
 	<name>GXGA Web</name>
 	<url>http://maven.apache.org</url>
 	<developers>

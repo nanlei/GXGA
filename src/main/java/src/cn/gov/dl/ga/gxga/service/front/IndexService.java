@@ -280,7 +280,7 @@ public class IndexService extends BaseService {
 	}
 
 	// Emergency Notice
-	private static final String SQL_GET_EMERGENCY_NOTICE_LIST = "select noticeTitle, noticeImageUrl, noticeAttachmentUrl from fun_emergency_notice where noticeStatus='RUN' order by noticeOrder asc";
+	private static final String SQL_GET_EMERGENCY_NOTICE_LIST = "select noticeTitle, noticeImageUrl, noticeAttachmentUrl, linkModule, linkId, j.jobImageUrl from fun_emergency_notice n left join doc_job_header j on n.linkId=j.jobid and n.linkModule='LINK-JOB' where noticeStatus='RUN' order by noticeOrder asc";
 
 	public List<Map<String, Object>> getEmergencyNoticeList() {
 		return jt.queryForList(SQL_GET_EMERGENCY_NOTICE_LIST);

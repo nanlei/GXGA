@@ -52,6 +52,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<prop key="/admin/menu.do">adminMenuController</prop>
 				<prop key="/admin/const.do">adminConstController</prop>
 				<prop key="/admin/common.do">adminCommonController</prop>
+				<prop key="/admin/ajax.do">adminAjaxController</prop>
 				<!-- ADMIN FUNCTION -->
 				<prop key="/admin/branchoverview.do">adminBranchOverviewController</prop>
 				<prop key="/admin/memorabiliaindex.do">adminMemorabiliaIndexController</prop>
@@ -176,6 +177,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<value>/admin/main.do</value>
 				<value>/admin/const.do</value>
 				<value>/admin/common.do</value>
+				<value>/admin/ajax.do</value>
 			</list>
 		</property>
 	</bean>
