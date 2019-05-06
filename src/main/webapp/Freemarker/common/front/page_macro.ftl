@@ -838,7 +838,11 @@ jQuery(".slideGroup .slideBox").slide({
                 <div class="content_list<#if (emergencyNoticeList?size>4)>g1</#if>">
                     <ul>
                     	<#list emergencyNoticeList as emergencyNotice>
+                    	<#if emergencyNotice.linkModule?default('SELF') = 'SELF'>
                         <li><a href="${base}${emergencyNotice.noticeAttachmentUrl}"><img src="${base}${emergencyNotice.noticeImageUrl}" title="${emergencyNotice.noticeTitle}"/></a></li>
+                    	<#elseif emergencyNotice.linkModule?default('SELF') = 'LINK-JOB'>
+                    	<li><a href="${base}/front/job.do?jobId=${emergencyNotice.linkId}"><img src="${base}${emergencyNotice.jobImageUrl}" title="${emergencyNotice.noticeTitle}"/></a></li>
+                    	</#if>
                     	</#list>
                     </ul>
                 </div>
