@@ -2,6 +2,7 @@ package cn.gov.dl.ga.gxga.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -37,7 +38,17 @@ public class CalendarUtil {
 		return new SimpleDateFormat("yyyyMM").format(cal.getTime());
 	}
 
-	public static void main(String[] args) {
+	public static int getDaysOffset(String date) {
+		try {
+			Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			int offset = (int) ((new Date().getTime() - date1.getTime()) / (1000 * 3600 * 24));
+			return Math.abs(offset);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
 		System.out.println(getOffsetYearAndMonth("12", "201507"));
 	}
 }

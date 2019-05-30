@@ -58,8 +58,7 @@ public final class SystemCache {
 	}
 
 	public void init(ServletContext sc) {
-		jt = (JdbcTemplate) WebApplicationContextUtils
-				.getWebApplicationContext(sc).getBean("jdbcTemplate");
+		jt = (JdbcTemplate) WebApplicationContextUtils.getWebApplicationContext(sc).getBean("jdbcTemplate");
 
 		res = ResourceBundle.getBundle("conf");
 
@@ -79,29 +78,84 @@ public final class SystemCache {
 		logger.info("{}", "Loading IP...");
 		// Load from conf.properties
 		String[] sysIP = res.getString("sysIP").trim().split(",");
-		String[] segIP_1 = res.getString("segIP_1").trim().split(",");
-		String[] segIP_2 = res.getString("segIP_2").trim().split(",");
-		String[] segIP_3 = res.getString("segIP_3").trim().split(",");
-		String[] segIP_4 = res.getString("segIP_4").trim().split(",");
+		String[] sysIP_1 = res.getString("sysIP_1").trim().split(",");
+		String[] sysIP_2 = res.getString("sysIP_2").trim().split(",");
+		String[] sysIP_3 = res.getString("sysIP_3").trim().split(",");
+		String[] sysIP_4 = res.getString("sysIP_4").trim().split(",");
+		String[] sysIP_5 = res.getString("sysIP_5").trim().split(",");
+		String[] sysIP_Branch_1 = res.getString("sysIP_Branch_1").trim().split(",");
+		String[] sysIP_Branch_2 = res.getString("sysIP_Branch_2").trim().split(",");
+		String[] sysIP_GaoJia = res.getString("sysIP_GaoJia").trim().split(",");
+		String[] sysIP_LingShui = res.getString("sysIP_LingShui").trim().split(",");
+		String[] sysIP_QiXianLing = res.getString("sysIP_QiXianLing").trim().split(",");
+		String[] sysIP_LongWangTang = res.getString("sysIP_LongWangTang").trim().split(",");
+		String[] sysIP_HeKouBianFang = res.getString("sysIP_HeKouBianFang").trim().split(",");
+		String[] sysIP_LongWangTangBianFang = res.getString("sysIP_LongWangTangBianFang").trim().split(",");
+		String[] sysIP_HuangNiChuanTeJing = res.getString("sysIP_HuangNiChuanTeJing").trim().split(",");
+		String[] sysIP_ZhiAnChuang = res.getString("sysIP_ZhiAnChuang").trim().split(",");
 
 		for (String ip : sysIP) {
 			ipSet.add(ip);
 		}
 
-		for (String seg_ip_1 : segIP_1) {
-			ipSet.add(seg_ip_1);
+		for (String ip : sysIP_1) {
+			ipSet.add(ip);
 		}
 
-		for (String seg_ip_2 : segIP_2) {
-			ipSet.add(seg_ip_2);
+		for (String ip : sysIP_2) {
+			ipSet.add(ip);
 		}
 
-		for (String seg_ip_3 : segIP_3) {
-			ipSet.add(seg_ip_3);
+		for (String ip : sysIP_3) {
+			ipSet.add(ip);
 		}
 
-		for (String seg_ip_4 : segIP_4) {
-			ipSet.add(seg_ip_4);
+		for (String ip : sysIP_4) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_5) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_Branch_1) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_Branch_2) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_GaoJia) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_LingShui) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_QiXianLing) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_LongWangTang) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_HeKouBianFang) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_LongWangTangBianFang) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_HuangNiChuanTeJing) {
+			ipSet.add(ip);
+		}
+
+		for (String ip : sysIP_ZhiAnChuang) {
+			ipSet.add(ip);
 		}
 
 		// Load from DB
@@ -113,8 +167,18 @@ public final class SystemCache {
 		}
 
 		// Load external IP
-		List<String> externalIP = jt.queryForList(SQL.SQL_LOAD_EXTERNAL_IP,
-				String.class);
+		List<String> externalIP = jt.queryForList(SQL.SQL_LOAD_EXTERNAL_IP, String.class);
+
+		for (String ip : externalIP) {
+			ipSet.add(ip);
+		}
+	}
+
+	public void refreshIP() {
+		logger.info("{}", "Refreshing IP Set...");
+
+		// Load external IP
+		List<String> externalIP = jt.queryForList(SQL.SQL_LOAD_EXTERNAL_IP, String.class);
 
 		for (String ip : externalIP) {
 			ipSet.add(ip);
@@ -130,8 +194,7 @@ public final class SystemCache {
 
 		HashMap<String, String> sessionPermission = new HashMap<String, String>();
 
-		List<Map<String, Object>> permissionList = jt
-				.queryForList(SQL.SQL_LOAD_PERMISSION);
+		List<Map<String, Object>> permissionList = jt.queryForList(SQL.SQL_LOAD_PERMISSION);
 
 		for (int i = 0; i < permissionList.size(); i++) {
 			Map<String, Object> permission = permissionList.get(i);
@@ -159,22 +222,17 @@ public final class SystemCache {
 	private void loadConstant() {
 		logger.info("{}", "Loading Constant...");
 
-		List<String> constantTypes = jt.queryForList(
-				SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
+		List<String> constantTypes = jt.queryForList(SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
 
 		for (String constantType : constantTypes) {
-			List<Map<String, Object>> constants = jt.queryForList(
-					SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
+			List<Map<String, Object>> constants = jt.queryForList(SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
 			constantMap.put(constantType, constants);
 		}
 
-		List<Map<String, Object>> categories = jt
-				.queryForList(SQL.SQL_LOAD_CATEGORY);
+		List<Map<String, Object>> categories = jt.queryForList(SQL.SQL_LOAD_CATEGORY);
 		List<Map<String, Object>> roles = jt.queryForList(SQL.SQL_LOAD_ROLE);
-		List<Map<String, Object>> positions = jt
-				.queryForList(SQL.SQL_LOAD_POSITION);
-		List<Map<String, Object>> departments = jt
-				.queryForList(SQL.SQL_LOAD_DEPARTMENT);
+		List<Map<String, Object>> positions = jt.queryForList(SQL.SQL_LOAD_POSITION);
+		List<Map<String, Object>> departments = jt.queryForList(SQL.SQL_LOAD_DEPARTMENT);
 		constantMap.put(Constant.CACHE_CATEGORY, categories);
 		constantMap.put(Constant.CACHE_ROLE, roles);
 		constantMap.put(Constant.CACHE_POSITION, positions);
@@ -183,29 +241,23 @@ public final class SystemCache {
 
 	private void refreshConstant(String constantName) {
 		if (Constant.CACHE_CONSTANT.equals(constantName)) {
-			List<String> constantTypes = jt.queryForList(
-					SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
+			List<String> constantTypes = jt.queryForList(SQL.SQL_LOAD_CONSTANT_TYPE, String.class);
 
 			for (String constantType : constantTypes) {
-				List<Map<String, Object>> constants = jt.queryForList(
-						SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
+				List<Map<String, Object>> constants = jt.queryForList(SQL.SQL_LOAD_CONSTANT_BY_TYPE, constantType);
 				constantMap.put(constantType, constants);
 			}
 		} else if (Constant.CACHE_CATEGORY.equals(constantName)) {
-			List<Map<String, Object>> categories = jt
-					.queryForList(SQL.SQL_LOAD_CATEGORY);
+			List<Map<String, Object>> categories = jt.queryForList(SQL.SQL_LOAD_CATEGORY);
 			constantMap.put(Constant.CACHE_CATEGORY, categories);
 		} else if (Constant.CACHE_ROLE.equals(constantName)) {
-			List<Map<String, Object>> categories = jt
-					.queryForList(SQL.SQL_LOAD_ROLE);
+			List<Map<String, Object>> categories = jt.queryForList(SQL.SQL_LOAD_ROLE);
 			constantMap.put(Constant.CACHE_ROLE, categories);
 		} else if (Constant.CACHE_POSITION.equals(constantName)) {
-			List<Map<String, Object>> positions = jt
-					.queryForList(SQL.SQL_LOAD_POSITION);
+			List<Map<String, Object>> positions = jt.queryForList(SQL.SQL_LOAD_POSITION);
 			constantMap.put(Constant.CACHE_POSITION, positions);
 		} else if (Constant.CACHE_DEPARTMENT.equals(constantName)) {
-			List<Map<String, Object>> departments = jt
-					.queryForList(SQL.SQL_LOAD_DEPARTMENT);
+			List<Map<String, Object>> departments = jt.queryForList(SQL.SQL_LOAD_DEPARTMENT);
 			constantMap.put(Constant.CACHE_DEPARTMENT, departments);
 		}
 	}

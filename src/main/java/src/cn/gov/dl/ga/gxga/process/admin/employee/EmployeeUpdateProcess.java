@@ -59,6 +59,7 @@ public class EmployeeUpdateProcess extends Process {
 		String employeePoliceSpecialty = params.get("employeePoliceSpecialty");
 		String employeeOtherSpecialty = params.get("employeeOtherSpecialty");
 		String employeeRewards = params.get("employeeRewards");
+		String isDeptAdmin = params.get("isDeptAdmin");
 
 		String employeeId = params.get("employeeId");
 
@@ -73,7 +74,7 @@ public class EmployeeUpdateProcess extends Process {
 				employeePositionLevel, employeeStartTime, employeeJob,
 				employeeWorkStartTime, employeePoliceStartTime,
 				employeePoliceSpecialty, employeeOtherSpecialty,
-				employeeRewards, employeeId };
+				employeeRewards, isDeptAdmin, employeeId };
 
 		employeeService.updateEmployee(parameters);
 

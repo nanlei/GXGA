@@ -1,4 +1,4 @@
-<@admin.page title="法律新建" js=["/components/ckfinder/ckfinder.js"]>
+<@admin.page title="法律纵览新建" js=["/components/ckfinder/ckfinder.js"]>
 <@admin.conArea title="前台综合>>法律纵览>>新建" id="form1">
 <@admin.con id="datacon1">
 	<tr>
@@ -24,7 +24,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为法律新建页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
+本页面为法律纵览新建页面，请按照上述内容进行编辑，然后点击【保存】按钮即可。<br>
 若要添加附件，请先保存，然后在【修改】页面进行勾选。
 </@admin.conArea>
 <@admin.script>

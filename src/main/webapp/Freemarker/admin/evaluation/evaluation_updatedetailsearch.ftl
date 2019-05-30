@@ -1,5 +1,5 @@
-<@admin.page title="综合考评修改">
-<@admin.conArea title="前台综合>>综合考评>>附件明细" id="fieldset1">
+<@admin.page title="督导考核修改">
+<@admin.conArea title="前台综合>>督导考核>>附件明细" id="fieldset1">
 <input class="mini-hidden" name="articleId" id="articleId" value="${(articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>

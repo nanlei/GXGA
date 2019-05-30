@@ -34,6 +34,7 @@
 		<div field="departmentName" width="30" headerAlign="center" align="center" allowSort="true">部门</div>
 		<div field="employeeIdNo" width="100" headerAlign="center" align="center" allowSort="true">身份证号</div>
 		<div field="employeePoliceNo" width="100" headerAlign="center" align="center" allowSort="true">警号</div>
+		<div field="isDeptAdmin" width="50" headerAlign="center" align="center" allowSort="true">是否部门管理员</div>
 	</div>
 </div>
 </@admin.dataArea>

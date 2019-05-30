@@ -1,5 +1,5 @@
-<@admin.page title="工作简报修改">
-<@admin.conArea title="前台综合>>工作简报>>附件明细" id="fieldset1">
+<@admin.page title="工作动态修改">
+<@admin.conArea title="前台综合>>工作动态>>附件明细" id="fieldset1">
 <input class="mini-hidden" name="articleId" id="articleId" value="${(articleId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>

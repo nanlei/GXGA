@@ -53,9 +53,11 @@ h2{font-size:12px;font-weight:normal;}
 
 .m_date{width:199px;height:35px;line-height:35px;border:1px solid #b80000; text-align:center;background:url(../images/m_datebg.jpg) repeat-x;color:#fff;font-weight:bold;}
 .m_in{width:520px;height:323px;float:right;overflow:hidden;margin-bottom:14px;}
-.mt2{background:#F5EEEA;line-height:33px;border-bottom:1px solid #B20000;font-size:14px;font-weight:bold;font-family:\5FAE\8F6F\96C5\9ED1;}
-.mt2 span{background:#B20000;color:#fff;display:block;width:88px; text-align:center;line-height:33px;}
-.min_t{line-height:43px;font-size:16px;font-weight:bold;color:#B10000;font-family:\5FAE\8F6F\96C5\9ED1;}
+.mt2{background:#f2f2f2;line-height:33px;border-bottom:1px solid #b10000;font-size:14px;font-weight:bold;font-family:\5FAE\8F6F\96C5\9ED1;}
+.mt2 span{background:#b10000;color:#fff;display:block;width:88px; text-align:center;line-height:33px;}
+.mt2  a{color:#656565;float:right;font-size:12px;}
+.min_t{line-height:43px;font-size:16px;font-weight:bold;color:#f00;font-family:\5FAE\8F6F\96C5\9ED1;}
+.min_t a{color:#f00;}
 .min_left{width:285px;height:245px;float:left;}
 /**/
    #f_div{width: 285px;height: 245px;overflow: hidden;margin: 0 auto;}
@@ -69,14 +71,14 @@ h2{font-size:12px;font-weight:normal;}
     #f_buttondiv A:link{color: #fff;}
     #f_buttondiv A:visited{color: #fff;}
     #f_buttondiv A:active{color: #fff;}
-    #f_buttondiv A:hover{background-color: #B20000;color: #fff;}
-    #f_buttondiv A.on:link{background: #B20000;color: #fff;}
+    #f_buttondiv A:hover{background-color: #b20000;color: #fff;}
+    #f_buttondiv A.on:link{background: #b20000;color: #fff;}
     #f_buttondiv A.on:visited{background: #B20000;color: #fff;}
     #f_buttondiv A.on:active{background: #000;color: #fff;}
-    #f_buttondiv A.on:hover{background: #B20000;color: #fff;}
+    #f_buttondiv A.on:hover{background: #f00;color: #fff;}
 .min_right{background:#F5EEEA;width:178px;float:right;height:244px;padding:10px 16px 0 16px;}
 .min_right h2{line-height:30px;height:30px;overflow:hidden;}
-.min_right h2 a{color:#B10000;}
+.min_right h2 a{color:#b10000;}
 .min_right ul li a{color:#333;line-height:28px;}
 .m_contribute{width:201px;height:235px;float:left;overflow:hidden;}
 .mt3{background:#E9F4E1;border-bottom:2px solid #219BB8;height:33px;line-height:33px; text-align:center;color:#333;font-size:14px;font-weight:bold;}
@@ -541,3 +543,47 @@ hr{border:5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10p
 .sno_bottom2{width:816px;margin:0 auto;padding:20px 10px;border:2px solid #000;border-left:0;border-right:0;font-size:14px;height:auto;overflow:hidden;}
 .sno_bottom2 span{display:block;float:left;width:200px;line-height:1.5;}
 .sno_bottom2 span:first-child{width:600px;}
+
+/*new index*/
+.m_left{width:735px;float:left;}
+.con1{width:360px;float:left;font-size:14px;height:237px;}
+.mr_15{margin-right:15px;}
+
+.con1 ul{padding-top:10px;}
+.con1 ul li{color:#aeaeae;line-height:24px; text-align:right;font-size:12px;height:24px;}
+.con1 ul li a{color:#656565;float:left; text-decoration:none;}
+.mb_20{margin-bottom:20px;}
+.m_right{width:251px;float:right;}
+.Monthlystar{background:#dd5a49;color:#fff;padding-top:20px;height:326px;}
+.Monthlystar p{ text-align:center;padding:20px 0 20px 0;}
+.Monthlystar h2 a{ cursor:pointer;}
+.Monthlystar p img{width:160px;height:190px;}
+.Monthlystar h2{text-align:center;}
+.Monthlystar div{font-size:12px;width:210px;margin:0 auto;padding-bottom:10px; text-align:center;}
+.Monthlystar div a{color:#fff;}
+.i_em{height:50px;margin-bottom:10px;width:251px;float:none;padding-top:10px;}
+.i_em img{width:251px;height:50px;}
+.mt5{background:#39345e;color:#fff;border-bottom:1px solid #f2f2f2; text-align:center;padding-left:10px;}
+.zdlist{background:#f2f2f2;height:121px;margin-bottom:0;padding-bottom:14px;}
+.zdlist li{ text-align:center;margin-bottom:0;}
+.zdlist li:hover{background:#2061bd;}
+.zdlist li:hover a{color:#fff;}
+.zdlist li a{color:#565656;display:block;line-height:30px;}
+.se_box2{width:230px;}
+.mb_10{margin-bottom:10px;}
+.bg_g{background:#f2f2f2;height:199px;margin-bottom:14px; text-align:center}
+
+/*for new monthlystar*/
+#focus {width:160px; height:190px; overflow:hidden; position:relative;margin:20px auto;}
+#focus ul {height:190px; position:absolute;}
+#focus ul li {float:left; width:160px; height:190px; overflow:hidden; position:relative;}
+#focus ul li img{width:160px;height:190px;}
+#focus ul li div {position:absolute; overflow:hidden;}
+#focus .btnBg {position:absolute; width:0px; height:0px; left:0; bottom:0; background:#000;display:none;}
+#focus .btn {position:absolute; width:0px; height:0px; padding:0px; right:0; bottom:0; text-align:right;}
+#focus .btn span {display:none; _zoom:1; width:0px; height:0px; _font-size:0; margin-left:0px; cursor:pointer; }
+#focus .btn span.on {background:#fff;}
+#focus .preNext {width:22px; height:50px; position:absolute; top:70px; background:url(../images/sprite.png) no-repeat 0 0; cursor:pointer;}
+#focus .pre {left:0;}
+#focus .next {right:0; background-position:right top;}
+#focus ul li span{position:absolute;top:166px;height:24px;font-size:12px;color:#333;display:block;width:100%;background:#fff;overflow:hidden;z-index:10; text-align:center;}

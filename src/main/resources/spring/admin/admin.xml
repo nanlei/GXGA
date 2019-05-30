@@ -99,6 +99,20 @@
 		</property>
 	</bean>
 
+	<!-- AJAX -->
+	<bean id="adminAjaxController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
+		<property name="processMap">
+			<map>
+				<entry key="job">
+					<bean class="cn.gov.dl.ga.gxga.process.admin.ajax.JobProcess">
+						<property name="jobHeaderService" ref="jobHeaderService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
 	<!-- COMMON -->
 	<bean id="adminCommonController" class="cn.gov.dl.ga.gxga.core.controller.BaseController">
 		<property name="processMap">
@@ -106,6 +120,13 @@
 				<entry key="getEmployeesByDepartmentId">
 					<bean
 						class="cn.gov.dl.ga.gxga.process.admin.employee.GetEmployeesByDepartmentIdProcess">
+						<property name="employeeService" ref="employeeService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="getDeptAdminEmployees">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.employee.GetDeptAdminEmployeesProcess">
 						<property name="employeeService" ref="employeeService" />
 						<property name="successView" value="jsonView" />
 					</bean>

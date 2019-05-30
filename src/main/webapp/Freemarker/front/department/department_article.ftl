@@ -16,14 +16,14 @@
             	<#elseif dc.dcCode=='ZGJJC'><a href="${base}/front/department.do?departmentCode=ZGJJC">政工纪检处</a>
             	<#elseif dc.dcCode=='ZHZX'><a href="${base}/front/department.do?departmentCode=ZHZX">指挥中心</a>
             	<#elseif dc.dcCode=='SFK'><a href="${base}/front/department.do?departmentCode=XFK">信访科</a>
-            	<#elseif dc.dcCode=='XZDD'><a href="http://10.80.48.78:8080/police/login_view.action">刑侦大队</a>
+            	<#elseif dc.dcCode=='XZDD'><a href="${base}/front/department.do?departmentCode=XZDD">刑侦大队</a>
             	<#elseif dc.dcCode=='ZADD'><a href="${base}/front/department.do?departmentCode=ZADD">治安大队</a>
             	<#elseif dc.dcCode=='XTJDD'><a href="${base}/front/department.do?departmentCode=XTJDD">巡特警大队</a>
             	<#elseif dc.dcCode=='GBDD'><a href="${base}/front/department.do?departmentCode=GBDD">国保大队</a>
             	<#elseif dc.dcCode=='SYZDD'><a href="${base}/front/department.do?departmentCode=SYZDD">食药侦大队</a>
             	<#elseif dc.dcCode=='WADD'><a href="${base}/front/department.do?departmentCode=WADD">网安大队</a>
             	<#elseif dc.dcCode=='FZDD'><a href="${base}/front/department.do?departmentCode=FZDD">法制大队</a>
-            	<#elseif dc.dcCode=='BFDD'><a href="${base}/front/department.do?departmentCode=BFDD">边防大队</a>
+            	<#elseif dc.dcCode=='BFDD'><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a>
             	<#elseif dc.dcCode=='LSTJD'><a href="${base}/front/department.do?departmentCode=LSTJD">蓝鲨突击队</a>
             	</#if> >
             <span>${dc.dcName}</span>
@@ -34,7 +34,9 @@
 			</h2>
 			<div class="sac">
 				<h2 class="spt">${article.articleTitle}</h2>
-				<h2 class="time">发布时间：${article.createByTime}</h2>
+				<h2 class="time">发布时间：${article.createByTime} &nbsp;&nbsp;
+		                       浏览量：${article.pageView?default('0')}
+				</h2>
 				<#if video??>
 					<script type='text/javascript' src='${base}/js/jwplayer/jwplayer.js'></script>
 					<div id="mediaspace"></div>
@@ -73,14 +75,14 @@
                     <li <#if dc.dcCode=='ZGJJC'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=ZGJJC">政工纪检处</a></li>
                     <li <#if dc.dcCode=='ZHZX'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=ZHZX">指挥中心</a></li>
                     <li <#if dc.dcCode=='XFK'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=XFK">信访科</a></li>
-                    <li <#if dc.dcCode=='XZDD'>class="on"</#if>><a href="http://10.80.48.78:8080/police/login_view.action">刑侦大队</a></li>
+                    <li <#if dc.dcCode=='XZDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=XZDD">刑侦大队</a></li>
                     <li <#if dc.dcCode=='ZADD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=ZADD">治安大队</a></li>
                     <li <#if dc.dcCode=='XTJDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=XTJDD">巡特警大队</a></li>
                     <li <#if dc.dcCode=='GBDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=GBDD">国保大队</a></li>
                     <li <#if dc.dcCode=='SYZDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=SYZDD">食药侦大队</a></li>
                     <li <#if dc.dcCode=='WADD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=WADD">网安大队</a></li>
                     <li <#if dc.dcCode=='FZDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=FZDD">法制大队</a></li>
-                    <li <#if dc.dcCode=='BFDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=BFDD">边防大队</a></li>
+                    <li <#if dc.dcCode=='BFDD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a></li>
                     <li <#if dc.dcCode=='LSTJD'>class="on"</#if>><a href="${base}/front/department.do?departmentCode=LSTJD">蓝鲨突击队</a></li>
                 </ul>
             </div>

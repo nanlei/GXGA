@@ -51,15 +51,15 @@ public class DepartmentService extends BaseService {
 		helper.setParam(true,
 				"d.departmentType=dt.constantValue and dt.constantType='DEPARTMENTTYPE'");
 		helper.setParam(StringUtils.isNotEmpty(departmentName),
-				"departmentName like concat('%',?,'%')", departmentName);
+				"d.departmentName like concat('%',?,'%')", departmentName);
 		helper.setParam(StringUtils.isNotEmpty(departmentType),
-				"departmentType = ?", departmentType);
+				"d.departmentType = ?", departmentType);
 		helper.setParam(StringUtils.isNotEmpty(departmentCode),
-				"departmentCode like concat('%',?,'%')", departmentCode);
-		helper.setParam(StringUtils.isNotEmpty(upperId), "upperId = ?", upperId);
-		helper.setParam(StringUtils.isNotEmpty(isLeaf), "isLeaf = ?", isLeaf);
+				"d.departmentCode like concat('%',?,'%')", departmentCode);
+		helper.setParam(StringUtils.isNotEmpty(upperId), "d.upperId = ?", upperId);
+		helper.setParam(StringUtils.isNotEmpty(isLeaf), "d.isLeaf = ?", isLeaf);
 		helper.setParam(StringUtils.isNotEmpty(departmentOrder),
-				"departmentOrder like concat('%',?,'%')", departmentOrder);
+				"d.departmentOrder like concat('%',?,'%')", departmentOrder);
 
 		return helper;
 	}

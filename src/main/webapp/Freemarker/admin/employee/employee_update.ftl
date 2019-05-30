@@ -108,6 +108,10 @@
 		<td>奖惩情况：</td>
 		<td colspan="7"><input class="mini-textbox" required="false" name="employeeRewards" style="width:564px;" value="${employee.employeeRewards?default('')}"/></td>
 	</tr>
+	<tr>
+		<td>部门管理员：</td>
+		<td colspan="7"><input class="mini-combobox" required="true" name="isDeptAdmin" textField="text" valueField="id" dataField="data" url="${base}/admin/const.do?constant=YN" showNullItem="true" allowInput="true" style="width:150px;"/>(非系统权限，业务使用)</td>
+	</tr>
 </@admin.con>
 </ul>
 </fieldset>

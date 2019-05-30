@@ -108,6 +108,28 @@
 						<property name="successView" value="jsonView" />
 					</bean>
 				</entry>
+				<entry key="mailboxevaluatepre">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxEvaluatePreProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView"
+							value="admin/selfservice/mailbox/selfservice_mailbox_evaluate" />
+					</bean>
+				</entry>
+				<entry key="mailboxevaluate">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxEvaluateProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="jsonView" />
+					</bean>
+				</entry>
+				<entry key="mailboxdetail">
+					<bean
+						class="cn.gov.dl.ga.gxga.process.admin.selfservice.mailbox.MailboxDetailProcess">
+						<property name="selfService" ref="selfService" />
+						<property name="successView" value="admin/selfservice/mailbox/selfservice_mailbox_detail" />
+					</bean>
+				</entry>
 			</map>
 		</property>
 	</bean>

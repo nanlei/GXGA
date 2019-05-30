@@ -23,17 +23,15 @@ import cn.gov.dl.ga.gxga.util.QueryHelper;
 import cn.gov.dl.ga.gxga.util.SqlHelper;
 
 public class EmergencyNoticeService extends BaseService {
-	private static final String SQL_SEARCH_EMERGENCY_NOTICE_PREFIX = "select n.noticeId, n.noticeTitle, n.noticeOrder, case when n.noticeStatus='NEW' then '不显示' else '正常' end noticeStatus, n.createBy, n.createByName, date_format(n.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, n.createByIP from fun_emergency_notice n ";
+	private static final String SQL_SEARCH_EMERGENCY_NOTICE_PREFIX = "select n.noticeId, n.noticeTitle, n.noticeOrder, case when n.linkModule='LINK-JOB' then '专项工作' else '图片附件' end linkModule, j.jobTitle as linkTitle, case when n.noticeStatus='NEW' then '不显示' else '正常' end noticeStatus, n.createBy, n.createByName, date_format(n.createByTime,'%Y-%m-%d %H:%i:%s') as createByTime, n.createByIP from fun_emergency_notice n left join doc_job_header j on n.linkId=j.jobid ";
 	private static final String SQL_SEARCH_EMERGENCY_NOTICE_SUFFIX = "order by ";
 
-	public PagingList searchEmergencyNotice(HttpServletRequest request)
-			throws Exception {
+	public PagingList searchEmergencyNotice(HttpServletRequest request) throws Exception {
 		QueryHelper helper = buildQueryCondition(request);
 		return getPagingList(helper.getQuerySql(), request, helper.getParams());
 	}
 
-	private QueryHelper buildQueryCondition(HttpServletRequest request)
-			throws Exception {
+	private QueryHelper buildQueryCondition(HttpServletRequest request) throws Exception {
 		String condition = (String) request.getAttribute("condition");
 		HashMap<String, String> params = JSONParser.parseJSON(condition);
 
@@ -45,25 +43,24 @@ public class EmergencyNoticeService extends BaseService {
 		sortField = StringUtils.isEmpty(sortField) ? "noticeOrder" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
-		QueryHelper helper = new QueryHelper(
-				SQL_SEARCH_EMERGENCY_NOTICE_PREFIX,
-				SQL_SEARCH_EMERGENCY_NOTICE_SUFFIX + sortField + " "
-						+ sortOrder);
+		QueryHelper helper = new QueryHelper(SQL_SEARCH_EMERGENCY_NOTICE_PREFIX,
+				SQL_SEARCH_EMERGENCY_NOTICE_SUFFIX + "n." + sortField + " " + sortOrder);
 
-		helper.setParam(StringUtils.isNotEmpty(noticeTitle),
-				"n.noticeTitle like concat('%',?,'%')", noticeTitle);
+		helper.setParam(StringUtils.isNotEmpty(noticeTitle), "n.noticeTitle like concat('%',?,'%')", noticeTitle);
 
 		return helper;
 	}
 
-	public int createEmergencyNotice(HttpServletRequest request,
-			String imageFilePath, String attachmentFilePath) {
+	public int createEmergencyNotice(HttpServletRequest request, String imageFilePath, String attachmentFilePath,
+			String linkModule, Integer linkId) {
 		HashMap<String, Object> parameters = buildInsertCondition(request);
 		parameters.put("noticeImageUrl", imageFilePath);
 		parameters.put("noticeAttachmentUrl", attachmentFilePath);
+		parameters.put("linkModule", linkModule);
+		parameters.put("linkId", linkId);
 
-		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
-				"fun_emergency_notice").usingGeneratedKeyColumns("noticeId");
+		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName("fun_emergency_notice")
+				.usingGeneratedKeyColumns("noticeId");
 
 		Number id = insert.executeAndReturnKey(parameters);
 
@@ -73,10 +70,8 @@ public class EmergencyNoticeService extends BaseService {
 	}
 
 	@SuppressWarnings("unchecked")
-	private HashMap<String, Object> buildInsertCondition(
-			HttpServletRequest request) {
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+	private HashMap<String, Object> buildInsertCondition(HttpServletRequest request) {
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String noticeTitle = (String) request.getAttribute("noticeTitle");
 		String noticeOrder = (String) request.getAttribute("noticeOrder");
@@ -98,29 +93,28 @@ public class EmergencyNoticeService extends BaseService {
 	private static final String SQL_GET_EMERGENCY_NOTICE_BY_ID = "select * from fun_emergency_notice where noticeId=?";
 
 	public HashMap<String, Object> getEmergencyNoticeById(String noticeId) {
-		return (HashMap<String, Object>) jt.queryForMap(
-				SQL_GET_EMERGENCY_NOTICE_BY_ID, noticeId);
+		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_EMERGENCY_NOTICE_BY_ID, noticeId);
 	}
 
 	private static final String SQL_UPDATE_NOTICE_BY_ID = "update fun_emergency_notice set noticeTitle=?, noticeOrder=?, noticeStatus=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where noticeId=?";
 	private static final String SQL_UPDATE_NOTICE_IMAGE_BY_ID = "update fun_emergency_notice set noticeImageUrl=? where noticeId=?";
 	private static final String SQL_UPDATE_NOTICE_ATTACHMENT_BY_ID = "update fun_emergency_notice set noticeAttachmentUrl=? where noticeId=?";
+	private static final String SQL_UPDATE_REF_LINK_BY_ID = "update fun_emergency_notice set linkModule=?, linkId=? where noticeId=?";
 
 	@SuppressWarnings("unchecked")
-	public void updateNoticeById(HttpServletRequest request,
-			String imageFilePath, String attachmentFilePath) {
+	public void updateNoticeById(HttpServletRequest request, String imageFilePath, String attachmentFilePath) {
 		String noticeId = (String) request.getAttribute("noticeId");
 		String noticeTitle = (String) request.getAttribute("noticeTitle");
 		String noticeOrder = (String) request.getAttribute("noticeOrder");
 		String noticeStatus = (String) request.getAttribute("noticeStatus");
 
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+		String noticeMode = (String) request.getAttribute("noticeMode");
+		String linkId = (String) request.getAttribute("job");
 
-		Object[] parameters = new Object[] { noticeTitle, noticeOrder,
-				noticeStatus, (Integer) loginUser.get("userId"),
-				loginUser.get("realName"), CoreUtil.getIPAddr(request),
-				noticeId };
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
+
+		Object[] parameters = new Object[] { noticeTitle, noticeOrder, noticeStatus, (Integer) loginUser.get("userId"),
+				loginUser.get("realName"), CoreUtil.getIPAddr(request), noticeId };
 
 		jt.update(SQL_UPDATE_NOTICE_BY_ID, parameters);
 
@@ -129,8 +123,11 @@ public class EmergencyNoticeService extends BaseService {
 		}
 
 		if (StringUtils.isNotEmpty(attachmentFilePath)) {
-			jt.update(SQL_UPDATE_NOTICE_ATTACHMENT_BY_ID, attachmentFilePath,
-					noticeId);
+			jt.update(SQL_UPDATE_NOTICE_ATTACHMENT_BY_ID, attachmentFilePath, noticeId);
+		}
+
+		if (!"SELF".equals(noticeMode)) {
+			jt.update(SQL_UPDATE_REF_LINK_BY_ID, noticeMode, linkId, noticeId);
 		}
 
 	}
@@ -140,8 +137,7 @@ public class EmergencyNoticeService extends BaseService {
 	public void deleteNotice(final String[] noticeIds) {
 		jt.batchUpdate(SQL_DELETE_NOTICE, new BatchPreparedStatementSetter() {
 			@Override
-			public void setValues(PreparedStatement ps, int i)
-					throws SQLException {
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
 				ps.setInt(1, Integer.parseInt(noticeIds[i]));
 			}
 
@@ -157,8 +153,7 @@ public class EmergencyNoticeService extends BaseService {
 
 	public List<Map<String, Object>> getNoticeByIds(String[] noticeIds) {
 		SqlHelper sqlHelper = new SqlHelper();
-		return jt.queryForList(SQL_GET_NOTICE_BY_IDS
-				+ sqlHelper.buildWhereIn("noticeId", noticeIds));
+		return jt.queryForList(SQL_GET_NOTICE_BY_IDS + sqlHelper.buildWhereIn("noticeId", noticeIds));
 	}
 
 }

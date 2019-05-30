@@ -14,7 +14,7 @@ import cn.gov.dl.ga.gxga.util.JSONParser;
 import cn.gov.dl.ga.gxga.util.QueryHelper;
 
 public class EmployeeService extends BaseService {
-	private static final String SQL_SEARCH_EMPLOYEE_PREFIX = "select u.userName, e.employeeId, e.departmentId, d.departmentName, e.employeeOrder, e.employeeName, e.employeeGender, e.employeeIdNo, e.employeePoliceNo from hr_employee e, sys_user u, hr_department d ";
+	private static final String SQL_SEARCH_EMPLOYEE_PREFIX = "select u.userName, e.employeeId, e.departmentId, d.departmentName, e.employeeOrder, e.employeeName, e.employeeGender, e.employeeIdNo, e.employeePoliceNo, case when isDeptAdmin='Y' then '是' else '否' end isDeptAdmin from hr_employee e, sys_user u, hr_department d ";
 	private static final String SQL_SEARCH_EMPLOYEE_SUFFIX = "order by ";
 
 	public PagingList searchEmployee(HttpServletRequest request) {
@@ -54,7 +54,7 @@ public class EmployeeService extends BaseService {
 				employeeId);
 	}
 
-	private static final String SQL_UPDATE_EMPLOYEE = "update hr_employee set departmentId=?, employeeOrder=?, employeeName=?, employeeGender=?, employeeIdNo=?, employeePoliceNo=?, employeeBirth=?, employeePolitical=?, employeeNationality=?, employeeIdentity=?, employeeAddress=?, employeeFamily=?, employeeEducation=?, employeeSchool=?, employeeDegree=?, employeeMajor=?, employeeHighEducation=?, employeeHighSchool=?, employeeHighDegree=?, employeeHighMajor=?, employeeJobTitle=?, employeeOtherCertificate=?, employeePosition=?, employeePositionLevel=?, employeeStartTime=?, employeeJob=?, employeeWorkStartTime=?, employeePoliceStartTime=?, employeePoliceSpecialty=?, employeeOtherSpecialty=?, employeeRewards=? where employeeId=?";
+	private static final String SQL_UPDATE_EMPLOYEE = "update hr_employee set departmentId=?, employeeOrder=?, employeeName=?, employeeGender=?, employeeIdNo=?, employeePoliceNo=?, employeeBirth=?, employeePolitical=?, employeeNationality=?, employeeIdentity=?, employeeAddress=?, employeeFamily=?, employeeEducation=?, employeeSchool=?, employeeDegree=?, employeeMajor=?, employeeHighEducation=?, employeeHighSchool=?, employeeHighDegree=?, employeeHighMajor=?, employeeJobTitle=?, employeeOtherCertificate=?, employeePosition=?, employeePositionLevel=?, employeeStartTime=?, employeeJob=?, employeeWorkStartTime=?, employeePoliceStartTime=?, employeePoliceSpecialty=?, employeeOtherSpecialty=?, employeeRewards=?, isDeptAdmin=? where employeeId=?";
 
 	public int updateEmployee(Object[] parameters) {
 		return jt.update(SQL_UPDATE_EMPLOYEE, parameters);
@@ -73,5 +73,11 @@ public class EmployeeService extends BaseService {
 	public List<Map<String, Object>> getEmployeesByDepartmentId(
 			String departmentId) {
 		return jt.queryForList(SQL_GET_EMPLOYEES_BY_DEPARTMENTID, departmentId);
+	}
+	
+	private static final String SQL_GET_DEPT_ADMIN_EMPLOYEES = "select userId as id, employeeName as text from hr_employee where isDeptAdmin='Y'";
+	
+	public List<Map<String, Object>> getDeptAdminEmployees(){
+		return jt.queryForList(SQL_GET_DEPT_ADMIN_EMPLOYEES);
 	}
 }

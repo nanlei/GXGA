@@ -32,7 +32,7 @@ public class JobArticleProcess extends Process {
 		String articleId = (String) request.getAttribute("articleId");
 		String jobId = (String) request.getAttribute("jobId");
 
-		Map<String, Object> article = indexService.getArticleById(articleId);
+		Map<String, Object> article = indexService.queryArticleById(articleId);
 
 		HashMap<String, Object> job = jobHeaderService.getJobHeaderById(jobId);
 

@@ -1,5 +1,5 @@
-<@admin.page title="警情研判">
-<@admin.conArea title="前台综合>>警情研判>>查询" id="form1">
+<@admin.page title="每日警情">
+<@admin.conArea title="前台综合>>每日警情>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>标题:</td>
@@ -70,7 +70,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/policecase.do?command=createpre",
-			title: "新建警情研判", width: 900, height: 600,
+			title: "新建每日警情", width: 900, height: 600,
 			ondestroy: function (action) {
 				Search();
 			}
@@ -83,7 +83,7 @@
 		if (rows.length==1) {
 			mini.open({
 				url: "${base}/admin/policecase.do?command=updatedispatcher&articleId="+rows[0].articleId,
-				title: "修改警情研判："+rows[0].articleTitle, width: 900, height: 610,
+				title: "修改每日警情："+rows[0].articleTitle, width: 900, height: 610,
 				ondestroy: function (action) {
 					Search();
                 }
@@ -161,7 +161,7 @@
 	function Word(){
 		mini.open({
 			url: "${base}/admin/policecaseword.do",
-			title: "警情研判Word", width: 900, height: 500,
+			title: "每日警情Word", width: 900, height: 500,
 			ondestroy: function (action) {
 				Search();
 			}

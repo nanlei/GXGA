@@ -65,6 +65,8 @@
 	$(document).ready(calculateAndResetScrolls)
 	$(window).resize(calculateAndResetScrolls);
 	</script>
+	<!--mothystarbanner-->
+   <script type="text/javascript" src="${base}/js/banner.js"></script>
 </head>
 </#macro>
 
@@ -72,14 +74,14 @@
 <#macro banner>
 <div class="banner">
 	<div class="top">
-		<div class="logo">
+		<#--<div class="logo">
 			<a href="${base}/index.do"><img src="${base}/images/logo.png" alt="大连市公安局高新园区分局" /></a>
-		</div>
+		</div>-->
 	</div>
 	<div id="abgne_fade_pic">
-		<a href="" class="ad"><img src="${base}/images/b.jpg" /></a>
-		<a href="" class="ad"><img src="${base}/images/b.jpg" /></a>
-		<a href="" class="ad"><img src="${base}/images/b.jpg" /></a>
+		<a href="" class="ad"><img src="${base}/images/banner1.gif" /></a>
+		<a href="" class="ad"><img src="${base}/images/banner1.gif" /></a>
+		<a href="" class="ad"><img src="${base}/images/banner1.gif" /></a>
 	</div>
 </div>
 </#macro>
@@ -93,7 +95,7 @@
 		<li <#if on="law">class="on"</#if>><a href="${base}/front/law.do">法律纵览</a></li>
 		<li <#if on="oa">class="on"</#if>><a href="${base}/front/oa.do">网上办公</a></li>
 		<li <#if on="talent">class="on"</#if>><a href="${base}/front/talent.do">人才市场</a></li>
-		<li <#if on="informationsecurity">class="on"</#if>><a href="${base}/front/informationsecurity.do">信息安全</a></li>
+		<li <#if on="issue">class="on"</#if>><a href="${base}/front/issue.do">昨日要情</a></li>
 		<li <#if on="download">class="on"</#if>><a href="${base}/front/download.do">下载中心</a></li>
 		<li <#if on="contact">class="on"</#if>><a href="${base}/front/contact.do">通讯录</a></li>
 	</ul>
@@ -112,13 +114,14 @@
 	<#elseif articleType='IMAGENEWS'>图片新闻
 	<#elseif articleType='NOTICE'>通知通报
 	<#elseif articleType='ISSUEWORD'>昨日要情
-	<#elseif articleType='WORKREPORT'>工作简报
+	<#elseif articleType='WORKREPORT'>工作动态
 	<#elseif articleType='POLITICALREPORT'>政工简报
+	<#elseif articleType='POLITICALNOTICE'>政工纪检
 	<#elseif articleType='LEGAL'>公安法制
 	<#elseif articleType='DISCIPLINE'>纪检监察
-	<#elseif articleType='POLICECASE'>警情研判
+	<#elseif articleType='POLICECASE'>每日警情
 	<#elseif articleType='POLICECULTURE'>警营文化
-	<#elseif articleType='EVALUATION'>综合考评
+	<#elseif articleType='EVALUATION'>督导考核
 	<#elseif articleType='EXPERIENCE'>经验交流
 	<#elseif articleType='LAW'>法律纵览
 	<#elseif articleType='INFORMATIONSECURITY'>信息安全
@@ -139,13 +142,14 @@
 		<#elseif articleType='IMAGENEWS'>图片新闻
 		<#elseif articleType='NOTICE'>通知通报
 		<#elseif articleType='ISSUEWORD'>昨日要情
-		<#elseif articleType='WORKREPORT'>工作简报
+		<#elseif articleType='WORKREPORT'>工作动态
 		<#elseif articleType='POLITICALREPORT'>政工简报
+		<#elseif articleType='POLITICALNOTICE'>政工纪检
 		<#elseif articleType='LEGAL'>公安法制
 		<#elseif articleType='DISCIPLINE'>纪检监察
-		<#elseif articleType='POLICECASE'>警情研判
+		<#elseif articleType='POLICECASE'>每日警情
 		<#elseif articleType='POLICECULTURE'>警营文化
-		<#elseif articleType='EVALUATION'>综合考评
+		<#elseif articleType='EVALUATION'>督导考核
 		<#elseif articleType='EXPERIENCE'>经验交流
 		<#elseif articleType='LAW'>法律纵览
 		<#elseif articleType='INFORMATIONSECURITY'>信息安全
@@ -200,13 +204,14 @@
 	<#elseif articleType='IMAGENEWS'>图片新闻
 	<#elseif articleType='NOTICE'>通知通报
 	<#elseif articleType='ISSUEWORD'>昨日要情
-	<#elseif articleType='WORKREPORT'>工作简报
+	<#elseif articleType='WORKREPORT'>工作动态
 	<#elseif articleType='POLITICALREPORT'>政工简报
+	<#elseif articleType='POLITICALNOTICE'>政工纪检
 	<#elseif articleType='LEGAL'>公安法制
 	<#elseif articleType='DISCIPLINE'>纪检监察
-	<#elseif articleType='POLICECASE'>警情研判
+	<#elseif articleType='POLICECASE'>每日警情
 	<#elseif articleType='POLICECULTURE'>警营文化
-	<#elseif articleType='EVALUATION'>综合考评
+	<#elseif articleType='EVALUATION'>督导考核
 	<#elseif articleType='EXPERIENCE'>经验交流
 	<#elseif articleType='LAW'>法律纵览
 	<#elseif articleType='INFORMATIONSECURITY'>信息安全
@@ -221,13 +226,14 @@
 		<li <#if articleType='BRANCHFILE'>class="on"</#if>><a href="${base}/front/articleList.do?type=BRANCHFILE">分局文件</a></li>
 		<li <#if articleType='NOTICE'>class="on"</#if>><a href="${base}/front/articleList.do?type=NOTICE">通知通报</a></li>
 		<li <#if articleType='ISSUEWORD'>class="on"</#if>><a href="${base}/front/articleList.do?type=ISSUEWORD">昨日要情</a></li>
-		<li <#if articleType='WORKREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=WORKREPORT">工作简报</a></li>
+		<li <#if articleType='WORKREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=WORKREPORT">工作动态</a></li>
 		<li <#if articleType='POLITICALREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALREPORT">政工简报</a></li>
+		<li <#if articleType='POLITICALNOTICE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALNOTICE">政工纪检</a></li>
 		<li <#if articleType='LEGAL'>class="on"</#if>><a href="${base}/front/articleList.do?type=LEGAL">公安法制</a></li>
 		<li <#if articleType='DISCIPLINE'>class="on"</#if>><a href="${base}/front/articleList.do?type=DISCIPLINE">纪检监察</a></li>
-		<li <#if articleType='POLICECASE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLICECASE">警情研判</a></li>
+		<li <#if articleType='POLICECASE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLICECASE">每日警情</a></li>
 		<li <#if articleType='POLICECULTURE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLICECULTURE">警营文化</a></li>
-		<li <#if articleType='EVALUATION'>class="on"</#if>><a href="${base}/front/articleList.do?type=EVALUATION">综合考评</a></li>
+		<li <#if articleType='EVALUATION'>class="on"</#if>><a href="${base}/front/articleList.do?type=EVALUATION">督导考核</a></li>
 		<li <#if articleType='EXPERIENCE'>class="on"</#if>><a href="${base}/front/articleList.do?type=EXPERIENCE">经验交流</a></li>
 	</ul>
 </div>
@@ -253,19 +259,21 @@
     <#elseif article.articleType='NOTICE'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">通知通报</a>
     <#elseif article.articleType='WORKREPORT'>
-    <a href="${base}/front/articleList.do?type=${article.articleType}">工作简报</a>
+    <a href="${base}/front/articleList.do?type=${article.articleType}">工作动态</a>
     <#elseif article.articleType='POLITICALREPORT'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">政工简报</a>
+    <#elseif article.articleType='POLITICALNOTICE'>
+    <a href="${base}/front/articleList.do?type=${article.articleType}">政工纪检</a>
     <#elseif article.articleType='LEGAL'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">公安法制</a>
     <#elseif article.articleType='DISCIPLINE'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">纪检监察</a>
     <#elseif article.articleType='POLICECASE'>
-    <a href="${base}/front/articleList.do?type=${article.articleType}">警情研判</a>
+    <a href="${base}/front/articleList.do?type=${article.articleType}">每日警情</a>
     <#elseif article.articleType='POLICECULTURE'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">警营文化</a>
     <#elseif article.articleType='EVALUATION'>
-    <a href="${base}/front/articleList.do?type=${article.articleType}">综合考评</a>
+    <a href="${base}/front/articleList.do?type=${article.articleType}">督导考核</a>
     <#elseif article.articleType='EXPERIENCE'>
     <a href="${base}/front/articleList.do?type=${article.articleType}">经验交流</a>
     <#else>
@@ -286,14 +294,16 @@
 			<#elseif article.articleType='BRANCHFILE'>分局文件
 			<#elseif article.articleType='IMAGENEWS'>图片新闻
 			<#elseif article.articleType='NOTICE'>通知通报
-			<#elseif article.articleType='WORKREPORT'>工作简报
+			<#elseif article.articleType='WORKREPORT'>工作动态
 			<#elseif article.articleType='POLITICALREPORT'>政工简报
+			<#elseif article.articleType='POLITICALNOTICE'>政工纪检
 			<#elseif article.articleType='LEGAL'>公安法制
 			<#elseif article.articleType='DISCIPLINE'>纪检监察
-			<#elseif article.articleType='POLICECASE'>警情研判
+			<#elseif article.articleType='POLICECASE'>每日警情
 			<#elseif article.articleType='POLICECULTURE'>警营文化
-			<#elseif article.articleType='EVALUATION'>综合考评
+			<#elseif article.articleType='EVALUATION'>督导考核
 			<#elseif article.articleType='EXPERIENCE'>经验交流
+			<#elseif article.articleType='MONTHLYSTAR'>每月之星
 			<#else>
 			</#if>
 		</span>
@@ -302,7 +312,9 @@
 		<#assign imageList=ftlUtil.getImageByArticleId('${article.articleId}')/>
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if> &nbsp;&nbsp;
+		浏览量：${article.pageView?default('0')}
+		</h2>
 		<#if imageList?size!=0>
 		<div class="sac">
 			<#list imageList as image>
@@ -316,7 +328,9 @@
 	<#else><#-- ATTACHMENT -->
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if> &nbsp;&nbsp;
+		浏览量：${article.pageView?default('0')}
+		</h2>
 		<div style="font-family:仿宋">${article.articleContent}</div>
 	</div>
 	<div class="page">
@@ -352,13 +366,14 @@
 	<#elseif article.articleType='BRANCHFILE'>分局文件
 	<#elseif article.articleType='IMAGENEWS'>图片新闻
 	<#elseif article.articleType='NOTICE'>通知通报
-	<#elseif article.articleType='WORKREPORT'>工作简报
+	<#elseif article.articleType='WORKREPORT'>工作动态
 	<#elseif article.articleType='POLITICALREPORT'>政工简报
+	<#elseif article.articleType='POLITICALNOTICE'>政工纪检
 	<#elseif article.articleType='LEGAL'>公安法制
 	<#elseif article.articleType='DISCIPLINE'>纪检监察
-	<#elseif article.articleType='POLICECASE'>警情研判
+	<#elseif article.articleType='POLICECASE'>每日警情
 	<#elseif article.articleType='POLICECULTURE'>警营文化
-	<#elseif article.articleType='EVALUATION'>综合考评
+	<#elseif article.articleType='EVALUATION'>督导考核
 	<#elseif article.articleType='EXPERIENCE'>经验交流
 	<#else>
 	</#if>
@@ -378,19 +393,21 @@
 		<#elseif article.articleType='NOTICE'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">通知通报</a></li>
 		<#elseif article.articleType='WORKREPORT'>
-		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">工作简报</a></li>
+		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">工作动态</a></li>
 		<#elseif article.articleType='POLITICALREPORT'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">政工简报</a></li>
+		<#elseif article.articleType='POLITICALNOTICE'>
+		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">政工纪检</a></li>
 		<#elseif article.articleType='LEGAL'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">公安法制</a></li>
 		<#elseif article.articleType='DISCIPLINE'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">纪检监察</a></li>
 		<#elseif article.articleType='POLICECASE'>
-		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">警情研判</a></li>
+		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">每日警情</a></li>
 		<#elseif article.articleType='POLICECULTURE'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">警营文化</a></li>
 		<#elseif article.articleType='EVALUATION'>
-		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">综合考评</a></li>
+		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">督导考核</a></li>
 		<#elseif article.articleType='EXPERIENCE'>
 		<li class="on"><a href="${base}/front/articleList.do?type=${article.articleType}">经验交流</a></li>
 		<#else>
@@ -447,70 +464,6 @@
 			</#list>
 		</ul>
 	</marquee>
-</div>
-</#macro>
-
-<#macro asLink qgkList=[] stkList=[] sjkList=[]>
-<div class="as">
-	<select id="Select1" class="se_box1">
-		<option value="0">全国库</option>
-		<#list qgkList as qgk>
-		<option value="${qgk.linkUrl}">${qgk.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select2" class="se_box1">
-		<option value="0">省厅库</option>
-		<#list stkList as stk>
-		<option value="${stk.linkUrl}">${stk.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select3" class="se_box1">
-		<option value="0">市局库</option>
-		<#list sjkList as sjk>
-		<option value="${sjk.linkUrl}">${sjk.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select4" class="se_box1">
-		<option value="0">分局库</option>
-		<#list fjkList as fjk>
-		<option value="${fjk.linkUrl}">${fjk.linkDescription}</option>
-		</#list>
-	</select>
-</div>
-</#macro>
-
-<#macro dhLink qgdhList=[] sndhList=[] sjdhList=[] sjzsbmdhList=[] qxfjdhList=[]>
-<div>
-	<select id="Select5" class="se_box2">
-		<option value="0">全国导航</option>
-		<#list qgdhList as qgdh>
-		<option value="${qgdh.linkUrl}">${qgdh.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select6" class="se_box2">
-		<option value="0">省内导航</option>
-		<#list sndhList as sndh>
-		<option value="${sndh.linkUrl}">${sndh.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select7" class="se_box2">
-		<option value="0">市局导航</option>
-		<#list sjdhList as sjdh>
-		<option value="${sjdh.linkUrl}">${sjdh.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select8" class="se_box2">
-		<option value="0">市局直属部门导航</option>
-		<#list sjzsbmdhList as sjzsbmdh>
-		<option value="${sjzsbmdh.linkUrl}">${sjzsbmdh.linkDescription}</option>
-		</#list>
-	</select>
-	<select id="Select9" class="se_box2">
-		<option value="0">区县分局导航</option>
-		<#list qxfjdhList as qxfjdh>
-		<option value="${qxfjdh.linkUrl}">${qxfjdh.linkDescription}</option>
-		</#list>
-	</select>
 </div>
 </#macro>
 
@@ -621,7 +574,8 @@ jQuery(".slideGroup .slideBox").slide({
 			<a href="${base}/front/talent.do">人才市场</a>|
 			<a href="${base}/front/informationsecurity.do">信息安全</a>|
 			<a href="${base}/front/download.do">下载中心</a>|
-			<a href="${base}/front/contact.do">通讯录</a>
+			<a href="${base}/front/contact.do">通讯录</a>|
+			<a href="${base}/admin/login.do">网站管理</a>
 		</h2>
 		<p class="btxt">版权所有：大连市公安局高新园区分局</p>
 	</div>
@@ -888,7 +842,11 @@ jQuery(".slideGroup .slideBox").slide({
                 <div class="content_list<#if (emergencyNoticeList?size>4)>g1</#if>">
                     <ul>
                     	<#list emergencyNoticeList as emergencyNotice>
+                    	<#if emergencyNotice.linkModule?default('SELF') = 'SELF'>
                         <li><a href="${base}${emergencyNotice.noticeAttachmentUrl}"><img src="${base}${emergencyNotice.noticeImageUrl}" title="${emergencyNotice.noticeTitle}"/></a></li>
+                    	<#elseif emergencyNotice.linkModule?default('SELF') = 'LINK-JOB'>
+                    	<li><a href="${base}/front/job.do?jobId=${emergencyNotice.linkId}"><img src="${base}${emergencyNotice.jobImageUrl}" title="${emergencyNotice.noticeTitle}"/></a></li>
+                    	</#if>
                     	</#list>
                     </ul>
                 </div>
@@ -945,4 +903,127 @@ jQuery(".slideGroup .slideBox").slide({
     </script>
     <script src="${base}/js/jquery-1.11.2.min.js"></script>
 </#if>
+</#macro>
+
+<#-- Monthly Star -->
+<#macro monthlystar>
+<div class="Monthlystar">
+	<h2><a href=""><img src="images/ms_title.png" /></a></h2>
+	<div id="focus">
+		<ul>
+			<#list monthlyStarImages as msi>
+				<li><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}" target="_blank"><img src="${msi.imageUrl}" alt="${msi.imageName}" /><span>${msi.imageName}</span></a></li>
+			</#list>
+		</ul>
+	</div>
+	<div class="ms_txt"><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}">${monthlyStar.articleTitle}</a></div>
+</div>
+</#macro>
+
+<#macro monthlystar1_bak>
+<div class="Monthlystar">
+	<h2><a href="${base}/front/monthlystar.do"><img src="${base}/images/ms_title.png" /></a></h2>
+	<#if monthlyStar??>
+	<p><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}"><img src="${base}${monthlyStar.imageUrl}" width="259" height="217"/></p>
+	<div><a href="${base}/front/monthlystar.do?command=info&id=${monthlyStar.articleId}">${monthlyStar.articleTitle}</a></div>
+	<#else>
+	</#if>
+</div>
+</#macro>
+
+<#-- Index Mailbox -->
+<#macro indexMailbox>
+<div class="i_em">
+	<a href="${base}/front/mailbox.do"><img src="images/em.png" /></a>
+</div>
+</#macro>
+
+<#-- zdlist -->
+<#macro zdList>
+<h2 class="mt5">站点导航</h2>
+<ul class="zdlist">
+	<li><a href="${base}/front/department.do?departmentCode=BGS">办公室</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=ZGJJC">政工纪检处</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=ZHZX">指挥中心</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=XFK">信访科</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=XZDD">刑侦大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=ZADD">治安大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=XTJDD">巡特警大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=GBDD">国保大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=SYZDD">食药侦大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=WADD">网安大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=FZDD">法制大队</a></li>
+	<li><a href="${base}/front/department.do?departmentCode=CRJDD">出入境大队</a></li>
+</ul>
+</#macro>
+
+<#-- dhLink -->
+<#macro dhLink qgdhList=[] sndhList=[] sjdhList=[] sjzsbmdhList=[] qxfjdhList=[]>
+<div class="bg_g">
+	<select id="Select5" class="se_box2">
+		<option value="0">全国导航</option>
+		<#list qgdhList as qgdh>
+		<option value="${qgdh.linkUrl}">${qgdh.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select6" class="se_box2">
+		<option value="0">省内导航</option>
+		<#list sndhList as sndh>
+		<option value="${sndh.linkUrl}">${sndh.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select7" class="se_box2">
+		<option value="0">市局导航</option>
+		<#list sjdhList as sjdh>
+		<option value="${sjdh.linkUrl}">${sjdh.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select8" class="se_box2">
+		<option value="0">市局直属部门导航</option>
+		<#list sjzsbmdhList as sjzsbmdh>
+		<option value="${sjzsbmdh.linkUrl}">${sjzsbmdh.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select9" class="se_box2">
+		<option value="0">区县分局导航</option>
+		<#list qxfjdhList as qxfjdh>
+		<option value="${qxfjdh.linkUrl}">${qxfjdh.linkDescription}</option>
+		</#list>
+	</select>
+</div>
+</#macro>
+
+<#-- asLink -->
+<#macro asLink qgkList=[] stkList=[] sjkList=[]>
+<div class="bg_g">
+    <h2 class="mt5 mb_10">应用系统</h2>
+	<select id="Select1" class="se_box2">
+		<option value="0">全国库</option>
+		<#list qgkList as qgk>
+		<option value="${qgk.linkUrl}">${qgk.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select2" class="se_box2">
+		<option value="0">省厅库</option>
+		<#list stkList as stk>
+		<option value="${stk.linkUrl}">${stk.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select3" class="se_box2">
+		<option value="0">市局库</option>
+		<#list sjkList as sjk>
+		<option value="${sjk.linkUrl}">${sjk.linkDescription}</option>
+		</#list>
+	</select>
+	<select id="Select4" class="se_box2">
+		<option value="0">分局库</option>
+		<#list fjkList as fjk>
+		<option value="${fjk.linkUrl}">${fjk.linkDescription}</option>
+		</#list>
+	</select>
+</div>
+</#macro>
+
+<#macro showNewGif date>
+<#if daysOffset(date?string)<=3><img src="${base}/images/new.gif" /></#if>
 </#macro>

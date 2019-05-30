@@ -84,21 +84,24 @@ public interface Constant {
 	/* 文章类型常量集 */
 	public static final String ARTICLETYPE_LAW = "LAW";// 法律纵览
 	public static final String ARTICLETYPE_INFORMATIONSECURITY = "INFORMATIONSECURITY";// 信息安全
+	public static final String ARTICLETYPE_ISSUEWORD = "ISSUEWORD";// 昨日要情
 
 	public static final String ARTICLETYPE_IMAGENEWS = "IMAGENEWS";// 图片新闻
 
 	public static final String ARTICLETYPE_BRANCHFILE = "BRANCHFILE";// 分局文件
 	public static final String ARTICLETYPE_SUPERIORFILE = "SUPERIORFILE";// 上级文件
 	public static final String ARTICLETYPE_NOTICE = "NOTICE";// 通知通报
-	public static final String ARTICLETYPE_WORKREPORT = "WORKREPORT";// 工作简报
+	public static final String ARTICLETYPE_WORKREPORT = "WORKREPORT";// 工作动态(工作简报)
 	public static final String ARTICLETYPE_POLITICALREPORT = "POLITICALREPORT";// 政工简报
+	public static final String ARTICLETYPE_POLITICALNOTICE = "POLITICALNOTICE";// 政工纪检(政工通知)
 	public static final String ARTICLETYPE_LEGAL = "LEGAL";// 公安法制
 	public static final String ARTICLETYPE_DISCIPLINE = "DISCIPLINE";// 纪检监察
-	public static final String ARTICLETYPE_POLICECASE = "POLICECASE";// 警情研判
+	public static final String ARTICLETYPE_POLICECASE = "POLICECASE";// 每日警情(警情研判)
 	public static final String ARTICLETYPE_EXPERIENCE = "EXPERIENCE";// 经验交流
 	public static final String ARTICLETYPE_POLICECULTURE = "POLICECULTURE";// 警营文化
-	public static final String ARTICLETYPE_EVALUATION = "EVALUATION";// 综合考评
+	public static final String ARTICLETYPE_EVALUATION = "EVALUATION";// 督导考核(综合考评)
 	public static final String ARTICLETYPE_TALENT = "TALENT";// 人才市场
+	public static final String ARTICLETYPE_MONTHLYSTAR = "MONTHLYSTAR";// 每月之星
 
 	public static final String ARTICLEBIZTYPE_NOR = "NOR";// 普通文章
 	public static final String ARTICLEBIZTYPE_RED = "RED";// 红头文件
