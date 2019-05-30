@@ -27,7 +27,7 @@ public class InformationsecurityInfoProcess extends Process {
 				.getAttribute("informationSecurityId");
 
 		Map<String, Object> informationSecurity = indexService
-				.getArticleById(informationSecurityId);
+				.queryArticleById(informationSecurityId);
 
 		model.put("informationSecurity", informationSecurity);
 		model.put("articleType", Constant.ARTICLETYPE_INFORMATIONSECURITY);

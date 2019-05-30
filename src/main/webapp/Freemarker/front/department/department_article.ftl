@@ -34,7 +34,9 @@
 			</h2>
 			<div class="sac">
 				<h2 class="spt">${article.articleTitle}</h2>
-				<h2 class="time">发布时间：${article.createByTime}</h2>
+				<h2 class="time">发布时间：${article.createByTime} &nbsp;&nbsp;
+		                       浏览量：${article.pageView?default('0')}
+				</h2>
 				<#if video??>
 					<script type='text/javascript' src='${base}/js/jwplayer/jwplayer.js'></script>
 					<div id="mediaspace"></div>

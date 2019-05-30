@@ -22,7 +22,9 @@
 			</h2>
 			<div class="sac">
 				<h2 class="spt">${talent.articleTitle}</h2>
-				<h2 class="time">发布时间：${talent.createByTime}</h2>
+				<h2 class="time">发布时间：${talent.createByTime} &nbsp;&nbsp;
+		                       浏览量：${talent.pageView?default('0')}
+				</h2>
 				${talent.articleContent}
 			</div>
 			<div class="page">

@@ -24,7 +24,7 @@ public class DepartmentArticleProcess extends Process {
 
 		String articleId = (String) request.getAttribute("articleId");
 
-		Map<String, Object> article = indexService.getArticleById(articleId);
+		Map<String, Object> article = indexService.queryArticleById(articleId);
 
 		Map<String, Object> dc = indexService.getDcNameByArticleId(articleId);
 		dc.put("dcCode", (String) request.getAttribute("departmentCode"));

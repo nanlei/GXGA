@@ -312,7 +312,9 @@
 		<#assign imageList=ftlUtil.getImageByArticleId('${article.articleId}')/>
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if> &nbsp;&nbsp;
+		浏览量：${article.pageView?default('0')}
+		</h2>
 		<#if imageList?size!=0>
 		<div class="sac">
 			<#list imageList as image>
@@ -326,7 +328,9 @@
 	<#else><#-- ATTACHMENT -->
 	<div class="sac">
 		<h2 class="spt">${article.articleTitle}</h2>
-		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if></h2>
+		<h2 class="time">发布时间：<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if> &nbsp;&nbsp;
+		浏览量：${article.pageView?default('0')}
+		</h2>
 		<div style="font-family:仿宋">${article.articleContent}</div>
 	</div>
 	<div class="page">

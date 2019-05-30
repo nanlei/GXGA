@@ -26,7 +26,7 @@ public class TalentInfoProcess extends Process {
 
 		String talentId = (String) request.getAttribute("talentId");
 
-		Map<String, Object> talent = indexService.getArticleById(talentId);
+		Map<String, Object> talent = indexService.queryArticleById(talentId);
 
 		List<Map<String, Object>> categoryList = indexService
 				.getArticleCategoryByType(Constant.ARTICLETYPE_TALENT);

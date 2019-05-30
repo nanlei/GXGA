@@ -26,7 +26,7 @@ public class ArticleRedHeadProcess extends Process {
 
 		String articleId = (String) request.getAttribute("articleId");
 
-		Map<String, Object> article = indexService.getArticleById(articleId);
+		Map<String, Object> article = indexService.queryArticleById(articleId);
 
 		String redHeadConfig = (String) article.get("redHeadConfig");
 
