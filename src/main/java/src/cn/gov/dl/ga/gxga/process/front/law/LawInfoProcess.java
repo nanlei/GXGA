@@ -25,7 +25,7 @@ public class LawInfoProcess extends Process {
 
 		String lawId = (String) request.getAttribute("lawId");
 
-		Map<String, Object> law = indexService.getArticleById(lawId);
+		Map<String, Object> law = indexService.queryArticleById(lawId);
 
 		model.put("law", law);
 		model.put("articleType", Constant.ARTICLETYPE_LAW);

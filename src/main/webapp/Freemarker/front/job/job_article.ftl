@@ -20,7 +20,9 @@
 			</h2>
 			<div class="sac">
 				<h2 class="spt">${article.articleTitle}</h2>
-				<h2 class="time">发布时间：${article.createByTime}</h2>
+				<h2 class="time">发布时间：${article.createByTime} &nbsp;&nbsp;
+		                       浏览量：${article.pageView?default('0')}
+				</h2>
 				<div style="font-size:16px;font-family:仿宋">${article.articleContent}</div>
 			</div>
 			<div class="page">

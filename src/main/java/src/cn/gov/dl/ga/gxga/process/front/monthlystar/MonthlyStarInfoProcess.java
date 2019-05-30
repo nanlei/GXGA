@@ -24,7 +24,7 @@ public class MonthlyStarInfoProcess extends Process {
 
 		String id = (String) request.getAttribute("id");
 
-		Map<String, Object> monthlyStar = indexService.getArticleById(id);
+		Map<String, Object> monthlyStar = indexService.queryArticleById(id);
 
 		model.put("monthlyStar", monthlyStar);
 		model.put("articleType", Constant.ARTICLETYPE_MONTHLYSTAR);

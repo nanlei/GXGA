@@ -57,9 +57,11 @@ public class IndexService extends BaseService {
 		return jt.queryForList(SQL_GET_ARTICLE_BY_DCID_FOR_LIST, dcId);
 	}
 
-	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, articleBizType, redHeadConfig, videoId, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime from doc_article where articleId=?";
+	private static final String SQL_GET_ARTICLE_BY_ID = "select articleId, articleType, articleCode, articleTitle, articleContent, articleBizType, redHeadConfig, videoId, date_format(articleDate,'%Y-%m-%d') as articleDate, date_format(createByTime,'%Y-%m-%d') as createByTime, pageView from doc_article where articleId=?";
+	private static final String SQL_UPDATE_PAGEVIEW = "update doc_article set pageView=pageView+1 where articleId=?";
 
-	public Map<String, Object> getArticleById(String articleId) {
+	public Map<String, Object> queryArticleById(String articleId) {
+		jt.update(SQL_UPDATE_PAGEVIEW, articleId);
 		return jt.queryForMap(SQL_GET_ARTICLE_BY_ID, new Object[] { articleId });
 	}
 

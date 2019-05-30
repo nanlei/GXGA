@@ -16,7 +16,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="interceptors">
 			<list>
-				<ref bean="ipInterceptor" />
+				<!-- <ref bean="ipInterceptor" /> -->
 				<ref bean="loginInterceptor" />
 				<ref bean="permissionInterceptor" />
 			</list>
