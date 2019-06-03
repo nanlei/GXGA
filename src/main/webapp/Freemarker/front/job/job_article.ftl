@@ -23,6 +23,26 @@
 				<h2 class="time">发布时间：${article.createByTime} &nbsp;&nbsp;
 		                       浏览量：${article.pageView?default('0')}
 				</h2>
+				<#if video??>
+				<link href="${base}/js/videojs/video-js.css" rel="stylesheet" type="text/css">
+                <script src="${base}/js/videojs/video.js"></script>
+                <script>
+                videojs.options.flash.swf = "${base}/js/videojs/video-js.swf";
+                </script>
+                <video id="job_video" class="video-js vjs-default-skin" controls preload="none" width="680" height="450"
+				      poster="${base}/images/logo.png"
+				      data-setup="{}">
+				    <source src="${base}${video.videoUrl}" type='video/mp4' />
+				    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+				    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+				</video>
+				<script type="text/javascript">
+				    var myPlayer = videojs('job_video');
+				    myPlayer.ready(function(){
+				        myPlayer.play();
+				    });
+				</script>
+				</#if>
 				<div style="font-size:16px;font-family:仿宋">${article.articleContent}</div>
 			</div>
 			<div class="page">

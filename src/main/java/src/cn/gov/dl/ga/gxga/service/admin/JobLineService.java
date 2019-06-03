@@ -39,27 +39,24 @@ public class JobLineService extends BaseService {
 		sortField = StringUtils.isEmpty(sortField) ? "articleOrder" : sortField;
 		sortOrder = StringUtils.isEmpty(sortOrder) ? "asc" : sortOrder;
 
-		QueryHelper helper = new QueryHelper(
-				SQL_SEARCH_JOB_LINE_BY_JOBID_PREFIX,
-				SQL_SEARCH_JOB_LINE_BY_JOBID_SUFFIX + sortField + " "
-						+ sortOrder);
+		QueryHelper helper = new QueryHelper(SQL_SEARCH_JOB_LINE_BY_JOBID_PREFIX,
+				SQL_SEARCH_JOB_LINE_BY_JOBID_SUFFIX + sortField + " " + sortOrder);
 
 		helper.setParam(true, "a.jobCategoryId=jc.jobCategoryId");
 		helper.setParam(true, "jh.jobId=jc.jobId");
-		helper.setParam(true,
-				"a.articleStatus=c.constantValue and c.constantType='ARTICLESTATUS'");
+		helper.setParam(true, "a.articleStatus=c.constantValue and c.constantType='ARTICLESTATUS'");
 		helper.setParam(StringUtils.isNotEmpty(jobId), "a.jobId=?", jobId);
 
 		return helper;
 	}
 
-	public int createArticleForJobLine(HttpServletRequest request) {
-		HashMap<String, Object> parameters = buildInsertCondition(request);
+	public int createArticleForJobLine(HttpServletRequest request, String videoId) {
+		HashMap<String, Object> parameters = buildInsertCondition(request, videoId);
 
 		parameters.put("articleBizType", Constant.ARTICLEBIZTYPE_NOR);
 
-		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName(
-				"doc_article").usingGeneratedKeyColumns("articleId");
+		SimpleJdbcInsert insert = new SimpleJdbcInsert(jt).withTableName("doc_article")
+				.usingGeneratedKeyColumns("articleId");
 
 		Number id = insert.executeAndReturnKey(parameters);
 
@@ -69,10 +66,8 @@ public class JobLineService extends BaseService {
 	}
 
 	@SuppressWarnings("unchecked")
-	private HashMap<String, Object> buildInsertCondition(
-			HttpServletRequest request) {
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+	private HashMap<String, Object> buildInsertCondition(HttpServletRequest request, String videoId) {
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 		int createBy = (Integer) loginUser.get("userId");
 		String createByName = (String) loginUser.get("realName");
 
@@ -110,17 +105,21 @@ public class JobLineService extends BaseService {
 		parameters.put("createByTime", new Timestamp(new Date().getTime()));
 		parameters.put("createByIP", CoreUtil.getIPAddr(request));
 		parameters.put("pageView", 0);
+		if (StringUtils.isNotEmpty(videoId)) {
+			parameters.put("videoId", videoId);
+		} else {
+			parameters.put("videoId", "0");
+		}
 		return parameters;
 	}
 
 	private static final String SQL_GET_ARTICLE_BY_ID = "select * from doc_article where articleId=?";
 
 	public HashMap<String, Object> getArticleById(String articleId) {
-		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_ARTICLE_BY_ID,
-				articleId);
+		return (HashMap<String, Object>) jt.queryForMap(SQL_GET_ARTICLE_BY_ID, articleId);
 	}
 
-	private static final String SQL_UPDATE_ARTICLE_FOR_JOB_BY_ID = "update doc_article set articleTitle=?, articleContent=?, articleOrder=?, jobCategoryId=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where articleId=?";
+	private static final String SQL_UPDATE_ARTICLE_FOR_JOB_BY_ID = "update doc_article set articleTitle=?, articleContent=?, articleOrder=?, jobCategoryId=?, videoId=?, createBy=?, createByName=?, createByTime=now(), createByIP=? where articleId=?";
 
 	public int updateArtileForJobById(Object[] parameters) {
 		return jt.update(SQL_UPDATE_ARTICLE_FOR_JOB_BY_ID, parameters);
@@ -136,8 +135,7 @@ public class JobLineService extends BaseService {
 	private static final String GET_JOB_HEADER_ID = "select jobId from doc_job_category where jobCategoryId=?";
 
 	public int getJobHeaderId(String jobCategoryId) {
-		return jt.queryForObject(GET_JOB_HEADER_ID, Integer.class,
-				jobCategoryId);
+		return jt.queryForObject(GET_JOB_HEADER_ID, Integer.class, jobCategoryId);
 	}
 
 	private static final String SQL_GET_JOB_CATEGORY = "select jobCategoryId as id, jobCategoryTitle as text from doc_job_category where jobId=? order by jobCategoryOrder asc";

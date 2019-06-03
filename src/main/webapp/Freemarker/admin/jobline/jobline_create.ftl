@@ -18,6 +18,14 @@
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" /></td>
 	</tr>
 	<tr>
+		<td><label>视频所属目录:</label></td>
+		<td><input id="categoryId" name="categoryId" class="mini-combobox" style="width:150px;" textField="text" valueField="id"  url="${base}/admin/const.do?constant=CATEGORY" dataField="data" showNullItem="true" allowInput="true" onValueChanged="onCategoryChanged" required="false"/></td>
+	</tr>
+	<tr>
+		<td><label>视频:</label></td>
+		<td><input id="videoId" name="videoId" class="mini-combobox" style="width:150px;" textField="text" valueField="id" dataField="data" showNullItem="true" allowInput="false" required="false"/></td>
+	</tr>
+	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="请输入内容（专项工作）" /></td>
 	</tr>
 <@admin.searchArea colspan="2">
@@ -48,6 +56,20 @@
     	
     	jobCategoryId.setUrl(url);
     	jobCategoryId.select(0);
+    }
+    
+	function onCategoryChanged(e) {
+		var categoryId=mini.get("categoryId");
+    	var videoId=mini.get("videoId");
+
+    	var id=categoryId.getValue();
+    	
+    	videoId.setValue("");
+    	
+    	var url="${base}/admin/video.do?command=ajax&categoryId="+id;
+    	
+    	videoId.setUrl(url);
+    	videoId.select(0);
     }
 	
     function Save() {

@@ -50,7 +50,7 @@
 									  'width': '680',
 									  'height': '450'
 									});
-</script>
+                    </script>
 				</#if>
 				<br/><br/>
 				<p style="font-family:仿宋">${article.articleContent}</p>

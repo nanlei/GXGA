@@ -19,6 +19,14 @@
 		<td><input class="mini-textbox" required="true" name="articleOrder" style="width:150px;" value="${article.articleOrder?default('')}"/></td>
 	</tr>
 	<tr>
+		<td><label>视频所属目录:</label></td>
+		<td><input id="categoryId" name="categoryId" class="mini-combobox" style="width:150px;" value="${(video.categoryId)?default('')}" textField="text" valueField="id"  url="${base}/admin/const.do?constant=CATEGORY" dataField="data" showNullItem="true" allowInput="true" onValueChanged="onCategoryChanged" required="false"/></td>
+	</tr>
+	<tr>
+		<td><label>视频:</label></td>
+		<td><input id="videoId" name="videoId" class="mini-combobox" style="width:150px;" value="${(article.videoId)?default('')}" textField="text" valueField="id" dataField="data" url="${base}/admin/video.do?command=ajax&categoryId=${(video.categoryId)?default('')}" showNullItem="true" allowInput="false" required="false"/></td>
+	</tr>
+	<tr>
 		<td colspan="2"><@admin.ckeditor id="articleContent" name="articleContent" value="${article.articleContent?default('请输入内容（专项工作）')}" /></td>
 	</tr>
 <@admin.searchArea colspan="2">
@@ -36,6 +44,10 @@
 	mini.parse();
 	
 	var form = new mini.Form("form1");
+	
+	if(mini.get("videoId").getValue()==0){
+		mini.get("videoId").setValue('');
+	}
 	
 	function Init(){
 		var jobId=mini.get("jobId");
@@ -78,6 +90,20 @@
     	
     	jobCategoryId.setUrl(url);
     	jobCategoryId.select(0);
+    }
+
+	function onCategoryChanged(e) {
+		var categoryId=mini.get("categoryId");
+    	var videoId=mini.get("videoId");
+
+    	var id=categoryId.getValue();
+    	
+    	videoId.setValue("");
+    	
+    	var url="${base}/admin/video.do?command=ajax&categoryId="+id;
+    	
+    	videoId.setUrl(url);
+    	videoId.select(0);
     }
 	
     function Save() {

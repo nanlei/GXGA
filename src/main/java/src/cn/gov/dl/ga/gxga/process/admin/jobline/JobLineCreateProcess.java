@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
 import cn.gov.dl.ga.gxga.service.admin.JobLineService;
+import cn.gov.dl.ga.gxga.util.JSONParser;
 
 public class JobLineCreateProcess extends Process {
 	private JobLineService jobLineService;
@@ -17,11 +18,15 @@ public class JobLineCreateProcess extends Process {
 	}
 
 	@Override
-	public Result process(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
-		jobLineService.createArticleForJobLine(request);
+		String object = (String) request.getAttribute("object");
+		HashMap<String, String> params = JSONParser.parseJSON(object);
+
+		String videoId = params.get("videoId");
+
+		jobLineService.createArticleForJobLine(request, videoId);
 
 		model.put("status", "true");
 

@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import cn.gov.dl.ga.gxga.core.Constant;
 import cn.gov.dl.ga.gxga.core.controller.Process;
 import cn.gov.dl.ga.gxga.core.controller.Result;
@@ -22,12 +24,10 @@ public class JobLineUpdateProcess extends Process {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Result process(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
-		Map<String, Object> loginUser = (Map<String, Object>) request
-				.getSession().getAttribute(Constant.LOGIN_USER);
+		Map<String, Object> loginUser = (Map<String, Object>) request.getSession().getAttribute(Constant.LOGIN_USER);
 
 		String object = (String) request.getAttribute("object");
 		HashMap<String, String> params = JSONParser.parseJSON(object);
@@ -41,9 +41,14 @@ public class JobLineUpdateProcess extends Process {
 		String createByIP = CoreUtil.getIPAddr(request);
 		String articleId = params.get("articleId");
 
-		Object[] parameters = new Object[] { articleTitle, articleContent,
-				articleOrder, jobCategoryId, createBy, createByName,
-				createByIP, articleId };
+		String videoId = params.get("videoId");
+
+		if (StringUtils.isEmpty(videoId)) {
+			videoId = "0";
+		}
+
+		Object[] parameters = new Object[] { articleTitle, articleContent, articleOrder, jobCategoryId, videoId,
+				createBy, createByName, createByIP, articleId };
 
 		jobLineService.updateArtileForJobById(parameters);
 

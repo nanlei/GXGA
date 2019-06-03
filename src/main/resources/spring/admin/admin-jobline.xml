@@ -42,6 +42,7 @@
 					<bean
 						class="cn.gov.dl.ga.gxga.process.admin.jobline.JobLineUpdatePreProcess">
 						<property name="jobLineService" ref="jobLineService" />
+						<property name="videoService" ref="videoService" />
 						<property name="successView" value="admin/jobline/jobline_update" />
 					</bean>
 				</entry>
