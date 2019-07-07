@@ -32,6 +32,7 @@ public class JobLineService extends BaseService {
 		HashMap<String, String> params = JSONParser.parseJSON(condition);
 
 		String jobId = params.get("jobId");
+		String jobCategoryId = params.get("jobCategoryId");
 
 		String sortField = (String) request.getAttribute("sortField");
 		String sortOrder = (String) request.getAttribute("sortOrder");
@@ -45,7 +46,8 @@ public class JobLineService extends BaseService {
 		helper.setParam(true, "a.jobCategoryId=jc.jobCategoryId");
 		helper.setParam(true, "jh.jobId=jc.jobId");
 		helper.setParam(true, "a.articleStatus=c.constantValue and c.constantType='ARTICLESTATUS'");
-		helper.setParam(StringUtils.isNotEmpty(jobId), "a.jobId=?", jobId);
+		helper.setParam(StringUtils.isNotEmpty(jobCategoryId), "a.jobCategoryId=?", jobCategoryId);
+		helper.setParam(StringUtils.isNotEmpty(jobId), "jh.jobId=?", jobId);
 
 		return helper;
 	}

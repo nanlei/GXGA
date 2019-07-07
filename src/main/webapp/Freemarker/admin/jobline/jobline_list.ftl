@@ -5,7 +5,7 @@
 		<td>专项行动：</td>
 		<td><input class="mini-combobox" id="jobId" required="false" name="jobId" style="width:150px;" onValueChanged="onJobChanged" textField="text" valueField="id" dataField="data" url="${base}/admin/jobline.do?command=getjobheader" showNullItem="true" allowInput="false" /></td>
 		<td>专项分类：</td>
-		<td><input class="mini-combobox" id="jobCategoryId" required="false" name="jobId" style="width:150px;" textField="text" valueField="id" dataField="data" showNullItem="true" allowInput="false" /></td>
+		<td><input class="mini-combobox" id="jobCategoryId" required="false" name="jobCategoryId" style="width:150px;" textField="text" valueField="id" dataField="data" showNullItem="true" allowInput="false" /></td>
 	</tr>
 <@admin.searchArea colspan="7">
 <@admin.searchLeftArea>
