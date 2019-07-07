@@ -18,8 +18,7 @@ public class DepartmentArticleProcess extends Process {
 	}
 
 	@Override
-	public Result process(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public Result process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 
 		String articleId = (String) request.getAttribute("articleId");
@@ -29,10 +28,11 @@ public class DepartmentArticleProcess extends Process {
 		Map<String, Object> dc = indexService.getDcNameByArticleId(articleId);
 		dc.put("dcCode", (String) request.getAttribute("departmentCode"));
 
-		int videoId = (Integer) article.get("videoId");
-
-		if (videoId > 0) {
-			model.put("video", indexService.getVideoById(videoId));
+		if (article.get("videoId") != null) {
+			int videoId = (Integer) article.get("videoId");
+			if (videoId > 0) {
+				model.put("video", indexService.getVideoById(videoId));
+			}
 		}
 
 		model.put("article", article);

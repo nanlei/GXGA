@@ -24,17 +24,18 @@
 		                       浏览量：${article.pageView?default('0')}
 				</h2>
 				<#if video??>
+				<#--
 				<link href="${base}/js/videojs/video-js.css" rel="stylesheet" type="text/css">
-                <script src="${base}/js/videojs/video.js"></script>
+                <script src="${base}/js/videojs/video.min.js"></script>
                 <script>
-                videojs.options.flash.swf = "${base}/js/videojs/video-js.swf";
+                videojs.options.flash.swf = '${base}/js/videojs/video-js.swf';
                 </script>
                 <video id="job_video" class="video-js vjs-default-skin" controls preload="none" width="680" height="450"
 				      poster="${base}/images/logo.png"
 				      data-setup="{}">
 				    <source src="${base}${video.videoUrl}" type='video/mp4' />
-				    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
-				    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+				    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track>
+				    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track>
 				</video>
 				<script type="text/javascript">
 				    var myPlayer = videojs('job_video');
@@ -42,6 +43,20 @@
 				        myPlayer.play();
 				    });
 				</script>
+				-->
+				<script type='text/javascript' src='${base}/js/jwplayer/jwplayer.js'></script>
+					<div id="mediaspace"></div>
+					<script>
+					jwplayer('mediaspace').setup({
+						'autostart': true,
+						'flashplayer': '${base}/js/jwplayer/jwplayer.flash.swf',
+									  'file': '${base}${video.videoUrl}',
+									  'controlbar': 'bottom',
+									  'image': '${base}/images/logo.png',
+									  'width': '680',
+									  'height': '450'
+									});
+                    </script>
 				</#if>
 				<div style="font-size:16px;font-family:仿宋">${article.articleContent}</div>
 			</div>

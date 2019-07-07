@@ -832,20 +832,20 @@ jQuery(".slideGroup .slideBox").slide({
                         imgScroll.rolling({
                             name: 'g1',
                             width: '128px',
-                            height: '87px',
+                            height: '83px',
                             direction: 'top',
-                            speed: 10,
+                            speed: 40,
                             addcss: true
                         });
                     })
                 </script>
-                <div class="content_list<#if (emergencyNoticeList?size>4)>g1</#if>">
+                <div class="content_list <#if (emergencyNoticeList?size>3)>g1</#if>">
                     <ul>
                     	<#list emergencyNoticeList as emergencyNotice>
                     	<#if emergencyNotice.linkModule?default('SELF') = 'SELF'>
-                        <li><a href="${base}${emergencyNotice.noticeAttachmentUrl}"><img src="${base}${emergencyNotice.noticeImageUrl}" title="${emergencyNotice.noticeTitle}"/></a></li>
+                        <li style="list-style:none; padding:0; margin:0"><a href="${base}${emergencyNotice.noticeAttachmentUrl}"><img src="${base}${emergencyNotice.noticeImageUrl}" title="${emergencyNotice.noticeTitle}" /></a></li>
                     	<#elseif emergencyNotice.linkModule?default('SELF') = 'LINK-JOB'>
-                    	<li><a href="${base}/front/job.do?jobId=${emergencyNotice.linkId}"><img src="${base}${emergencyNotice.jobImageUrl}" title="${emergencyNotice.noticeTitle}"/></a></li>
+                    	<li style="list-style:none; padding:0; margin:0"><a href="${base}/front/job.do?jobId=${emergencyNotice.linkId}"><img src="${base}${emergencyNotice.jobImageUrl}" title="${emergencyNotice.noticeTitle}" /></a></li>
                     	</#if>
                     	</#list>
                     </ul>

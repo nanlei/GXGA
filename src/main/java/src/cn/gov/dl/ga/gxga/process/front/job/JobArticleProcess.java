@@ -37,10 +37,11 @@ public class JobArticleProcess extends Process {
 
 		List<Map<String, Object>> jobList = indexService.getJobList();
 
-		int videoId = (Integer) article.get("videoId");
-
-		if (videoId > 0) {
-			model.put("video", indexService.getVideoById(videoId));
+		if (article.get("videoId") != null) {
+			int videoId = (Integer) article.get("videoId");
+			if (videoId > 0) {
+				model.put("video", indexService.getVideoById(videoId));
+			}
 		}
 
 		model.put("article", article);
