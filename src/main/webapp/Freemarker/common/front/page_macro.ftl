@@ -95,7 +95,7 @@
 		<li <#if on="law">class="on"</#if>><a href="${base}/front/law.do">法律纵览</a></li>
 		<li <#if on="oa">class="on"</#if>><a href="${base}/front/oa.do">网上办公</a></li>
 		<li <#if on="talent">class="on"</#if>><a href="${base}/front/talent.do">人才市场</a></li>
-		<li <#if on="issue">class="on"</#if>><a href="${base}/front/issue.do">昨日要情</a></li>
+		<li <#if on="issue">class="on"</#if>><a href="${base}/front/issue.do">每周小结</a></li>
 		<li <#if on="download">class="on"</#if>><a href="${base}/front/download.do">下载中心</a></li>
 		<li <#if on="contact">class="on"</#if>><a href="${base}/front/contact.do">通讯录</a></li>
 	</ul>
@@ -113,7 +113,7 @@
 	<#elseif articleType='BRANCHFILE'>分局文件
 	<#elseif articleType='IMAGENEWS'>图片新闻
 	<#elseif articleType='NOTICE'>通知通报
-	<#elseif articleType='ISSUEWORD'>昨日要情
+	<#elseif articleType='ISSUEWORD'>每周小结
 	<#elseif articleType='WORKREPORT'>工作动态
 	<#elseif articleType='POLITICALREPORT'>政工简报
 	<#elseif articleType='POLITICALNOTICE'>政工纪检
@@ -141,7 +141,7 @@
 		<#elseif articleType='BRANCHFILE'>分局文件
 		<#elseif articleType='IMAGENEWS'>图片新闻
 		<#elseif articleType='NOTICE'>通知通报
-		<#elseif articleType='ISSUEWORD'>昨日要情
+		<#elseif articleType='ISSUEWORD'>每周小结
 		<#elseif articleType='WORKREPORT'>工作动态
 		<#elseif articleType='POLITICALREPORT'>政工简报
 		<#elseif articleType='POLITICALNOTICE'>政工纪检
@@ -165,7 +165,7 @@
 		<#elseif article.articleType='INFORMATIONSECURITY'>
 		<li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/informationsecurity.do?command=info&informationSecurityId=${article.articleId}">${article.articleTitle}</a></li>
 		<#elseif article.articleType='ISSUEWORD'>
-		<li><span class="date2"></span><a href="${base}${article.filePath}">昨日要情${article.issueDate}</a></li>
+		<li><span class="date2"></span><a href="${base}${article.filePath}">每周小结${article.issueDate}</a></li>
 		<#elseif article.articleType='POLICECASE'>
 			<#if article.type=='ARTICLE'>
             <li><span class="date2">【<#if article.articleDate??>${article.articleDate}<#else>${article.createByTime}</#if>】</span><a href="${base}/front/article.do?articleId=${article.articleId}">${article.articleTitle}</a></li>
@@ -203,7 +203,7 @@
 	<#elseif articleType='BRANCHFILE'>分局文件
 	<#elseif articleType='IMAGENEWS'>图片新闻
 	<#elseif articleType='NOTICE'>通知通报
-	<#elseif articleType='ISSUEWORD'>昨日要情
+	<#elseif articleType='ISSUEWORD'>每周小结
 	<#elseif articleType='WORKREPORT'>工作动态
 	<#elseif articleType='POLITICALREPORT'>政工简报
 	<#elseif articleType='POLITICALNOTICE'>政工纪检
@@ -225,7 +225,7 @@
 		<li <#if articleType='IMAGENEWS'>class="on"</#if>><a href="${base}/front/articleList.do?type=IMAGENEWS">图片新闻</a></li>
 		<li <#if articleType='BRANCHFILE'>class="on"</#if>><a href="${base}/front/articleList.do?type=BRANCHFILE">分局文件</a></li>
 		<li <#if articleType='NOTICE'>class="on"</#if>><a href="${base}/front/articleList.do?type=NOTICE">通知通报</a></li>
-		<li <#if articleType='ISSUEWORD'>class="on"</#if>><a href="${base}/front/articleList.do?type=ISSUEWORD">昨日要情</a></li>
+		<li <#if articleType='ISSUEWORD'>class="on"</#if>><a href="${base}/front/articleList.do?type=ISSUEWORD">每周小结</a></li>
 		<li <#if articleType='WORKREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=WORKREPORT">工作动态</a></li>
 		<li <#if articleType='POLITICALREPORT'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALREPORT">政工简报</a></li>
 		<li <#if articleType='POLITICALNOTICE'>class="on"</#if>><a href="${base}/front/articleList.do?type=POLITICALNOTICE">政工纪检</a></li>

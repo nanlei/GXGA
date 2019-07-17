@@ -25,7 +25,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为昨日要情Word上传页面，请选择附件，然后点击【上传】按钮即可。
+本页面为每周小结Word上传页面，请选择附件，然后点击【上传】按钮即可。
 </@admin.conArea>
 <@admin.script>
 	mini.parse();

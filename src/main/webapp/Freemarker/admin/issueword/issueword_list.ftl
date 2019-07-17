@@ -1,5 +1,5 @@
-<@admin.page title="昨日要情">
-<@admin.conArea title="前台综合>>昨日要情>>WORD>>查询" id="form1">
+<@admin.page title="每周小结">
+<@admin.conArea title="前台综合>>每周小结>>WORD>>查询" id="form1">
 <@admin.con id="datacon1">
 	<tr>
 		<td>日期:</td>
@@ -43,7 +43,7 @@
 	function Add() {
 		mini.open({
 			url: "${base}/admin/issueword.do?command=uploadpre",
-			title: "上传昨日要情Word", width: 400, height: 350,
+			title: "上传每周小结Word", width: 400, height: 350,
 			ondestroy: function (action) {
 				Search();
 			}

@@ -1,5 +1,5 @@
-<@admin.page title="昨日要情">
-<@admin.conArea title="前台综合>>昨日要情>>修改" id="form1">
+<@admin.page title="每周小结">
+<@admin.conArea title="前台综合>>每周小结>>修改" id="form1">
 <input class="mini-hidden" name="issueId" value="${(issue.issueId)?default('')}"/>
 <@admin.con id="datacon1">
 	<tr>
@@ -22,7 +22,7 @@
 </@admin.con>
 </@admin.conArea>
 <@admin.conArea title="页面提示" id="form2">
-本页面为昨日要情修改页面，请按照上述内容填写相关信息<br>
+本页面为每周小结修改页面，请按照上述内容填写相关信息<br>
 排序字段仅为该日内部排列顺序<br>
 填写完成后，点击【保存】按钮即可
 </@admin.conArea>
